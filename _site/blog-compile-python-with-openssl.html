@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Hello | Hello, time</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Hello" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content=".." />
+<meta property="og:description" content=".." />
+<link rel="canonical" href="http://localhost:4000/blog-compile-python-with-openssl.html" />
+<meta property="og:url" content="http://localhost:4000/blog-compile-python-with-openssl.html" />
+<meta property="og:site_name" content="Hello, time" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Hello" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"..","headline":"Hello","url":"http://localhost:4000/blog-compile-python-with-openssl.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Hello</h1>
+      <h2 class="project-tagline">..</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>This blog is a tutorial of how to compile <code class="language-plaintext highlighter-rouge">python 3.10.6</code> with <code class="language-plaintext highlighter-rouge">openssl 3.0.5</code> module on <code class="language-plaintext highlighter-rouge">Ubuntu 18.04</code> and <code class="language-plaintext highlighter-rouge">mac os</code>.</p>
+
+<p>↓ On <code class="language-plaintext highlighter-rouge">Ubuntu 18.04</code></p>
+
+<p>Steps:</p>
+
+<ul>
+  <li><a href="#prepare">Prepare ubuntu container</a></li>
+  <li><a href="#openssl">Compile openssl</a></li>
+  <li><a href="#python">Compile python</a></li>
+</ul>
+
+<p>Further:</p>
+<ul>
+  <li><a href="#issues">Issues encountered in the process</a></li>
+  <li><a href="#references">References</a></li>
+</ul>
+
+<p>↓ On <code class="language-plaintext highlighter-rouge">Mac OS</code></p>
+
+<p>Steps:</p>
+
+<ul>
+  <li><a href="#prepare_mac">Prepare Mac OS</a></li>
+  <li><a href="#openssl">Compile openssl</a></li>
+  <li><a href="#python">Compile python</a></li>
+</ul>
+
+<p>Further:</p>
+<ul>
+  <li><a href="#mac_references">References</a></li>
+</ul>
+
+<h2 id="run-ubuntu-container-and-install-required-packages"><a name="prepare">Run Ubuntu container and install required packages</a></h2>
+
+<p>I will demo it in Ubuntu docker container.</p>
+
+<p>So first of all, run a ubuntu container there is no python installed.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-it</span> ubuntu:bionic /bin/bash
+</code></pre></div></div>
+
+<p>As you can see, python is not installed</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python
+bash: python: <span class="nb">command </span>not found
+
+<span class="nv">$ </span>python3
+bash: python3: <span class="nb">command </span>not found
+</code></pre></div></div>
+
+<p>↓ OS info</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/os-release
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">"Ubuntu"</span>
+<span class="nv">VERSION</span><span class="o">=</span><span class="s2">"18.04.6 LTS (Bionic Beaver)"</span>
+<span class="nv">ID</span><span class="o">=</span>ubuntu
+<span class="nv">ID_LIKE</span><span class="o">=</span>debian
+<span class="nv">PRETTY_NAME</span><span class="o">=</span><span class="s2">"Ubuntu 18.04.6 LTS"</span>
+<span class="nv">VERSION_ID</span><span class="o">=</span><span class="s2">"18.04"</span>
+<span class="nv">HOME_URL</span><span class="o">=</span><span class="s2">"https://www.ubuntu.com/"</span>
+<span class="nv">SUPPORT_URL</span><span class="o">=</span><span class="s2">"https://help.ubuntu.com/"</span>
+<span class="nv">BUG_REPORT_URL</span><span class="o">=</span><span class="s2">"https://bugs.launchpad.net/ubuntu/"</span>
+<span class="nv">PRIVACY_POLICY_URL</span><span class="o">=</span><span class="s2">"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"</span>
+<span class="nv">VERSION_CODENAME</span><span class="o">=</span>bionic
+<span class="nv">UBUNTU_CODENAME</span><span class="o">=</span>bionic
+</code></pre></div></div>
+
+<h4 id="install-packages">Install packages</h4>
+
+<p>Below packages are required for compilation, otherwise will raise various errors during process.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get update
+apt-get <span class="nb">install </span>vim <span class="nt">-y</span>
+
+<span class="nv">$ </span>vim install-pkgs.sh
+
+<span class="c">#!/bin/sh</span>
+apt-get <span class="nb">install </span>wget <span class="nt">-y</span>
+apt-get <span class="nb">install </span>make <span class="nt">-y</span>
+apt-get <span class="nb">install </span>perl <span class="nt">-y</span>
+apt-get <span class="nb">install </span>gcc <span class="nt">-y</span>
+apt-get <span class="nb">install </span>make <span class="nt">-y</span>
+apt-get <span class="nb">install </span>tcl-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>tk-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>tk <span class="nt">-y</span>
+apt-get <span class="nb">install </span>libffi-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>libreadline-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>readline-devel <span class="nt">-y</span>
+apt-get <span class="nb">install </span>libbz2-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>python3-tk <span class="nt">-y</span>
+apt-get <span class="nb">install </span>libgdbm-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>libncurses<span class="k">*</span> <span class="nt">-y</span>
+apt-get <span class="nb">install </span>libgdbm-compat-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>libreadline6-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>uuid-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>lzma-dev <span class="nt">-y</span>
+apt-get <span class="nb">install </span>liblzma-dev <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p>Install packages</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>777 install-pkgs.sh
+./install-pkgs.sh
+</code></pre></div></div>
+
+<h4 id="compile-sqlite-beforehand">Compile sqlite beforehand</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://www.sqlite.org/2018/sqlite-autoconf-3240000.tar.gz
+<span class="nb">tar</span> <span class="nt">-xvzf</span> sqlite-autoconf-3240000.tar.gz
+<span class="nb">cd </span>sqlite-autoconf-3240000
+./configure
+make 
+make <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>if not compile sqlite, will get below issue when compile python.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+The necessary bits to build these optional modules were not found:
+_sqlite3
+
+</code></pre></div></div>
+
+<h2 id="compile-openssl"><a name="openssl">Compile openssl<a></a></a></h2>
+
+<h5 id="download-openssl"><a name="download_openssl">Download openssl</a></h5>
+
+<p>Download latest openssl</p>
+
+<p>Go to github <a href="https://github.com/openssl/openssl/tags">openssl tags</a>, select the latest openssl version.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+<span class="nb">tar</span> <span class="nt">-xvzf</span> openssl-3.0.5.tar.gz
+</code></pre></div></div>
+
+<h5 id="config">Config</h5>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /usr/local/openssl-3.0.5
+
+<span class="nv">$ </span>./config <span class="nt">--prefix</span><span class="o">=</span>/usr/local/openssl-3.0.5 <span class="nt">--openssldir</span><span class="o">=</span>/usr/local/openssl-3.0.5
+Configuring OpenSSL version 3.0.5 <span class="k">for </span>target linux-x86_64
+Using os-specific seed configuration
+Created configdata.pm
+Running configdata.pm
+Created Makefile.in
+Created Makefile
+Created include/openssl/configuration.h
+
+<span class="k">**********************************************************************</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>   OpenSSL has been successfully configured                     <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>   If you encounter a problem <span class="k">while </span>building, please open an    <span class="k">***</span>
+<span class="k">***</span>   issue on GitHub &lt;https://github.com/openssl/openssl/issues&gt;  <span class="k">***</span>
+<span class="k">***</span>   and include the output from the following <span class="nb">command</span>:           <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>       perl configdata.pm <span class="nt">--dump</span>                                <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>   <span class="o">(</span>If you are new to OpenSSL, you might want to consult the    <span class="k">***</span>
+<span class="k">***</span>   <span class="s1">'Troubleshooting'</span> section <span class="k">in </span>the INSTALL.md file first<span class="o">)</span>      <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">**********************************************************************</span>
+</code></pre></div></div>
+
+<p>config successfully</p>
+
+<h5 id="make--install">Make &amp; install</h5>
+<p>It will take several minutes</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+
+<span class="nt">------------</span> log <span class="nt">---------------</span>
+...
+/usr/bin/perl <span class="s2">"-I."</span> <span class="nt">-Mconfigdata</span> <span class="s2">"util/dofile.pl"</span> <span class="se">\</span>
+    <span class="s2">"-oMakefile"</span> util/shlib_wrap.sh.in <span class="o">&gt;</span> <span class="s2">"util/shlib_wrap.sh"</span>
+<span class="nb">chmod </span>a+x util/shlib_wrap.sh
+<span class="nb">rm</span> <span class="nt">-f</span> <span class="s2">"util/wrap.pl"</span>
+/usr/bin/perl <span class="s2">"-I."</span> <span class="nt">-Mconfigdata</span> <span class="s2">"util/dofile.pl"</span> <span class="se">\</span>
+    <span class="s2">"-oMakefile"</span> util/wrap.pl.in <span class="o">&gt;</span> <span class="s2">"util/wrap.pl"</span>
+<span class="nb">chmod </span>a+x util/wrap.pl
+make[1]: Leaving directory <span class="s1">'/home/openssl-openssl-3.0.5'</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nb">install</span>
+
+<span class="nt">-------------</span> log <span class="nt">--------------</span>
+...
+<span class="nb">install </span>doc/html/man7/provider-signature.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/provider-signature.html
+<span class="nb">install </span>doc/html/man7/provider-storemgmt.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/provider-storemgmt.html
+<span class="nb">install </span>doc/html/man7/provider.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/provider.html
+<span class="nb">install </span>doc/html/man7/proxy-certificates.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/proxy-certificates.html
+<span class="nb">install </span>doc/html/man7/ssl.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/ssl.html
+<span class="nb">install </span>doc/html/man7/x509.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/x509.html
+</code></pre></div></div>
+
+<p>When installation done, you will find these compiled files under <code class="language-plaintext highlighter-rouge">/usr/local/openssl-3.0.5</code>, for you config it as <code class="language-plaintext highlighter-rouge">--prefix</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> /usr/local/openssl-3.0.5
+
+bin  certs  ct_log_list.cnf  ct_log_list.cnf.dist  include  lib64  misc  openssl.cnf  openssl.cnf.dist  private  share
+</code></pre></div></div>
+
+<h2 id="compile-python"><a name="python">Compile Python</a></h2>
+
+<h5 id="download-latest-python">Download latest python</h5>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+<span class="nb">tar</span> <span class="nt">-xvzf</span> Python-3.10.6.tgz
+<span class="nb">cd </span>Python-3.10.6
+</code></pre></div></div>
+
+<h5 id="edit-setup">Edit Setup</h5>
+
+<p>edit <code class="language-plaintext highlighter-rouge">Modules/Setup</code>, some python version might be <code class="language-plaintext highlighter-rouge">Modules/Setup.dist</code>, but this version, this is <code class="language-plaintext highlighter-rouge">Modules/Setup</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim Modules/Setup
+
+</code></pre></div></div>
+<p>Below is what i changed, at about line 207</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_socket socketmodule.c
+
+<span class="c"># Socket module helper for SSL support; you must comment out the other</span>
+<span class="c"># socket line above, and edit the OPENSSL variable:</span>
+<span class="nv">OPENSSL</span><span class="o">=</span>/usr/local/openssl-3.0.5
+<span class="c"># _ssl _ssl.c \</span>
+<span class="c">#     -I$(OPENSSL)/include -L$(OPENSSL)/lib \</span>
+<span class="c">#     -lssl -lcrypto</span>
+<span class="c">#_hashlib _hashopenssl.c \</span>
+<span class="c">#     -I$(OPENSSL)/include -L$(OPENSSL)/lib \</span>
+<span class="c">#     -lcrypto</span>
+
+<span class="c"># To statically link OpenSSL:</span>
+_ssl _ssl.c <span class="se">\</span>
+     <span class="nt">-I</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/include <span class="nt">-L</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/lib64 <span class="se">\</span>
+     <span class="nt">-l</span>:libssl.a <span class="nt">-Wl</span>,--exclude-libs,libssl.a <span class="se">\</span>
+     <span class="nt">-l</span>:libcrypto.a <span class="nt">-Wl</span>,--exclude-libs,libcrypto.a
+_hashlib _hashopenssl.c <span class="se">\</span>
+     <span class="nt">-I</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/include <span class="nt">-L</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/lib64 <span class="se">\</span>
+     <span class="nt">-l</span>:libcrypto.a <span class="nt">-Wl</span>,--exclude-libs,libcrypto.a
+</code></pre></div></div>
+
+<h5 id="config-1">Config</h5>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LD_RUN_PATH</span><span class="o">=</span>/usr/local/openssl-3.0.5/lib64
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/python-3.10.6-with-openssl-3.0.5 <span class="nt">--with-openssl</span><span class="o">=</span>/usr/local/openssl-3.0.5/ <span class="nt">--enable-shared</span>
+
+<span class="nt">-----------</span> log <span class="nt">------------</span>
+...
+config.status: creating pyconfig.h
+creating Modules/Setup.local
+creating Makefile
+
+
+If you want a release build with all stable optimizations active <span class="o">(</span>PGO, etc<span class="o">)</span>,
+please run ./configure <span class="nt">--enable-optimizations</span>
+</code></pre></div></div>
+
+<h5 id="install">Install</h5>
+
+<p>It will take several minutes</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+
+<span class="nt">--------------</span> log <span class="nt">------------</span>
+...
+gcc <span class="nt">-pthread</span> <span class="nt">-shared</span> build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/cache.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/connection.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/cursor.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/microprotocols.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/module.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/prepare_protocol.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/row.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/statement.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/util.o <span class="nt">-L</span>/usr/lib/x86_64-linux-gnu <span class="nt">-L</span>/usr/local/lib <span class="nt">-lsqlite3</span> <span class="nt">-o</span> build/lib.linux-x86_64-3.10/_sqlite3.cpython-310-x86_64-linux-gnu.so
+
+The following modules found by detect_modules<span class="o">()</span> <span class="k">in </span>setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket
+_ssl                  <span class="nb">pwd                   time
+
+</span>running build_scripts
+copying and adjusting /home/Python-3.10.6/Tools/scripts/pydoc3 -&gt; build/scripts-3.10
+copying and adjusting /home/Python-3.10.6/Tools/scripts/idle3 -&gt; build/scripts-3.10
+copying and adjusting /home/Python-3.10.6/Tools/scripts/2to3 -&gt; build/scripts-3.10
+changing mode of build/scripts-3.10/pydoc3 from 644 to 755
+changing mode of build/scripts-3.10/idle3 from 644 to 755
+changing mode of build/scripts-3.10/2to3 from 644 to 755
+renaming build/scripts-3.10/pydoc3 to build/scripts-3.10/pydoc3.10
+renaming build/scripts-3.10/idle3 to build/scripts-3.10/idle3.10
+renaming build/scripts-3.10/2to3 to build/scripts-3.10/2to3-3.10
+gcc <span class="nt">-pthread</span>     <span class="nt">-Xlinker</span> <span class="nt">-export-dynamic</span> <span class="nt">-o</span> Programs/_testembed Programs/_testembed.o libpython3.10.a <span class="nt">-lcrypt</span> <span class="nt">-lpthread</span> <span class="nt">-ldl</span>  <span class="nt">-lutil</span> <span class="nt">-lm</span> <span class="nt">-L</span>/usr/local/openssl/lib64 <span class="nt">-l</span>:libssl.a <span class="nt">-Wl</span>,--exclude-libs,libssl.a <span class="nt">-l</span>:libcrypto.a <span class="nt">-Wl</span>,--exclude-libs,libcrypto.a  <span class="nt">-L</span>/usr/local/openssl/lib64 <span class="nt">-l</span>:libcrypto.a <span class="nt">-Wl</span>,--exclude-libs,libcrypto.a   <span class="nt">-lm</span>
+<span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s,@EXENAME@,/usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3.10,"</span> &lt; ./Misc/python-config.in <span class="o">&gt;</span>python-config.py
+<span class="nv">LC_ALL</span><span class="o">=</span>C <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s,\$(\([A-Za-z0-9_]*\)),\$\{\1\},g'</span> &lt; Misc/python-config.sh <span class="o">&gt;</span>python-config
+</code></pre></div></div>
+<p>make successfully!</p>
+
+<p>At last, install python.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nb">install</span>
+
+<span class="nt">---------------</span> log <span class="nt">--------------</span>
+...
+<span class="nb">rm</span> <span class="nt">-f</span> /usr/local/python-3.10.6-with-openssl-3.0.5/bin/2to3
+<span class="o">(</span><span class="nb">cd</span> /usr/local/python-3.10.6-with-openssl-3.0.5/bin<span class="p">;</span> <span class="nb">ln</span> <span class="nt">-s</span> 2to3-3.10 2to3<span class="o">)</span>
+<span class="k">if </span><span class="nb">test</span> <span class="s2">"x"</span> <span class="o">!=</span> <span class="s2">"x"</span> <span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+	<span class="nb">rm</span> <span class="nt">-f</span> /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3-32<span class="p">;</span> <span class="se">\</span>
+	<span class="o">(</span><span class="nb">cd</span> /usr/local/python-3.10.6-with-openssl-3.0.5/bin<span class="p">;</span> <span class="nb">ln</span> <span class="nt">-s</span> python3.10-32 python3-32<span class="o">)</span> <span class="se">\</span>
+<span class="k">fi
+if </span><span class="nb">test</span> <span class="s2">"x"</span> <span class="o">!=</span> <span class="s2">"x"</span> <span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+	<span class="nb">rm</span> <span class="nt">-f</span> /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3-intel64<span class="p">;</span> <span class="se">\</span>
+	<span class="o">(</span><span class="nb">cd</span> /usr/local/python-3.10.6-with-openssl-3.0.5/bin<span class="p">;</span> <span class="nb">ln</span> <span class="nt">-s</span> python3.10-intel64 python3-intel64<span class="o">)</span> <span class="se">\</span>
+<span class="k">fi
+</span><span class="nb">rm</span> <span class="nt">-f</span> /usr/local/python-3.10.6-with-openssl-3.0.5/share/man/man1/python3.1
+<span class="o">(</span><span class="nb">cd</span> /usr/local/python-3.10.6-with-openssl-3.0.5/share/man/man1<span class="p">;</span> <span class="nb">ln</span> <span class="nt">-s</span> python3.10.1 python3.1<span class="o">)</span>
+<span class="k">if </span><span class="nb">test</span> <span class="s2">"xupgrade"</span> <span class="o">!=</span> <span class="s2">"xno"</span>  <span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+	<span class="k">case</span> upgrade <span class="k">in</span> <span class="se">\</span>
+		upgrade<span class="p">)</span> <span class="nv">ensurepip</span><span class="o">=</span><span class="s2">"--upgrade"</span> <span class="p">;;</span> <span class="se">\</span>
+		<span class="nb">install</span><span class="p">|</span><span class="k">*</span><span class="p">)</span> <span class="nv">ensurepip</span><span class="o">=</span><span class="s2">""</span> <span class="p">;;</span> <span class="se">\</span>
+	<span class="k">esac</span><span class="p">;</span> <span class="se">\</span>
+	 ./python <span class="nt">-E</span> <span class="nt">-m</span> ensurepip <span class="se">\</span>
+		<span class="nv">$ensurepip</span> <span class="nt">--root</span><span class="o">=</span>/ <span class="p">;</span> <span class="se">\</span>
+<span class="k">fi
+</span>Looking <span class="k">in </span>links: /tmp/tmpetpcoecz
+Processing /tmp/tmpetpcoecz/setuptools-63.2.0-py3-none-any.whl
+Processing /tmp/tmpetpcoecz/pip-22.2.1-py3-none-any.whl
+Installing collected packages: setuptools, pip
+  WARNING: The scripts pip3 and pip3.10 are installed <span class="k">in</span> <span class="s1">'/usr/local/python-3.10.6-with-openssl-3.0.5/bin'</span> which is not on PATH.
+  Consider adding this directory to PATH or, <span class="k">if </span>you prefer to suppress this warning, use <span class="nt">--no-warn-script-location</span><span class="nb">.</span>
+Successfully installed pip-22.2.1 setuptools-63.2.0
+WARNING: Running pip as the <span class="s1">'root'</span> user can result <span class="k">in </span>broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+</code></pre></div></div>
+<p>Though the log is not perfect, but looks like has no impact on the result.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls</span> /usr/local/python-3.10.6-with-openssl-3.0.5/
+bin  include  lib  share
+</code></pre></div></div>
+
+<p>Validate python</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@41892223057e:~/Python-3.10.6# /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3 <span class="nt">-v</span>
+/usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3: error <span class="k">while </span>loading shared libraries: libpython3.10.so.1.0: cannot open shared object file: No such file or directory
+</code></pre></div></div>
+
+<p>export LD_LIBRARY_PATH</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/python-3.10.6-with-openssl-3.0.5/lib/
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="c1"># /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3
+</span><span class="n">Python</span> <span class="mf">3.10</span><span class="p">.</span><span class="mi">6</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Oct</span>  <span class="mi">7</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">23</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">55</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">7.5</span><span class="p">.</span><span class="mi">0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<span class="n">Type</span> <span class="s">"help"</span><span class="p">,</span> <span class="s">"copyright"</span><span class="p">,</span> <span class="s">"credits"</span> <span class="ow">or</span> <span class="s">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">ssl</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ssl</span><span class="p">.</span><span class="n">OPENSSL_VERSION</span>
+<span class="s">'OpenSSL 3.0.5 5 Jul 2022'</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div></div>
+<p>Python compiled successfully!!</p>
+
+<hr />
+
+<h2 id="issues-encountered"><a name="issues">Issues encountered</a></h2>
+
+<h5 id="configured-incorrectly-in-modulesetup"><span style="color:Red">Configured incorrectly in Module/Setup</span></h5>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Socket module helper for SSL support; you must comment out the other</span>
+<span class="c"># socket line above, and edit the OPENSSL variable:</span>
+<span class="nv">OPENSSL</span><span class="o">=</span>/usr/local/openssl-3.0.5
+_ssl _ssl.c <span class="se">\</span>
+     <span class="nt">-I</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/include <span class="nt">-L</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/lib64 <span class="se">\</span>
+     <span class="nt">-lssl</span> <span class="nt">-lcrypto</span>
+_hashlib _hashopenssl.c <span class="se">\</span>
+     <span class="nt">-I</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/include <span class="nt">-L</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/lib64 <span class="se">\</span>
+     <span class="nt">-lcrypto</span>
+
+<span class="c"># To statically link OpenSSL:</span>
+_ssl _ssl.c <span class="se">\</span>
+     <span class="nt">-I</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/include <span class="nt">-L</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/lib64 <span class="se">\</span>
+     <span class="nt">-l</span>:libssl.a <span class="nt">-Wl</span>,--exclude-libs,libssl.a <span class="se">\</span>
+     <span class="nt">-l</span>:libcrypto.a <span class="nt">-Wl</span>,--exclude-libs,libcrypto.a
+_hashlib _hashopenssl.c <span class="se">\</span>
+     <span class="nt">-I</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/include <span class="nt">-L</span><span class="si">$(</span>OPENSSL<span class="si">)</span>/lib64 <span class="se">\</span>
+     <span class="nt">-l</span>:libcrypto.a <span class="nt">-Wl</span>,--exclude-libs,libcrypto.a
+</code></pre></div></div>
+
+<p>I guess the upper part ( line4 to line9 ) is for dynamic compiling, and lower part is for static compiling.
+So if comment out them simultaneously, will cause an error ( shown as below ) when compile python.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Modules/_ssl.o: In <span class="k">function</span> <span class="sb">`</span>PyInit__ssl<span class="s1">':
+/home/Python-3.10.6/./Modules/_ssl.c:6242: multiple definition of `PyInit__ssl'</span>
+Modules/_ssl.o:/home/Python-3.10.6/./Modules/_ssl.c:6242: first defined here
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:1822: multiple definition of <span class="sb">`</span>HMACtype_spec<span class="s1">'
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:1822: first defined here
+Modules/_hashopenssl.o: In function `PyInit__hashlib'</span>:
+/home/Python-3.10.6/./Modules/_hashopenssl.c:2286: multiple definition of <span class="sb">`</span>PyInit__hashlib<span class="s1">'
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:2286: first defined here
+collect2: error: ld returned 1 exit status
+ln: failed to access '</span>libpython3.10.so.1.0<span class="s1">': No such file or directory
+Makefile:656: recipe for target '</span>libpython3.10.so<span class="s1">' failed
+make: *** [libpython3.10.so] Error 1
+</span></code></pre></div></div>
+
+<p>PS:</p>
+
+<p>If you encounter other issues, it’s very likely due to you not install the packages ( listed in step 1 ) properly.</p>
+
+<p>e.g. below issue is because <code class="language-plaintext highlighter-rouge">gcc</code> is not installed.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./config <span class="nt">--prefix</span><span class="o">=</span>/usr/local/openssl <span class="nt">--openssldir</span><span class="o">=</span>/usr/local/openssl
+
+Failure!  build file wasn<span class="s1">'t produced.
+Please read INSTALL.md and associated NOTES-* files.  You may also have to
+look over your available compiler tool chain or change your configuration.
+
+ERROR!
+No C compiler found, please specify one with the environment variable CC,
+or configure with an explicit configuration target.
+</span></code></pre></div></div>
+
+<p>For there are so many similar issues during my compilation, i not paste them here one by one, i resolved them by installing step 1 packages.</p>
+
+<h2 id="references"><a name="references">References</a></h2>
+
+<ul>
+  <li><a href="https://techglimpse.com/install-python-openssl-support-tutorial/">https://techglimpse.com/install-python-openssl-support-tutorial/</a></li>
+  <li><a href="http://blog.lujianxin.com/x/art/s538bgptom7o">http://blog.lujianxin.com/x/art/s538bgptom7o</a></li>
+</ul>
+
+<hr />
+
+<hr />
+
+<p>Compile on Mac.</p>
+
+<h2 id="preparation"><a name="prepare_mac">Preparation</a></h2>
+<h5 id="check-your-architecture-of-your-mac">Check your architecture of your Mac</h5>
+
+<p>Here is mine.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">set</span> | <span class="nb">grep</span> <span class="s2">"MACHTYPE"</span>
+<span class="nv">MACHTYPE</span><span class="o">=</span>x86_64-apple-darwin20
+</code></pre></div></div>
+
+<h5 id="download-openssl-tar-ball">Download openssl tar ball.</h5>
+
+<p>It’s same as <a href="#download_openssl">above process</a></p>
+
+<h5 id="configure">Configure</h5>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./configure <span class="nt">--prefix</span><span class="o">=</span>/Users/vzhong/Documents/compile-target/python-3.10.6 <span class="nt">--with-openssl</span><span class="o">=</span>/Users/vzhong/Documents/compile-target/openssl-3.0.5 <span class="nt">--enable-optimizations</span> <span class="nt">--enable-shared</span>
+
+Configuring OpenSSL version 3.0.5 <span class="k">for </span>target darwin64-x86_64-cc
+Using os-specific seed configuration
+Created configdata.pm
+Running configdata.pm
+Created Makefile.in
+Created Makefile
+
+<span class="k">**********************************************************************</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>   OpenSSL has been successfully configured                     <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>   If you encounter a problem <span class="k">while </span>building, please open an    <span class="k">***</span>
+<span class="k">***</span>   issue on GitHub &lt;https://github.com/openssl/openssl/issues&gt;  <span class="k">***</span>
+<span class="k">***</span>   and include the output from the following <span class="nb">command</span>:           <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>       perl configdata.pm <span class="nt">--dump</span>                                <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">***</span>   <span class="o">(</span>If you are new to OpenSSL, you might want to consult the    <span class="k">***</span>
+<span class="k">***</span>   <span class="s1">'Troubleshooting'</span> section <span class="k">in </span>the INSTALL.md file first<span class="o">)</span>      <span class="k">***</span>
+<span class="k">***</span>                                                                <span class="k">***</span>
+<span class="k">**********************************************************************</span>
+</code></pre></div></div>
+
+<h5 id="make--install-1">Make &amp; Install</h5>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make
+
+<span class="nt">----------</span> log <span class="nt">------------</span>
+...
+The necessary bits to build these optional modules were not found:
+ossaudiodev           spwd
+To find the necessary bits, look <span class="k">in </span>setup.py <span class="k">in </span>detect_modules<span class="o">()</span> <span class="k">for </span>the module<span class="s1">'s name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  pwd                   time
+
+running build_scripts
+copying and adjusting /Users/vzhong/Documents/mac-compile/Python-3.10.6/Tools/scripts/pydoc3 -&gt; build/scripts-3.10
+copying and adjusting /Users/vzhong/Documents/mac-compile/Python-3.10.6/Tools/scripts/idle3 -&gt; build/scripts-3.10
+copying and adjusting /Users/vzhong/Documents/mac-compile/Python-3.10.6/Tools/scripts/2to3 -&gt; build/scripts-3.10
+changing mode of build/scripts-3.10/pydoc3 from 644 to 755
+changing mode of build/scripts-3.10/idle3 from 644 to 755
+changing mode of build/scripts-3.10/2to3 from 644 to 755
+renaming build/scripts-3.10/pydoc3 to build/scripts-3.10/pydoc3.10
+renaming build/scripts-3.10/idle3 to build/scripts-3.10/idle3.10
+renaming build/scripts-3.10/2to3 to build/scripts-3.10/2to3-3.10
+gcc -c -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall    -fno-semantic-interposition -std=c99 -Wextra -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers -Wstrict-prototypes -Werror=implicit-function-declaration -fvisibility=hidden -fprofile-instr-use=code.profclangd -I./Include/internal  -I. -I./Include    -DPy_BUILD_CORE -o Programs/_testembed.o ./Programs/_testembed.c
+clang: warning: argument unused during compilation: '</span><span class="nt">-fno-semantic-interposition</span><span class="s1">' [-Wunused-command-line-argument]
+gcc   -fno-semantic-interposition  -Wl,-stack_size,1000000  -framework CoreFoundation -o Programs/_testembed Programs/_testembed.o libpython3.10.a -lintl -ldl   -framework CoreFoundation
+
+</span></code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make <span class="nb">install</span>
+
+<span class="nt">----------</span> log <span class="nt">------------</span>
+...
+<span class="k">if </span><span class="nb">test</span> <span class="s2">"xupgrade"</span> <span class="o">!=</span> <span class="s2">"xno"</span>  <span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+		<span class="k">case</span> upgrade <span class="k">in</span> <span class="se">\</span>
+			upgrade<span class="p">)</span> <span class="nv">ensurepip</span><span class="o">=</span><span class="s2">"--upgrade"</span> <span class="p">;;</span> <span class="se">\</span>
+			<span class="nb">install</span><span class="p">|</span><span class="k">*</span><span class="p">)</span> <span class="nv">ensurepip</span><span class="o">=</span><span class="s2">""</span> <span class="p">;;</span> <span class="se">\</span>
+		<span class="k">esac</span><span class="p">;</span> <span class="se">\</span>
+		<span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/Users/vzhong/Documents/mac-compile/Python-3.10.6 ./python.exe <span class="nt">-E</span> <span class="nt">-m</span> ensurepip <span class="se">\</span>
+			<span class="nv">$ensurepip</span> <span class="nt">--root</span><span class="o">=</span>/ <span class="p">;</span> <span class="se">\</span>
+	<span class="k">fi
+</span>Looking <span class="k">in </span>links: /var/folders/x3/qp_d__rn70x5hml9z4ygtvv80000gr/T/tmpp4r0himi
+Requirement already satisfied: setuptools <span class="k">in</span> /Users/vzhong/Documents/compile-target/python-3.10.6/lib/python3.10/site-packages <span class="o">(</span>63.2.0<span class="o">)</span>
+Requirement already satisfied: pip <span class="k">in</span> /Users/vzhong/Documents/compile-target/python-3.10.6/lib/python3.10/site-packages <span class="o">(</span>22.2.1<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Validate if the compilation is successful.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">~/</span><span class="n">Documents</span><span class="o">/</span><span class="nb">compile</span><span class="o">-</span><span class="n">target</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="mf">3.10</span><span class="p">.</span><span class="mi">6</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span>
+<span class="n">Python</span> <span class="mf">3.10</span><span class="p">.</span><span class="mi">6</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Oct</span> <span class="mi">10</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span> <span class="p">[</span><span class="n">Clang</span> <span class="mf">13.0</span><span class="p">.</span><span class="mi">0</span> <span class="p">(</span><span class="n">clang</span><span class="o">-</span><span class="mf">1300.0</span><span class="p">.</span><span class="mf">29.30</span><span class="p">)]</span> <span class="n">on</span> <span class="n">darwin</span>
+<span class="n">Type</span> <span class="s">"help"</span><span class="p">,</span> <span class="s">"copyright"</span><span class="p">,</span> <span class="s">"credits"</span> <span class="ow">or</span> <span class="s">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">ssl</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ssl</span><span class="p">.</span><span class="n">OPENSSL_VERSION</span>
+<span class="s">'OpenSSL 3.0.5 5 Jul 2022'</span>
+</code></pre></div></div>
+
+<p>Ok, succeed!</p>
+
+<h2 id="references-1"><a name="mac_references">References</a></h2>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=15zJ0acT4NQ">[ Youtube ] Compile Python 3.7 on macOS from scratch</a></li>
+</ul>
+
+<p>The end, hope it helps!</p>
+
+<hr />
+
+<p><a href="./">back</a></p>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. &nbsp;&nbsp;&nbsp; and adopt this <a href="https://github.com/pages-themes/cayman">theme</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,640 @@
+---
+layout: default
+title: Journal
+description: The main aim is to improve my English.
+---
+
+### Prerequisite
+
+I will demo it in Ubuntu docker container.
+So first of all, run a ubuntu container which no python installed.
+
+```shell
+docker run -it harbor-repo.vmware.com/osspi/ubuntu:bionic /bin/bash
+```
+and
+
+```shell
+root@c89d869abe9b:/home/vos-3874# python
+bash: python: command not found
+root@c89d869abe9b:/home/vos-3874# python3
+bash: python3: command not found
+
+root@c89d869abe9b:/# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="18.04.5 LTS (Bionic Beaver)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 18.04.5 LTS"
+VERSION_ID="18.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=bionic
+UBUNTU_CODENAME=bionic
+```
+
+### Steps
+```shell
+apt-get update
+apt-get install wget
+apt-get install vim
+apt-get install make
+apt-get install perl
+apt-get install gcc
+apt-get install make
+
+```
+
+1. Download latest python & openssl
+```shell
+wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+```
+download latest openssl
+
+go to github https://github.com/openssl/openssl/tags
+select the latest openssl.
+```shell
+wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+```
+
+2. compile openssl
+
+encounter error
+
+```shell
+mkdir /usr/local/openssl
+
+$ ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+Can't locate FindBin.pm in @INC (you may need to install the FindBin module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./Configure line 15.
+```
+solution ↓
+```shell
+$ apt-get install perl
+```
+
+````shell
+$ ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+
+Failure!  build file wasn't produced.
+Please read INSTALL.md and associated NOTES-* files.  You may also have to
+look over your available compiler tool chain or change your configuration.
+
+ERROR!
+No C compiler found, please specify one with the environment variable CC,
+or configure with an explicit configuration target.
+````
+solution ↓
+```shell
+apt install gcc
+```
+
+At last config successfully.
+
+```shell
+$ ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+Configuring OpenSSL version 3.0.5 for target linux-x86_64
+Using os-specific seed configuration
+Created configdata.pm
+Running configdata.pm
+Created Makefile.in
+Created Makefile
+Created include/openssl/configuration.h
+
+**********************************************************************
+***                                                                ***
+***   OpenSSL has been successfully configured                     ***
+***                                                                ***
+***   If you encounter a problem while building, please open an    ***
+***   issue on GitHub <https://github.com/openssl/openssl/issues>  ***
+***   and include the output from the following command:           ***
+***                                                                ***
+***       perl configdata.pm --dump                                ***
+***                                                                ***
+***   (If you are new to OpenSSL, you might want to consult the    ***
+***   'Troubleshooting' section in the INSTALL.md file first)      ***
+***                                                                ***
+**********************************************************************
+```
+
+#### make
+```shell
+$ make
+bash: make: command not found
+```
+solution ↓
+```shell
+apt install make
+```
+success ?
+
+```shell
+/usr/bin/perl "-I." -Mconfigdata "util/dofile.pl" \
+    "-oMakefile" util/wrap.pl.in > "util/wrap.pl"
+chmod a+x util/wrap.pl
+make[1]: Leaving directory '/home/vos-3874/openssl-openssl-3.0.5'
+```
+
+make install
+
+```shell
+root@c89d869abe9b:/home/vos-3874/openssl-openssl-3.0.5# make
+...
+install doc/html/man7/provider.html -> /usr/local/openssl/share/doc/openssl/html/man7/provider.html
+install doc/html/man7/proxy-certificates.html -> /usr/local/openssl/share/doc/openssl/html/man7/proxy-certificates.html
+install doc/html/man7/ssl.html -> /usr/local/openssl/share/doc/openssl/html/man7/ssl.html
+install doc/html/man7/x509.html -> /usr/local/openssl/share/doc/openssl/html/man7/x509.html
+
+root@c89d869abe9b:/home/vos-3874/openssl-openssl-3.0.5# ls /usr/local/openssl/
+bin  certs  ct_log_list.cnf  ct_log_list.cnf.dist  include  lib64  misc  openssl.cnf  openssl.cnf.dist  private  share
+```
+
+#### Install Python
+
+unzip python tar ball
+
+```shell
+tar -xvzf Python-3.10.6.tgz
+cd Python-3.10.6
+```
+
+edit `Modules/Setup`, some other tutorial might be `Modules/Setup.dist`, but in my case, it's `Modules/Setup`
+
+```shell
+vim ../Python-3.10.6/Modules/Setup
+```
+Below is what i changed
+```shell
+_socket socketmodule.c
+
+OPENSSL=/usr/local/openssl
+_ssl _ssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -lssl -lcrypto
+_hashlib _hashopenssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -lcrypto
+
+# To statically link OpenSSL:
+_ssl _ssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -l:libssl.a -Wl,--exclude-libs,libssl.a \
+     -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+_hashlib _hashopenssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+```
+
+compile python
+
+```shell
+$ ./configure --prefix=/usr/local/python-with-openssl
+...
+config.status: creating pyconfig.h
+creating Modules/Setup.local
+creating Makefile
+
+
+If you want a release build with all stable optimizations active (PGO, etc),
+please run ./configure --enable-optimizations
+```
+
+make
+
+```shell
+$ make
+
+...
+./python: error while loading shared libraries: libssl.so.3: cannot open shared object file: No such file or directory
+generate-posix-vars failed
+Makefile:615: recipe for target 'pybuilddir.txt' failed
+make: *** [pybuilddir.txt] Error 1
+```
+
+solution ↓
+```shell
+$ vim /etc/ld.so.conf.d/openssl.conf
+/usr/local/openssl/lib64
+
+$ ldconfig
+```
+
+then
+
+```shell
+$ make clean
+$ make
+
+/home/vos-3874/Python-3.10.6/Modules/_ctypes/_ctypes.c:107:10: fatal error: ffi.h: No such file or directory
+ #include <ffi.h>
+          ^~~~~~~
+compilation terminated.
+
+The necessary bits to build these optional modules were not found:
+_bz2                  _curses               _curses_panel
+_dbm                  _gdbm                 _hashlib
+_lzma                 _sqlite3              _ssl
+_tkinter              _uuid                 readline
+zlib
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _socket               pwd
+time
+
+
+Failed to build these modules:
+_ctypes
+
+
+Could not build the ssl module!
+Python requires a OpenSSL 1.1.1 or newer
+
+running build_scripts
+creating build/scripts-3.10
+copying and adjusting /home/vos-3874/Python-3.10.6/Tools/scripts/pydoc3 -> build/scripts-3.10
+copying and adjusting /home/vos-3874/Python-3.10.6/Tools/scripts/idle3 -> build/scripts-3.10
+copying and adjusting /home/vos-3874/Python-3.10.6/Tools/scripts/2to3 -> build/scripts-3.10
+changing mode of build/scripts-3.10/pydoc3 from 644 to 755
+changing mode of build/scripts-3.10/idle3 from 644 to 755
+changing mode of build/scripts-3.10/2to3 from 644 to 755
+renaming build/scripts-3.10/pydoc3 to build/scripts-3.10/pydoc3.10
+renaming build/scripts-3.10/idle3 to build/scripts-3.10/idle3.10
+renaming build/scripts-3.10/2to3 to build/scripts-3.10/2to3-3.10
+/usr/bin/install -c -m 644 ./Tools/gdb/libpython.py python-gdb.py
+gcc -pthread -c -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall    -std=c99 -Wextra -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers -Werror=implicit-function-declaration -fvisibility=hidden  -I./Include/internal  -I. -I./Include    -DPy_BUILD_CORE -o Programs/_testembed.o ./Programs/_testembed.c
+gcc -pthread     -Xlinker -export-dynamic -o Programs/_testembed Programs/_testembed.o libpython3.10.a -lcrypt -lpthread -ldl  -lutil -lm -L/usr/local/openssl/lib64 -lssl -lcrypto  -L/usr/local/openssl/lib64 -lcrypto  -L/usr/local/openssl/lib64 -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a  -L/usr/local/openssl/lib64 -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a   -lm
+sed -e "s,@EXENAME@,/usr/local/python-with-openssl/bin/python3.10," < ./Misc/python-config.in >python-config.py
+LC_ALL=C sed -e 's,\$(\([A-Za-z0-9_]*\)),\$\{\1\},g' < Misc/python-config.sh >python-config
+```
+As we can see, so many errors
+
+For
+```shell
+/home/vos-3874/Python-3.10.6/Modules/_ctypes/_ctypes.c:107:10: fatal error: ffi.h: No such file or directory
+```
+solution ↓
+```shell
+apt-get install libffi-dev
+```
+Wiki of libffi https://en.wikipedia.org/wiki/Libffi
+
+```shell
+$ make clean
+$ make
+
+s/stgdict.o -L/usr/lib/x86_64-linux-gnu -L/usr/local/lib -lffi -ldl -o build/lib.linux-x86_64-3.10/_ctypes.cpython-310-x86_64-linux-gnu.so
+
+The necessary bits to build these optional modules were not found:
+_bz2                  _curses               _curses_panel
+_dbm                  _gdbm                 _hashlib
+_lzma                 _sqlite3              _ssl
+_tkinter              _uuid                 readline
+zlib
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _socket               pwd
+time
+
+
+Could not build the ssl module!
+Python requires a OpenSSL 1.1.1 or newer
+
+running build_scripts
+copying and adjusting /home/vos-3874/Python-3.10.6/Tools/scripts/pydoc3 -> build/scripts-3.10
+copying and adjusting /home/vos-3874/Python-3.10.6/Tools/scripts/idle3 -> build/scripts-3.10
+copying and adjusting /home/vos-3874/Python-3.10.6/Tools/scripts/2to3 -> build/scripts-3.10
+changing mode of build/scripts-3.10/pydoc3 from 644 to 755
+changing mode of build/scripts-3.10/idle3 from 644 to 755
+changing mode of build/scripts-3.10/2to3 from 644 to 755
+renaming build/scripts-3.10/pydoc3 to build/scripts-3.10/pydoc3.10
+renaming build/scripts-3.10/idle3 to build/scripts-3.10/idle3.10
+renaming build/scripts-3.10/2to3 to build/scripts-3.10/2to3-3.10
+gcc -pthread -c -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall    -std=c99 -Wextra -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers -Werror=implicit-function-declaration -fvisibility=hidden  -I./Include/internal  -I. -I./Include    -DPy_BUILD_CORE -o Programs/_testembed.o ./Programs/_testembed.c
+gcc -pthread     -Xlinker -export-dynamic -o Programs/_testembed Programs/_testembed.o libpython3.10.a -lcrypt -lpthread -ldl  -lutil -lm -L/usr/local/openssl/lib64 -lssl -lcrypto  -L/usr/local/openssl/lib64 -lcrypto  -L/usr/local/openssl/lib64 -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a  -L/usr/local/openssl/lib64 -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a   -lm
+```
+
+WTF, the container is shutdown, i don't know why. so i have to rerun above cmds again ?
+
+```shell
+running build
+running build_ext
+INFO: Can't locate Tcl/Tk libs and/or headers
+
+The necessary bits to build these optional modules were not found:
+_bz2                  _curses               _curses_panel
+_dbm                  _gdbm                 _hashlib
+_lzma                 _sqlite3              _ssl
+_tkinter              _uuid                 readline
+```
+s: 
+```shell
+apt-get install tcl-dev
+apt-get install tk-dev
+```
+
+
+
+_ssl and _hashlib still shows not found, from above hint
+s:
+```shell
+export LD_RUN_PATH=/usr/local/openssl-3.0.5/lib64
+./configure --prefix=/usr/local/python-3.10.6-with-openssl-3.0.5 --with-openssl=/usr/local/openssl-3.0.5/
+```
+
+now msg changes:
+```shell
+The necessary bits to build these optional modules were not found:
+_bz2                  _curses               _curses_panel
+_dbm                  _gdbm                 _lzma
+_sqlite3              _uuid                 readline
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket
+_ssl                  pwd                   time
+
+running build_scripts
+```
+
+Holy shit, i made the same mistake mentioned before, i left and the container new content is not saved.
+
+One by one, mainly refer to http://blog.lujianxin.com/x/art/s538bgptom7o
+
+```shell
+apt-get install libreadline-dev
+apt-get install readline-devel
+apt-get install libbz2-dev
+apt-get install libbz2-dev
+apt-get install tk-dev python3-tk
+apt-get install uuid-dev
+apt-get install libgdbm-dev
+apt-get install libncurses*
+
+wget https://nchc.dl.sourceforge.net/project/lzmautils/xz-5.2.3.tar.gz
+tar -xvzf xz-5.2.3.tar.gz
+cd xz-5.2.3
+./configure
+make 
+make install
+
+wget https://www.sqlite.org/2018/sqlite-autoconf-3240000.tar.gz
+tar -xvzf sqlite-autoconf-3240000.tar.gz
+cd sqlite-autoconf-3240000
+./configure
+make
+make install
+```
+
+```shell
+*** WARNING: renaming "_curses_panel" since importing it failed: No module named '_curses'
+
+The necessary bits to build these optional modules were not found:
+_dbm                  _uuid                 readline
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket
+_ssl                  pwd                   time
+
+
+Failed to build these modules:
+_curses
+
+
+Following modules built successfully but were removed because they could not be imported:
+_curses_panel
+```
+
+
+```shell
+apt-get install readline-devel
+apt-get install libgdbm-compat-dev
+apt-get install uuid-dev
+apt-get install libreadline6-dev
+apt-get install uuid-dev
+apt-get install uuid-dev lzma-dev liblzma-dev
+```
+
+```shell
+The necessary bits to build these optional modules were not found:
+_uuid                 readline
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket
+_ssl                  pwd                   time
+
+
+Failed to build these modules:
+_curses
+
+
+Following modules built successfully but were removed because they could not be imported:
+_curses_panel
+```
+
+Then i go through make log, find a err msg
+
+```shell
+/home/Python-3.10.6/Modules/_cursesmodule.c: In function ‘_curses_setupterm_impl’:
+/home/Python-3.10.6/Modules/_cursesmodule.c:3393:35: error: implicit declaration of function ‘setupterm’; did you mean ‘set_term’? [-Werror=implicit-function-declaration]
+     if (!initialised_setupterm && setupterm((char *)term, fd, &err) == ERR) {
+                                   ^~~~~~~~~
+                                   set_term
+cc1: some warnings being treated as errors
+building '_curses_panel' extension
+```
+Well, here is a blog with similir case, https://its401.com/article/weixin_34319817/92680883
+
+```shell
+sed -i "s/Werror=implicit-function-declaration/Wno-error/g" configure
+```
+
+make clean && make
+
+```shell
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket
+_ssl                  pwd                   time
+
+running build_scripts
+```
+
+Great!
+
+make install
+
+```shell
+(cd /usr/local/python-3.10.6-with-openssl-3.0.5/bin; ln -s 2to3-3.10 2to3)
+if test "x" != "x" ; then \
+	rm -f /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3-32; \
+	(cd /usr/local/python-3.10.6-with-openssl-3.0.5/bin; ln -s python3.10-32 python3-32) \
+fi
+if test "x" != "x" ; then \
+	rm -f /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3-intel64; \
+	(cd /usr/local/python-3.10.6-with-openssl-3.0.5/bin; ln -s python3.10-intel64 python3-intel64) \
+fi
+rm -f /usr/local/python-3.10.6-with-openssl-3.0.5/share/man/man1/python3.1
+(cd /usr/local/python-3.10.6-with-openssl-3.0.5/share/man/man1; ln -s python3.10.1 python3.1)
+if test "xupgrade" != "xno"  ; then \
+	case upgrade in \
+		upgrade) ensurepip="--upgrade" ;; \
+		install|*) ensurepip="" ;; \
+	esac; \
+	 ./python -E -m ensurepip \
+		$ensurepip --root=/ ; \
+fi
+Looking in links: /tmp/tmpubdxosln
+Processing /tmp/tmpubdxosln/setuptools-63.2.0-py3-none-any.whl
+Processing /tmp/tmpubdxosln/pip-22.2.1-py3-none-any.whl
+Installing collected packages: setuptools, pip
+  WARNING: The scripts pip3 and pip3.10 are installed in '/usr/local/python-3.10.6-with-openssl-3.0.5/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed pip-22.2.1 setuptools-63.2.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+```
+
+```python
+root@cae5e98c4969:/home/Python-3.10.6# /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3
+Python 3.10.6 (main, Sep 26 2022, 05:29:50) [GCC 7.5.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ssl
+>>> ssl..OPENSSL_VERSION
+KeyboardInterrupt
+>>>
+>>> ssl.OPENSSL_VERSION
+'OpenSSL 3.0.5 5 Jul 2022'
+>>>
+```
+
+Succeed !
+
+<hr>
+
+```shell
+if !([ -d "virtualenv" ]);  then rm -rf virtualenv; fi
+DYLD_LIBRARY_PATH=/home/vzhong/osspi-cli/build/python/lib:/home/vzhong/osspi-cli/build/resources/openssl/lib64/ build/python/bin/python3 -m ensurepip
+build/python/bin/python3: error while loading shared libraries: libssl.so.3: cannot open shared object file: No such file or directory
+Makefile:121: recipe for target 'virtualenv' failed
+make: *** [virtualenv] Error 127
+```
+
+when make cli
+
+```shell
+OSError: Python library not found: libpython3.10.so.1.0, libpython3.10mu.so.1.0, libpython3.10.so, libpython3.10m.so, libpython3.10m.so.1.0
+    This means your Python installation does not come with proper shared library files.
+    This usually happens due to missing development package, or unsuitable build parameters of the Python installation.
+
+    * On Debian/Ubuntu, you need to install Python development packages:
+      * apt-get install python3-dev
+      * apt-get install python-dev
+    * If you are building Python by yourself, rebuild with `--enable-shared` (or, `--enable-framework` on macOS).
+
+Makefile:75: recipe for target 'all' failed
+make: *** [all] Error 1
+```
+
+```shell
+./configure --prefix=/usr/local/python-3.10.6-with-openssl-3.0.5 --with-openssl=/usr/local/openssl-3.0.5/ --enable-shared
+
+make
+```
+
+output
+```shell
+Modules/_ssl.o: In function `PyInit__ssl':
+/home/Python-3.10.6/./Modules/_ssl.c:6242: multiple definition of `PyInit__ssl'
+Modules/_ssl.o:/home/Python-3.10.6/./Modules/_ssl.c:6242: first defined here
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:1822: multiple definition of `HMACtype_spec'
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:1822: first defined here
+Modules/_hashopenssl.o: In function `PyInit__hashlib':
+/home/Python-3.10.6/./Modules/_hashopenssl.c:2286: multiple definition of `PyInit__hashlib'
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:2286: first defined here
+collect2: error: ld returned 1 exit status
+ln: failed to access 'libpython3.10.so.1.0': No such file or directory
+Makefile:656: recipe for target 'libpython3.10.so' failed
+make: *** [libpython3.10.so] Error 1
+```
+
+
+Holy shit !!!
+I was debugging another project, and to debug a tricky issue, i execute `docker system prune -a`, because i suspect that this issues is caused by docker cache.
+but shit, it also removed the images i backuped for compiled python & openssl. And there is no way to recovery deleted images.
+so to avoid this happens again, i should use `docker image save` to export image as tar archive 
+or use `docker export` to export container as tar archive.
+
+
+
+```shell
+The necessary bits to build these optional modules were not found:
+_dbm
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket
+_ssl                  pwd                   time
+
+running build_scripts
+```
+
+-------
+```shell
+root@2958e4988ddf:/home/Python-3.10.6# /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3
+/usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3: error while loading shared libraries: libpython3.10.so.1.0: cannot open shared object file: No such file or directory
+```
+
+<hr>
+References
+
+```shell
+root@2958e4988ddf:/home/Python-3.10.6# export LD_LIBRARY_PATH=/usr/local/python-3.10.6-with-openssl-3.0.5/lib/
+root@2958e4988ddf:/home/Python-3.10.6#
+root@2958e4988ddf:/home/Python-3.10.6# export
+declare -x HOME="/root"
+declare -x HOSTNAME="2958e4988ddf"
+declare -x LD_LIBRARY_PATH="/usr/local/python-3.10.6-with-openssl-3.0.5/lib/"
+declare -x LD_RUN_PATH="/usr/local/openssl-3.0.5/lib64"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:"
+declare -x OLDPWD="/home"
+declare -x PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+declare -x PWD="/home/Python-3.10.6"
+declare -x SHLVL="1"
+declare -x TERM="xterm"
+root@2958e4988ddf:/home/Python-3.10.6#
+root@2958e4988ddf:/home/Python-3.10.6# /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3
+Python 3.10.6 (main, Sep 27 2022, 00:09:01) [GCC 7.5.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ssl
+>>> ssl.VERSION
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'ssl' has no attribute 'VERSION'
+>>> dir(ssl)
+['ALERT_DESCRIPTION_ACCESS_DENIED', 'ALERT_DESCRIPTION_BAD_CERTIFICATE', 'ALERT_DESCRIPTION_BAD_CERTIFICATE_HASH_VALUE', 'ALERT_DESCRIPTION_BAD_CERTIFICATE_STATUS_RESPONSE', 'ALERT_DESCRIPTION_BAD_RECORD_MAC', 'ALERT_DESCRIPTION_CERTIFICATE_EXPIRED', 'ALERT_DESCRIPTION_CERTIFICATE_REVOKED', 'ALERT_DESCRIPTION_CERTIFICATE_UNKNOWN', 'ALERT_DESCRIPTION_CERTIFICATE_UNOBTAINABLE', 'ALERT_DESCRIPTION_CLOSE_NOTIFY', 'ALERT_DESCRIPTION_DECODE_ERROR', 'ALERT_DESCRIPTION_DECOMPRESSION_FAILURE', 'ALERT_DESCRIPTION_DECRYPT_ERROR', 'ALERT_DESCRIPTION_HANDSHAKE_FAILURE', 'ALERT_DESCRIPTION_ILLEGAL_PARAMETER', 'ALERT_DESCRIPTION_INSUFFICIENT_SECURITY', 'ALERT_DESCRIPTION_INTERNAL_ERROR', 'ALERT_DESCRIPTION_NO_RENEGOTIATION', 'ALERT_DESCRIPTION_PROTOCOL_VERSION', 'ALERT_DESCRIPTION_RECORD_OVERFLOW', 'ALERT_DESCRIPTION_UNEXPECTED_MESSAGE', 'ALERT_DESCRIPTION_UNKNOWN_CA', 'ALERT_DESCRIPTION_UNKNOWN_PSK_IDENTITY', 'ALERT_DESCRIPTION_UNRECOGNIZED_NAME', 'ALERT_DESCRIPTION_UNSUPPORTED_CERTIFICATE', 'ALERT_DESCRIPTION_UNSUPPORTED_EXTENSION', 'ALERT_DESCRIPTION_USER_CANCELLED', 'AlertDescription', 'CERT_NONE', 'CERT_OPTIONAL', 'CERT_REQUIRED', 'CHANNEL_BINDING_TYPES', 'CertificateError', 'DER_cert_to_PEM_cert', 'DefaultVerifyPaths', 'HAS_ALPN', 'HAS_ECDH', 'HAS_NEVER_CHECK_COMMON_NAME', 'HAS_NPN', 'HAS_SNI', 'HAS_SSLv2', 'HAS_SSLv3', 'HAS_TLSv1', 'HAS_TLSv1_1', 'HAS_TLSv1_2', 'HAS_TLSv1_3', 'MemoryBIO', 'OPENSSL_VERSION', 'OPENSSL_VERSION_INFO', 'OPENSSL_VERSION_NUMBER', 'OP_ALL', 'OP_CIPHER_SERVER_PREFERENCE', 'OP_ENABLE_MIDDLEBOX_COMPAT', 'OP_IGNORE_UNEXPECTED_EOF', 'OP_NO_COMPRESSION', 'OP_NO_RENEGOTIATION', 'OP_NO_SSLv2', 'OP_NO_SSLv3', 'OP_NO_TICKET', 'OP_NO_TLSv1', 'OP_NO_TLSv1_1', 'OP_NO_TLSv1_2', 'OP_NO_TLSv1_3', 'OP_SINGLE_DH_USE', 'OP_SINGLE_ECDH_USE', 'Options', 'PEM_FOOTER', 'PEM_HEADER', 'PEM_cert_to_DER_cert', 'PROTOCOL_SSLv23', 'PROTOCOL_TLS', 'PROTOCOL_TLS_CLIENT', 'PROTOCOL_TLS_SERVER', 'PROTOCOL_TLSv1', 'PROTOCOL_TLSv1_1', 'PROTOCOL_TLSv1_2', 'Purpose', 'RAND_add', 'RAND_bytes', 'RAND_pseudo_bytes', 'RAND_status', 'SOCK_STREAM', 'SOL_SOCKET', 'SO_TYPE', 'SSLCertVerificationError', 'SSLContext', 'SSLEOFError', 'SSLError', 'SSLErrorNumber', 'SSLObject', 'SSLSession', 'SSLSocket', 'SSLSyscallError', 'SSLWantReadError', 'SSLWantWriteError', 'SSLZeroReturnError', 'SSL_ERROR_EOF', 'SSL_ERROR_INVALID_ERROR_CODE', 'SSL_ERROR_SSL', 'SSL_ERROR_SYSCALL', 'SSL_ERROR_WANT_CONNECT', 'SSL_ERROR_WANT_READ', 'SSL_ERROR_WANT_WRITE', 'SSL_ERROR_WANT_X509_LOOKUP', 'SSL_ERROR_ZERO_RETURN', 'TLSVersion', 'VERIFY_ALLOW_PROXY_CERTS', 'VERIFY_CRL_CHECK_CHAIN', 'VERIFY_CRL_CHECK_LEAF', 'VERIFY_DEFAULT', 'VERIFY_X509_PARTIAL_CHAIN', 'VERIFY_X509_STRICT', 'VERIFY_X509_TRUSTED_FIRST', 'VerifyFlags', 'VerifyMode', '_ASN1Object', '_DEFAULT_CIPHERS', '_Enum', '_GLOBAL_DEFAULT_TIMEOUT', '_IntEnum', '_IntFlag', '_OPENSSL_API_VERSION', '_PROTOCOL_NAMES', '_RESTRICTED_SERVER_CIPHERS', '_SSLContext', '_SSLMethod', '_SSLv2_IF_EXISTS', '_TLSAlertType', '_TLSContentType', '_TLSMessageType', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_create_default_https_context', '_create_stdlib_context', '_create_unverified_context', '_dnsname_match', '_inet_paton', '_ipaddress_match', '_nid2obj', '_socket', '_ssl', '_sslcopydoc', '_txt2obj', 'base64', 'cert_time_to_seconds', 'create_connection', 'create_default_context', 'errno', 'get_default_verify_paths', 'get_protocol_name', 'get_server_certificate', 'match_hostname', 'namedtuple', 'os', 'socket', 'socket_error', 'sys', 'warnings', 'wrap_socket']
+>>>
+>>> ssl.OPENSSL_VERSION
+'OpenSSL 3.0.5 5 Jul 2022'
+```
+
+
+
+- https://techglimpse.com/install-python-openssl-support-tutorial/
+
+[back](./)

@@ -1,0 +1,23 @@
+I"<h2 id="purpose">Purpose</h2>
+<p>To run a complete project that life cycle managed by CI/CD.</p>
+
+<h2 id="prerequsites">Prerequsites</h2>
+
+<h4 id="setup-k8s-cluster-locally">Setup k8s cluster locally</h4>
+<p>you can use <code class="language-plaintext highlighter-rouge">minikube</code> to do it.</p>
+
+<h4 id="deploy-gitlab">Deploy Gitlab</h4>
+<p><a href="https://docs.gitlab.com/ee/install/docker.html"> Official tutorial </a></p>
+
+<p>I choose Helm to deploy gitlab on cluster, for i’d like to have a practise on Helm.</p>
+
+<p>Basically, i referred to this articles</p>
+
+<p>https://www.yangpiqiulaotou.cn/2021/03/25/helm3%E5%AE%89%E8%A3%85gitlab/</p>
+
+<p>https://gitlab-docs.creationline.com/charts/installation/deployment.html</p>
+
+<hr />
+
+<p><a href="./">back</a></p>
+:ET
