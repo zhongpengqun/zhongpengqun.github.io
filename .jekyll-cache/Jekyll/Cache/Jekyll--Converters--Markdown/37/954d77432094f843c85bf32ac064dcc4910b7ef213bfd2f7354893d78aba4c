@@ -1,55 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Hello | Hello, time</title>
-<meta name="generator" content="Jekyll v4.2.2" />
-<meta property="og:title" content="Hello" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Introduction about this site and me." />
-<meta property="og:description" content="Introduction about this site and me." />
-<link rel="canonical" href="http://localhost:4000/tech-studying.html" />
-<meta property="og:url" content="http://localhost:4000/tech-studying.html" />
-<meta property="og:site_name" content="Hello, time" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Hello" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Introduction about this site and me.","headline":"Hello","url":"http://localhost:4000/tech-studying.html"}</script>
-<!-- End Jekyll SEO tag -->
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="/assets/css/style.css?v=">
-    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
-
-<!-- Setup Google Analytics -->
-
-
-
-<!-- You can set your favicon here -->
-<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
-
-<!-- end custom head snippets -->
-
-  </head>
-  <body>
-    <a id="skip-to-content" href="#content">Skip to the content.</a>
-
-    <header class="page-header" role="banner">
-      <h1 class="project-name">Hello</h1>
-      <h2 class="project-tagline">Introduction about this site and me.</h2>
-      
-      
-    </header>
-
-    <main id="content" class="main-content" role="main">
-      <h3 id="cncf">CNCF</h3>
+I""�<h3 id="cncf">CNCF</h3>
 
 <h2 id="docker">Docker</h2>
 <ul>
@@ -338,57 +287,45 @@ So, argument <span class="sb">`</span><span class="nt">--path</span><span class=
           </li>
         </ul>
       </li>
-      <li>argparse nargs=’+’</li>
-      <li>action=’store’
-  ```shell
-  在action=’store’中提到：选项名成为了解析结果对象的成员，而选项对应的值则成了成员的值，所以如果我们需要获取解析后的结果，直接使用解析结果的成员值就好了</li>
-    </ul>
-
-    <p>——-different
-  parser.add_argument(‘-c’, action=’store_true’)
-  #python test.py -c         =&gt; c是true（触发）
-  #python test.py             =&gt; c是false（无触发）
-  ```</p>
-    <ul>
-      <li>parser.add_argument(‘-c’, action=’store_true’)#python test.py -c         =&gt; c是true（触发）#python test.py             =&gt; c是false（无触发）</li>
+      <li>argparse nargs=’+’
+```
+import signal, os</li>
     </ul>
   </li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import signal, os
+<h1 id="定义一个信号处理函数该函数打印收到的信号然后raise-ioerror">定义一个信号处理函数，该函数打印收到的信号，然后raise IOError</h1>
+<p>def handler(signum, frame):
+    print ‘Signal handler called with signal’, signum
+    raise IOError(“Couldn’t open device!”)</p>
 
-# 定义一个信号处理函数，该函数打印收到的信号，然后raise IOError
-def handler(signum, frame):
-    print 'Signal handler called with signal', signum
-    raise IOError("Couldn't open device!")
+<h1 id="对sigalrm终止设置处理的handler-然后设置定时器5秒后触发sigalrm信号">对SIGALRM(终止)设置处理的handler, 然后设置定时器，5秒后触发SIGALRM信号</h1>
+<p>signal.signal(signal.SIGALRM, handler)
+signal.alarm(5)</p>
 
-# 对SIGALRM(终止)设置处理的handler, 然后设置定时器，5秒后触发SIGALRM信号
-signal.signal(signal.SIGALRM, handler)
-signal.alarm(5)
+<h1 id="this-open-may-hang-indefinitely">This open() may hang indefinitely</h1>
+<p>fd = os.open(‘/dev/ttyS0’, os.O_RDWR)</p>
 
-# This open() may hang indefinitely
-fd = os.open('/dev/ttyS0', os.O_RDWR)
-
-signal.alarm(0)          # 关闭定时器
-该示例实现的功能是，为了防止打开一个文件出错或者其他异常一直处于等待的状态，设定一个定时器，5秒后触发IOError。如果5s内正常打开文件，则清除定时器。
+<p>signal.alarm(0)          # 关闭定时器
+该示例实现的功能是，为了防止打开一个文件出错或者其他异常一直处于等待的状态，设定一个定时器，5秒后触发IOError。如果5s内正常打开文件，则清除定时器。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>parser.add_argument(
-    '--test',
-    dest='test', default=None, type=int, help='test'
-    action='store',     # 
-)
-</code></pre></div></div>
-
-<h3 id="python3">python3</h3>
-<p>from collections.abc import Iterable
-typing module, TypedDict</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">tt</span><span class="p">(</span><span class="n">kk</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">xx</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
-<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">kk</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">tt</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
-<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="nb">TypeError</span><span class="p">:</span> <span class="n">tt</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">1</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">argument</span><span class="p">:</span> <span class="s">'xx'</span>
+<p>parser.add_argument(
+    ‘–test’,
+    dest=’test’, default=None, type=int, help=’test’
+    action=’store’,     # 
+)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+### python3
+from collections.abc import Iterable
+typing module, TypedDict
+```python
+&gt;&gt;&gt; def tt(kk: int, xx: Optional[int]):
+...     print(kk)
+&gt;&gt;&gt; tt(None)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+TypeError: tt() missing 1 required positional argument: 'xx'
 </code></pre></div></div>
 
 <p>run a simple httpserver</p>
@@ -804,12 +741,4 @@ fatal: Authentication failed <span class="k">for</span> <span class="s1">'https:
   </li>
   <li><a href="./">back</a></li>
 </ul>
-
-
-      <footer class="site-footer">
-        
-          <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. &nbsp;&nbsp;&nbsp; and adopt this <a href="https://github.com/pages-themes/cayman">theme</a>.</span>
-      </footer>
-    </main>
-  </body>
-</html>
+:ET

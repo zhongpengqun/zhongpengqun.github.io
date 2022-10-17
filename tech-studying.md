@@ -22,6 +22,7 @@ description: Introduction about this site and me.
     - How to get docker disk usage ?  `docker system df`
     - docker export & docker save ?
     - docker import & docker load ?
+    - docker export -o english-db-`date +%Y%m%d-%H:%M:%S`.tar c7962a4fee17
 - Docker-compose
 - kubectl
   - kubectl create & kubectl apply
@@ -220,7 +221,35 @@ secrets:
 
 
 ## Python
-- argparse nargs='+'
+- Modules
+    - argparse
+      - parser.add_mutually_exclusive_group(required=True)
+      ```shell
+        group = parser.add_mutually_exclusive_group(required=True)
+        group.add_argument(
+            '--path',
+            dest='path',
+            action='append',
+        )
+        group.add_argument(
+            '--folder',
+            dest='folder',
+            action='store',
+        )
+      So, argument `--path` & `--folder` must pass one, and not allowed pass two simultaneously.
+      ```
+    - argparse nargs='+'
+    - action='store'
+    ```shell
+    在action='store'中提到：选项名成为了解析结果对象的成员，而选项对应的值则成了成员的值，所以如果我们需要获取解析后的结果，直接使用解析结果的成员值就好了
+
+    -------different
+    parser.add_argument('-c', action='store_true')
+    #python test.py -c         => c是true（触发）
+    #python test.py             => c是false（无触发）
+    ```
+    - parser.add_argument('-c', action='store_true')#python test.py -c         => c是true（触发）#python test.py             => c是false（无触发）
+
 ```
 import signal, os
 
@@ -593,6 +622,9 @@ s: https://stackoverflow.com/questions/68775869/message-support-for-password-aut
       - safe url
       - url endswith '/' & not endswith
       - Path Parameters
+      - setup project from legacy database
+      - ALLOWED_HOSTS
+        - HTTP Host header attacks
   - Python
       - python 3
       - logging

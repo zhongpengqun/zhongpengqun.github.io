@@ -1,4 +1,4 @@
-I"Ћ<h3 id="cncf">CNCF</h3>
+I"7�<h3 id="cncf">CNCF</h3>
 
 <h2 id="docker">Docker</h2>
 <ul>
@@ -21,6 +21,7 @@
       <li>How to get docker disk usage ?  <code class="language-plaintext highlighter-rouge">docker system df</code></li>
       <li>docker export &amp; docker save ?</li>
       <li>docker import &amp; docker load ?</li>
+      <li>docker export -o english-db-<code class="language-plaintext highlighter-rouge">date +%Y%m%d-%H:%M:%S</code>.tar c7962a4fee17</li>
     </ul>
   </li>
   <li>Docker-compose</li>
@@ -265,6 +266,7 @@
 
 <h2 id="python">Python</h2>
 <ul>
+  <li>parser.add_mutually_exclusive_group(required=True)</li>
   <li>argparse nargs=’+’
 ```
 import signal, os</li>
@@ -652,6 +654,12 @@ fatal: Authentication failed <span class="k">for</span> <span class="s1">'https:
       <li>safe url</li>
       <li>url endswith ‘/’ &amp; not endswith</li>
       <li>Path Parameters</li>
+      <li>setup project from legacy database</li>
+      <li>ALLOWED_HOSTS
+        <ul>
+          <li>HTTP Host header attacks</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>Python
