@@ -1,488 +1,451 @@
----
-layout: default
-title: Hello
-description: Introduction about this site and me.
----
+I"��<p><a href="#Glossary of computer science">Glossary of computer science</a></p>
 
-[Glossary of computer science](#Glossary of computer science)
+<p><a href="#Culture-independent english vocabularies">Culture-independent english vocabularies</a></p>
 
-[Culture-independent english vocabularies](#Culture-independent english vocabularies)
+<h2 id="terms-of-computer-science">Terms of computer science</h2>
+<ul>
+  <li>credential</li>
+</ul>
 
-## Terms of computer science
-- credential
+<h2 id="chinese">Chinese</h2>
+<ul>
+  <li>这个东西有什么作用?</li>
+  <li>它的作用是…</li>
+  <li>我粗略地估算了一下</li>
+  <li>掌握一门外语</li>
+  <li>必须同时满足以下几个条件</li>
+  <li>遵循这样的格式  follow this format</li>
+  <li>老用户</li>
+  <li>实验性功能</li>
+</ul>
 
-## Chinese
-- 这个东西有什么作用?
-- 它的作用是...
-- 我粗略地估算了一下
-- 掌握一门外语
-- 必须同时满足以下几个条件
-- 遵循这样的格式  follow this format
-- 老用户
-- 实验性功能
+<h2 id="from-society">From Society</h2>
+<ul>
+  <li>给我个面子</li>
+  <li>我上面有人, 听说你下面呼声很高</li>
+  <li>用xxx的话来说</li>
+  <li>装逼</li>
+</ul>
 
+<h2 id="pronounce-similar">Pronounce similar</h2>
+<ul>
+  <li>legal, league</li>
+</ul>
 
+<h3 id="usage"><a name="Usage">Usage</a></h3>
+<ul>
+  <li>figure, character, people</li>
+  <li>cause, reason</li>
+  <li>against</li>
+  <li>during</li>
+  <li>while, when</li>
+  <li>ongoing / constantly</li>
+  <li>subsequent  /  consequent</li>
+  <li>mandarin   /  mandatory</li>
+  <li>exists、existing、existed</li>
+  <li>succeed, success, successful, successfully</li>
+</ul>
 
-## From Society
-- 给我个面子
-- 我上面有人, 听说你下面呼声很高
-- 用xxx的话来说
-- 装逼
+<h3 id="glossary-of-computer-science"><a name="Glossary of computer science">Glossary of computer science</a></h3>
+<p>Here are terms which stranger for me.</p>
 
+<h4 id="a">A</h4>
 
-## Pronounce similar
-- legal, league
+<p><strong>abstract data type (ADT)</strong></p>
 
-### <a name="Usage">Usage</a>
-- figure, character, people
-- cause, reason
-- against
-- during
-- while, when
-- ongoing / constantly
-- subsequent  /  consequent
-- mandarin   /  mandatory
-- exists、existing、existed
-- succeed, success, successful, successfully
+<p>A mathematical model for data types in which a data type is defined by its behavior (semantics) from the point of view of a user of the data, specifically in terms of possible values, possible operations on data of this type, and the behavior of these operations. 
+This contrasts with data structures, which are concrete representations of data from the point of view of an implementer rather than a user.</p>
 
+<p><strong>agent architecture</strong></p>
 
-### <a name="Glossary of computer science">Glossary of computer science</a>
-Here are terms which stranger for me.
+<p>A blueprint for software agents and intelligent control systems <code class="language-plaintext highlighter-rouge">depicting</code> the arrangement of components. The architectures implemented by intelligent agents are referred to as <code class="language-plaintext highlighter-rouge">cognitive</code> architectures.</p>
 
-#### A
+<p><strong>Access modifiers</strong></p>
 
-**abstract data type (ADT)**
+<p>Keywords that specify how the members (attributes and methods) of a class can be accessed. Common modifiers include ‘public’, ‘private’, and ‘protected’.</p>
 
-A mathematical model for data types in which a data type is defined by its behavior (semantics) from the point of view of a user of the data, specifically in terms of possible values, possible operations on data of this type, and the behavior of these operations. 
-This contrasts with data structures, which are concrete representations of data from the point of view of an implementer rather than a user.
+<p><strong>Accessibility</strong></p>
 
-**agent architecture**
+<p>The practice of removing barriers that prevent access to, or interaction with, products, services, and environments.</p>
 
-A blueprint for software agents and intelligent control systems `depicting` the arrangement of components. The architectures implemented by intelligent agents are referred to as `cognitive` architectures.
+<p><strong>Adjacency list</strong></p>
 
-**Access modifiers**
+<p>A list of nodes and their adjacent nodes.</p>
 
-Keywords that specify how the members (attributes and methods) of a class can be accessed. Common modifiers include 'public', 'private', and 'protected'.
+<p><strong>Adjacency matrix</strong></p>
 
-**Accessibility**
+<p>A two-dimensional array used to store graph data.</p>
 
-The practice of removing barriers that prevent access to, or interaction with, products, services, and environments.
+<p><strong>ADSL</strong></p>
 
-**Adjacency list**
+<p>Asymmetric digital subscriber line. Technology that enables the use of a standard telephone line to receive and transmit data. It enables higher download speeds than upload speeds.</p>
 
-A list of nodes and their adjacent nodes.
+<p><strong>Aggregation</strong></p>
 
-**Adjacency matrix**
+<p>Defines a ‘has-a’ relationship between two classes. In aggregation, the objects can exist independently of each other.</p>
 
-A two-dimensional array used to store graph data.
+<p><strong>Agile methodology</strong></p>
 
-**ADSL**
+<p>A software development methodology used to manage the stages of the software development life cycle.</p>
 
-Asymmetric digital subscriber line. Technology that enables the use of a standard telephone line to receive and transmit data. It enables higher download speeds than upload speeds.
+<p><strong>ALU</strong></p>
 
-**Aggregation**
+<p>Arithmetic logic unit. A component of the processor that performs arithmetic operations and logical comparisons.</p>
 
-Defines a 'has-a' relationship between two classes. In aggregation, the objects can exist independently of each other.
+<p><strong>Analogue</strong></p>
 
-**Agile methodology**
+<p>A signal that varies continuously over a period of time. Sound waves are typical examples of analogue wave forms.</p>
 
-A software development methodology used to manage the stages of the software development life cycle.
+<p><strong>Anomaly</strong></p>
 
-**ALU**
+<p>A deviation from the common rule that does not fit into any established pattern.</p>
 
-Arithmetic logic unit. A component of the processor that performs arithmetic operations and logical comparisons.
+<p><strong>Append mode</strong></p>
 
-**Analogue**
+<p>A file handling mode that allows a program to write extra data at the end of a file without erasing the existing contents of the file.</p>
 
-A signal that varies continuously over a period of time. Sound waves are typical examples of analogue wave forms.
+<p><strong>Append operator (++)</strong></p>
 
-**Anomaly**
+<p>Used to add a new item or items to the end of a list.</p>
 
-A deviation from the common rule that does not fit into any established pattern.
+<p><strong>Application software</strong></p>
 
-**Append mode**
+<p>Software designed to carry out a task for an end user, such as creating a document or sending an email.</p>
 
-A file handling mode that allows a program to write extra data at the end of a file without erasing the existing contents of the file.
+<p><strong>Arc</strong></p>
 
-**Append operator (++)**
+<p>A connection between two nodes in a graph data structure. Also called edge.</p>
 
-Used to add a new item or items to the end of a list.
+<p><strong>Argument</strong></p>
 
+<p>A data value or reference passed to a subroutine as required by its defined parameters.</p>
 
-**Application software**
+<p><strong>Arithmetic operators</strong></p>
 
-Software designed to carry out a task for an end user, such as creating a document or sending an email.
+<p>Operators that perform mathematical operations on data, such as addition or division.</p>
 
-**Arc**
+<p><strong>Assembler</strong></p>
 
-A connection between two nodes in a graph data structure. Also called edge.
+<p>A program that translates assembly code into machine code.</p>
 
-**Argument**
+<p><strong>Asymmetric encryption</strong></p>
 
-A data value or reference passed to a subroutine as required by its defined parameters.
+<p>A method of encryption in which a pair of keys (a public key and a private key) are used to encrypt and decrypt data.</p>
 
-**Arithmetic operators**
+<p><strong>Asynchronous communication</strong></p>
 
-Operators that perform mathematical operations on data, such as addition or division.
+<p>A method of communication where data is transmitted over a channel that is not controlled by a shared clock signal.</p>
 
-**Assembler**
+<p><strong>Authentication</strong></p>
 
-A program that translates assembly code into machine code.
+<p>A security measure used to verify a user’s identity and level of permissions.</p>
 
+<h4 id="b">B</h4>
 
-**Asymmetric encryption**
+<p><strong>Backtracking</strong></p>
 
-A method of encryption in which a pair of keys (a public key and a private key) are used to encrypt and decrypt data.
+<p>A technique for solving problems recursively.</p>
 
+<p><strong>Barcode</strong></p>
 
-**Asynchronous communication**
+<p>A means of representing data in machine-readable form. Barcodes have traditionally represented data by a set of parallel lines of varied width and spacing.</p>
 
-A method of communication where data is transmitted over a channel that is not controlled by a shared clock signal.
+<p><strong>Base case</strong></p>
 
-**Authentication**
+<p>A value for which there is a solution for a basic instance of a problem and which provides a stopping condition for recursion.</p>
 
-A security measure used to verify a user's identity and level of permissions.
+<p><strong>Blagging</strong></p>
 
+<p>An attack in which the attacker invents a scenario in order to convince the victim to give them personal information or money.</p>
 
-#### B
+<p><strong>BNF</strong>
+Backus-Naur Form. A formal notation for describing a context-free language such as a programming language.</p>
 
-**Backtracking**
+<p>direct linkBoolean algebra
+A branch of algebra where the variables have one of two possible values — True or False. These values are often expressed as 1 and 0.</p>
 
-A technique for solving problems recursively.
+<p>direct linkBoolean expression
+A logical statement, made up of Boolean variables, Boolean constants and Boolean operators that will always evaluate as True or False.</p>
 
-**Barcode**
+<p>direct linkBoolean identity
+A relation between two elements that always holds true for all possible values of the variable(s).</p>
 
-A means of representing data in machine-readable form. Barcodes have traditionally represented data by a set of parallel lines of varied width and spacing.
+<p>direct linkBoolean operator
+An operator that perform a logical comparison, such as AND, NOT, or OR. Also called logical operator.</p>
 
+<p>direct linkBoolean variable
+A variable that takes one of only two values: True or False. These values are represented in binary as 1,1 or 0,0. Some systems will display the values as Yes/No.</p>
 
-**Base case**
+<p>Botnet
+A group of computers infected by malware that can be controlled remotely.</p>
 
-A value for which there is a solution for a basic instance of a problem and which provides a stopping condition for recursion.
+<p>Boundary data
+Test data that is on the limit of the acceptable range of valid data.</p>
 
-**Blagging**
+<p>Breadth-first search
+A method of searching a graph data structure that visits all nodes adjacent to the current node before moving on. Uses a queue to support the process.</p>
 
-An attack in which the attacker invents a scenario in order to convince the victim to give them personal information or money.
+<p>Brute force attack
+A method of systematically trying all possibilities to find secret information (eg a password or encryption key).</p>
 
+<p>Bytecode
+Low-level code, produced by a compiler, that can be interpreted by a virtual machine.</p>
 
-**BNF**
-Backus-Naur Form. A formal notation for describing a context-free language such as a programming language.
+<p>Caesar cipher
+A simple substitution cipher in which each letter is shifted by a certain number of places.</p>
 
+<p>Cardinality
+The number of (distinct) elements in a set.</p>
 
-direct linkBoolean algebra
-A branch of algebra where the variables have one of two possible values — True or False. These values are often expressed as 1 and 0.
+<p>Cartesian product
+The set of all ordered pairs formed by multiplying the elements of two sets.</p>
 
-direct linkBoolean expression
-A logical statement, made up of Boolean variables, Boolean constants and Boolean operators that will always evaluate as True or False.
+<p><strong>Casting</strong></p>
 
-direct linkBoolean identity
-A relation between two elements that always holds true for all possible values of the variable(s).
+<p>Changing the data type of a piece of data, for example, converting a string to an integer.</p>
 
-direct linkBoolean operator
-An operator that perform a logical comparison, such as AND, NOT, or OR. Also called logical operator.
+<p><strong>Certification Authority (CA)</strong></p>
 
-direct linkBoolean variable
-A variable that takes one of only two values: True or False. These values are represented in binary as 1,1 or 0,0. Some systems will display the values as Yes/No.
+<p>A trusted organisation that can authenticate the certificate for a website provider.</p>
 
+<p><strong>Character</strong></p>
 
-Botnet
-A group of computers infected by malware that can be controlled remotely.
+<p>A single letter, number, or symbol.</p>
 
-Boundary data
-Test data that is on the limit of the acceptable range of valid data.
+<p><strong>Ciphertext</strong></p>
 
-Breadth-first search
-A method of searching a graph data structure that visits all nodes adjacent to the current node before moving on. Uses a queue to support the process.
+<p>An encrypted message that is the result of applying an encryption algorithm to a plaintext message.</p>
 
-Brute force attack
-A method of systematically trying all possibilities to find secret information (eg a password or encryption key).
+<p><strong>Circuit switching</strong></p>
 
-Bytecode
-Low-level code, produced by a compiler, that can be interpreted by a virtual machine.
+<p>A method of transferring data across a network, where the end-to-end path is established before any data is sent.</p>
 
-Caesar cipher
-A simple substitution cipher in which each letter is shifted by a certain number of places.
+<p><strong>Coaxial cable</strong></p>
 
-Cardinality
-The number of (distinct) elements in a set.
+<p>A cable made up of an inner conductor and an outer conducting shield, separated by an insulator.</p>
 
-Cartesian product
-The set of all ordered pairs formed by multiplying the elements of two sets.
+<p><strong>Collision (hashing)</strong></p>
 
-**Casting**
+<p>Occurs when two (different) keys generate the same hash value.</p>
 
-Changing the data type of a piece of data, for example, converting a string to an integer.
+<p><strong>Comparison operators</strong></p>
 
-**Certification Authority (CA)**
+<p>Operators, such as greater than, that perform comparisons on two data values. The operation returns either True or False.</p>
 
-A trusted organisation that can authenticate the certificate for a website provider.
+<p><strong>Composite key</strong></p>
 
-**Character**
+<p>A key that is made up of more than one attribute</p>
 
-A single letter, number, or symbol.
+<p><strong>Composition</strong></p>
 
-**Ciphertext**
+<p>Defines an ‘is-part-of’ relationship between two classes. In composition, one object can exist only as part of another object.</p>
 
-An encrypted message that is the result of applying an encryption algorithm to a plaintext message.
+<p><strong>Concatenation</strong></p>
 
-**Circuit switching**
+<p>Joining two strings together to make a new string.</p>
 
-A method of transferring data across a network, where the end-to-end path is established before any data is sent.
+<p><strong>Convex combination</strong></p>
 
-**Coaxial cable**
+<p>One or more vectors that lie within the convex hull.</p>
 
-A cable made up of an inner conductor and an outer conducting shield, separated by an insulator.
+<p><strong>Countable set</strong></p>
 
-**Collision (hashing)**
+<p>A finite set where the members can be counted using natural numbers.</p>
 
-Occurs when two (different) keys generate the same hash value.
+<p><strong>Cyberattack</strong></p>
 
-**Comparison operators**
+<p>An attempt to gain unauthorised access to a computer, computing system, or computer network with the intent to cause damage, to cause disruption, or to steal data.</p>
 
-Operators, such as greater than, that perform comparisons on two data values. The operation returns either True or False.
+<p><strong>Data mining</strong></p>
 
+<p>The process of extracting valuable information by discovering patterns in large data sets.</p>
 
-**Composite key**
+<p><strong>direct linkData warehousing</strong></p>
 
-A key that is made up of more than one attribute
+<p>Data from different sources that is brought together to be used in data analysis.</p>
 
-**Composition**
+<p><strong>Decomposition</strong></p>
 
-Defines an 'is-part-of' relationship between two classes. In composition, one object can exist only as part of another object.
+<p>The process of breaking down a large task into several subtasks.</p>
 
+<p><strong>direct linkDecrement</strong></p>
 
-**Concatenation**
+<p>To decrease the value of a variable. For example, count = count - 1</p>
 
-Joining two strings together to make a new string.
+<p><strong>direct linkDefragmentation</strong></p>
 
+<p>The process of organising file blocks stored on a disk by grouping them into adjacent sectors.</p>
 
-**Convex combination**
+<p><strong>direct linkDegree of relationship</strong></p>
 
-One or more vectors that lie within the convex hull.
+<p>The relationship between two entities (one-to-one, one-to-many, or many-to-many).</p>
 
-**Countable set**
+<p><strong>Denary</strong></p>
 
-A finite set where the members can be counted using natural numbers.
+<p>A number system that uses ten distinct symbols (the numbers 0–9) to represent a number. Also called decimal or base-10.</p>
 
-**Cyberattack**
+<p><strong>direct linkDepth-first tree traversal</strong></p>
 
-An attempt to gain unauthorised access to a computer, computing system, or computer network with the intent to cause damage, to cause disruption, or to steal data.
+<p>An algorithm for traversing a tree data structure that starts at the root node and explores as far as possible along each branch before backtracking.</p>
 
-**Data mining**
+<p><strong>Eavesdropping</strong></p>
 
-The process of extracting valuable information by discovering patterns in large data sets.
+<p>The process of monitoring network traffic to intercept the data being transmitted.</p>
 
-**direct linkData warehousing**
+<p><strong>Efficiency</strong></p>
 
-Data from different sources that is brought together to be used in data analysis.
+<p>An expression of the computational time and space required to perform an algorithm.</p>
 
-**Decomposition**
+<p><strong>direct linkEncapsulation (OOP)</strong></p>
 
-The process of breaking down a large task into several subtasks.
+<p>The concept of packaging data together with the methods that operate on that data.</p>
 
+<p><strong>direct linkEntity</strong></p>
 
-**direct linkDecrement**
+<p>Something about which data will be stored, e.g. a customer or booking.</p>
 
-To decrease the value of a variable. For example, count = count - 1
+<p><strong>direct linkErroneous data</strong></p>
 
+<p>Test data that should be caught by validation and rejected by a system.</p>
 
-**direct linkDefragmentation**
+<p><strong>Ethical hacking</strong></p>
 
-The process of organising file blocks stored on a disk by grouping them into adjacent sectors.
+<p>The process of trying to break into a computer system with the permission of its owner, to determine its vulnerabilities and weak points. Also called penetration testing.</p>
 
+<p><strong>direct linkExponent</strong></p>
 
-**direct linkDegree of relationship**
+<p>Part of a floating point number that determines the position of the binary point.</p>
 
-The relationship between two entities (one-to-one, one-to-many, or many-to-many).
+<p><strong>direct linkExponential time</strong></p>
 
+<p>The time complexity of an algorithm where the time taken to run it increases by an exponential factor on each single addition to the input data set.</p>
 
-**Denary**
+<p><strong>direct linkFibre-optic cable</strong></p>
 
-A number system that uses ten distinct symbols (the numbers 0–9) to represent a number. Also called decimal or base-10.
+<p>A cable that can be used to transport electromagnetic waves in the infrared region. These waves are modulated to carry digital data at high speeds over long distances.</p>
 
+<p><strong>File type extension</strong></p>
 
-**direct linkDepth-first tree traversal**
+<p>A suffix given to a file name to mark what kind of data is contained in the file, or what type of program created it. Examples include ‘.docx’, ‘.jpg’, and ‘.pdf’.</p>
 
-An algorithm for traversing a tree data structure that starts at the root node and explores as far as possible along each branch before backtracking.
+<p><strong>Filter function</strong></p>
 
-**Eavesdropping**
+<p>A higher-order function that takes a list and some criteria as arguments, and returns a new list. The new list contains only those items that meet the specified criteria.</p>
 
-The process of monitoring network traffic to intercept the data being transmitted.
+<p><strong>Flip-flop</strong></p>
 
+<p>A circuit that can store a single-bit value to act as a simple memory unit.</p>
 
-**Efficiency**
+<p><strong>Gibibyte</strong></p>
 
-An expression of the computational time and space required to perform an algorithm.
-
-**direct linkEncapsulation (OOP)**
-
-The concept of packaging data together with the methods that operate on that data.
-
-**direct linkEntity**
-
-Something about which data will be stored, e.g. a customer or booking.
-
-**direct linkErroneous data**
-
-Test data that should be caught by validation and rejected by a system.
-
-**Ethical hacking**
-
-The process of trying to break into a computer system with the permission of its owner, to determine its vulnerabilities and weak points. Also called penetration testing.
-
-
-**direct linkExponent**
-
-Part of a floating point number that determines the position of the binary point.
-
-**direct linkExponential time**
-
-The time complexity of an algorithm where the time taken to run it increases by an exponential factor on each single addition to the input data set.
-
-
-**direct linkFibre-optic cable**
-
-A cable that can be used to transport electromagnetic waves in the infrared region. These waves are modulated to carry digital data at high speeds over long distances.
-
-**File type extension**
-
-A suffix given to a file name to mark what kind of data is contained in the file, or what type of program created it. Examples include '.docx', '.jpg', and '.pdf'.
-
-**Filter function**
-
-A higher-order function that takes a list and some criteria as arguments, and returns a new list. The new list contains only those items that meet the specified criteria.
-
-**Flip-flop**
-
-A circuit that can store a single-bit value to act as a simple memory unit.
-
-**Gibibyte**
-
-One gibibyte is 1, comma, 073, comma, 741, comma, 824,1,073,741,824 bytes (2, to the power 30 ,2 
+<p>One gibibyte is 1, comma, 073, comma, 741, comma, 824,1,073,741,824 bytes (2, to the power 30 ,2 
 30
- ). The symbol for the gibibyte is GiB. See also gigabyte.
+ ). The symbol for the gibibyte is GiB. See also gigabyte.</p>
 
+<p><strong>Halting problem</strong></p>
 
-**Halting problem**
+<p>A problem that is significant to the theory of computation as it proves that some problems are undecidable or cannot be computed.</p>
 
-A problem that is significant to the theory of computation as it proves that some problems are undecidable or cannot be computed.
+<p><strong>Heuristic</strong></p>
 
+<p>An approach to solving a problem that will provide an approximate or “good enough” solution to an intractable problem.</p>
 
-**Heuristic**
+<p><strong>Hexadecimal</strong></p>
 
-An approach to solving a problem that will provide an approximate or "good enough" solution to an intractable problem.
+<p>A number system that uses 16 distinct symbols (the numbers 0-9 and the letters A-F) to represent a number. Also called hex or base-16.</p>
 
+<p><strong>Hierarchy chart</strong></p>
 
-**Hexadecimal**
+<p>A diagram that shows the design of a system from a top-down perspective.</p>
 
-A number system that uses 16 distinct symbols (the numbers 0-9 and the letters A-F) to represent a number. Also called hex or base-16.
+<p><strong>Immutable</strong></p>
 
-**Hierarchy chart**
+<p>Not able to be changed.</p>
 
-A diagram that shows the design of a system from a top-down perspective.
+<p><strong>Imperative languages</strong></p>
 
-**Immutable**
+<p>A programming language where the programmer defines a set of statements that must be followed (in the given order) to solve a problem.</p>
 
-Not able to be changed.
+<p><strong>In-order traversal</strong></p>
 
-**Imperative languages**
+<p>A method of traversing a tree so that a node is processed after its left subtree has been examined and before its right subtree has been examined.</p>
 
-A programming language where the programmer defines a set of statements that must be followed (in the given order) to solve a problem.
+<p><strong>Indefinite iteration</strong></p>
 
+<p>A set of instructions that is repeated until a condition is met. Typically it is implemented by using condition-controlled loops, such as a while loop.</p>
 
-**In-order traversal**
+<p><strong>Initialisation</strong></p>
 
-A method of traversing a tree so that a node is processed after its left subtree has been examined and before its right subtree has been examined.
+<p>Setting the initial value for a variable.</p>
 
-**Indefinite iteration**
+<p><strong>Integrity</strong></p>
 
-A set of instructions that is repeated until a condition is met. Typically it is implemented by using condition-controlled loops, such as a while loop.
+<p>The reliability of data in terms of its accuracy, completeness and consitency.</p>
 
-**Initialisation**
+<p><strong>Interrupt service routine</strong></p>
 
-Setting the initial value for a variable.
+<p>A program that handles a processor interrupt</p>
 
+<p><strong>Intractable problem</strong></p>
 
-**Integrity**
+<p>A problem that cannot be solved by a computer system in a reasonable amount of time.</p>
 
-The reliability of data in terms of its accuracy, completeness and consitency.
+<p><strong>Latency</strong></p>
 
+<p>The time delay between a signal being sent and a signal being received.</p>
 
-**Interrupt service routine**
+<p><strong>Least significant bit (LSB)</strong></p>
 
-A program that handles a processor interrupt
+<p>The rightmost bit in a binary number.</p>
 
+<p><strong>Legislation</strong></p>
 
-**Intractable problem**
+<p>The laws that apply within a country. Computing legislation is a set of laws that regulate the use of computers and related areas.</p>
 
-A problem that cannot be solved by a computer system in a reasonable amount of time.
+<p><strong>Logarithmic time</strong></p>
 
+<p>The time complexity of an algorithm where the time taken to run it is proportional to the logarithm of the size of input data set.</p>
 
+<p><strong>Logic puzzle</strong></p>
 
-**Latency**
+<p>A puzzle that can be solved by logical thinking.</p>
 
-The time delay between a signal being sent and a signal being received.
+<p><strong>Logical operators</strong></p>
 
+<p>Operators (such as AND, OR, and NOT) that are used to form logical expressions. Also called Boolean operators.</p>
 
-**Least significant bit (LSB)**
+<p><strong>Lossless compression</strong></p>
 
-The rightmost bit in a binary number.
+<p>A method of compression where no data is permanently lost during the process.</p>
 
+<p><strong>Lossy compression</strong></p>
 
-**Legislation**
+<p>A method where data is permanently lost during the compression process and must be approximated when the file is decompressed.</p>
 
-The laws that apply within a country. Computing legislation is a set of laws that regulate the use of computers and related areas.
+<p><strong>Magnetic storage</strong></p>
 
-**Logarithmic time**
+<p>A technique to store data using polarised magnetic dots. The polarity of the dot is used to represent a 1 or a 0.</p>
 
-The time complexity of an algorithm where the time taken to run it is proportional to the logarithm of the size of input data set.
+<p><strong>Majority voting</strong></p>
 
+<p>A method of error detection where each bit is sent multiple times and the majority value is used by the receiving device.</p>
 
-**Logic puzzle**
+<p><strong>Mantissa</strong></p>
 
-A puzzle that can be solved by logical thinking.
+<p>Part of a floating point number that contains the significant digits.</p>
 
-**Logical operators**
+<p><strong>Mealy machine</strong></p>
 
-Operators (such as AND, OR, and NOT) that are used to form logical expressions. Also called Boolean operators.
+<p>A type of finite state machine that produces outputs</p>
 
-**Lossless compression**
-
-A method of compression where no data is permanently lost during the process.
-
-**Lossy compression**
-
-A method where data is permanently lost during the compression process and must be approximated when the file is decompressed.
-
-**Magnetic storage**
-
-A technique to store data using polarised magnetic dots. The polarity of the dot is used to represent a 1 or a 0.
-
-
-**Majority voting**
-
-A method of error detection where each bit is sent multiple times and the majority value is used by the receiving device.
-
-
-**Mantissa**
-
-Part of a floating point number that contains the significant digits.
-
-
-**Mealy machine**
-
-A type of finite state machine that produces outputs
-
-
-
-
-### Culture-independent english vocabularies
+<h3 id="culture-independent-english-vocabularies">Culture-independent english vocabularies</h3>
 
 <table width="100%" border="1" cellpadding="3" cellspacing="0" bordercolor="#CCCCCC">
-              <colgroup><col width="48">
-              <col width="117" span="2">
-              <col width="158">
-              <col width="109">
-              <col width="112">
+              <colgroup><col width="48" />
+              <col width="117" span="2" />
+              <col width="158" />
+              <col width="109" />
+              <col width="112" />
               </colgroup><tbody><tr>
                 <td bgcolor="#FFAFAF"><strong>S.No.</strong></td>
                 <td align="left" bgcolor="#FFAFAF"><strong>Base Form</strong></td>
@@ -2653,14 +2616,12 @@ A type of finite state machine that produces outputs
               </tr>
             </tbody></table>
 
-
-
 <table width="100%" border="1" cellpadding="3" cellspacing="0" bordercolor="#CCCCCC">
-              <colgroup><col width="48">
-              <col width="117" span="2">
-              <col width="158">
-              <col width="109">
-              <col width="112">
+              <colgroup><col width="48" />
+              <col width="117" span="2" />
+              <col width="158" />
+              <col width="109" />
+              <col width="112" />
               </colgroup><tbody>
               <tr>
                 <td>410</td>
@@ -5728,185 +5689,189 @@ A type of finite state machine that produces outputs
               </tr>
             </tbody></table>
 
-https://www.worldclasslearning.com/english/five-verb-forms.html
+<p>https://www.worldclasslearning.com/english/five-verb-forms.html</p>
 
+<h5 id="verbs">Verbs</h5>
 
-##### Verbs
+<p>https://zh.wikipedia.org/zh-cn/%E8%8B%B1%E8%AA%9E%E5%8B%95%E8%A9%9E#%E9%80%A3%E7%B6%B4%E5%8B%95%E8%A9%9E%EF%BC%88%E7%B3%BB%E5%8A%A8%E8%AF%8D%EF%BC%89</p>
 
-https://zh.wikipedia.org/zh-cn/%E8%8B%B1%E8%AA%9E%E5%8B%95%E8%A9%9E#%E9%80%A3%E7%B6%B4%E5%8B%95%E8%A9%9E%EF%BC%88%E7%B3%BB%E5%8A%A8%E8%AF%8D%EF%BC%89
+<ul>
+  <li>Creature
+    <ul>
+      <li>Hand</li>
+      <li>Foot</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
 
-- Creature
-  - Hand 
-  - Foot
-  - 
+<h5 id="time">Time</h5>
+<p>todo</p>
+<h5 id="space">Space</h5>
+<p>todo</p>
+<h5 id="human-being">Human-being</h5>
+<p>todo</p>
 
-##### Time
-todo
-##### Space
-todo
-##### Human-being
-todo
+<h2 id="confusions">Confusions</h2>
+<ul>
+  <li>为什么 radical 既有基数，又有激进分子的意思？</li>
+  <li>filter out 过滤掉，过滤出，(这难道不是2个相反的意思？)</li>
+  <li>contradiction &amp; paradox    https://philosophy.stackexchange.com/questions/10474/whats-the-difference-between-a-contradiction-and-a-paradox</li>
+</ul>
 
+<h3 id="encountered-during-work">Encountered during work</h3>
+<p>take into account</p>
 
-## Confusions
-- 为什么 radical 既有基数，又有激进分子的意思？
-- filter out 过滤掉，过滤出，(这难道不是2个相反的意思？)
-- contradiction & paradox    https://philosophy.stackexchange.com/questions/10474/whats-the-difference-between-a-contradiction-and-a-paradox
+<p>comes with
+附带</p>
 
-### Encountered during work
-take into account
+<p>stay the same for a lifetime
+终生不变</p>
 
-comes with
-附带
+<p>I put a page on confluence. Let’s coordinate there.</p>
 
-stay the same for a lifetime
-终生不变
+<p>Boosters</p>
 
-I put a page on confluence. Let’s coordinate there.
+<p>Prod upgrade cadence</p>
 
-Boosters
+<p>I can pick up</p>
 
-Prod upgrade cadence
+<p>Virus scanning result: Infected</p>
 
-I can pick up
+<p>takes precedence over</p>
 
-Virus scanning result: Infected
+<p>as for</p>
 
-takes precedence over
+<p>VOS-3921-Add-an-arg-to-support-filter-scan-report-by-cvss-score</p>
 
-as for
+<p>Everybody can help out with</p>
 
-VOS-3921-Add-an-arg-to-support-filter-scan-report-by-cvss-score
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Copyright (C) 2011-2012 Yaco Sistemas &lt;lgs@yaco.es&gt;</span>
+<span class="c">#</span>
+<span class="c"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c"># you may not use this file except in compliance with the License.</span>
+<span class="c"># You may obtain a copy of the License at</span>
+<span class="c">#</span>
+<span class="c">#            http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">#</span>
+<span class="c"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c"># See the License for the specific language governing permissions and</span>
+<span class="c"># limitations under the License.</span>
+</code></pre></div></div>
 
-Everybody can help out with
+<p>enrolled
+(使)加入;注册;登记</p>
 
-```shell
-# Copyright (C) 2011-2012 Yaco Sistemas <lgs@yaco.es>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#            http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-```
+<p>Finally it appears that with our changes related to xxx, we have violated the following</p>
 
+<p>In case</p>
 
-enrolled
-(使)加入;注册;登记
+<p>workaround</p>
 
-Finally it appears that with our changes related to xxx, we have violated the following
+<p>seamlessly</p>
 
-In case
+<p>checked in</p>
 
-workaround
+<p>provision</p>
 
-seamlessly
+<p>Even though pipeline did not succeeded yet the FE e2e tests passed once</p>
 
-checked in
+<p>seal</p>
 
-provision
+<p>infected</p>
 
-Even though pipeline did not succeeded yet the FE e2e tests passed once
+<p>waiting for docker to come up…</p>
 
-seal
+<p>Your request was DECLINED and the status changed to Closed</p>
 
-infected
+<p>Only approved if you are oncall</p>
 
-waiting for docker to come up...
+<p>the pipeline is currently paused. to unpause, either:</p>
+<ul>
+  <li>run the unpause-pipeline command:
+fly -t tutorial unpause-pipeline -p booklit</li>
+  <li>click play next to the pipeline in the web ui</li>
+</ul>
 
-Your request was DECLINED and the status changed to Closed
+<p>Migrate package endpoints that is a a lot of work, but ultimately has to be done.</p>
 
-Only approved if you are oncall
+<p>As part of our ongoing effort to migrate data from xx to yy</p>
 
-the pipeline is currently paused. to unpause, either:
-  - run the unpause-pipeline command:
-    fly -t tutorial unpause-pipeline -p booklit
-  - click play next to the pipeline in the web ui
+<p>warning which complained that both audit.User and osstp.User models are user models</p>
 
-Migrate package endpoints that is a a lot of work, but ultimately has to be done.
+<p>by means of</p>
 
-As part of our ongoing effort to migrate data from xx to yy
+<p>The two jobs are related to one-another by means of passed
+constraint.</p>
 
-warning which complained that both audit.User and osstp.User models are user models
+<p>1 and 2 are looking good, but I still need some time to polish it a bit</p>
 
-by means of
+<p>or point 3 we initially decided to move to latest Django 2 release, so Vincent can leverage the SSO library that he needs</p>
 
-The two jobs are related to one-another by means of passed
-constraint.
+<p>we initially decided to</p>
 
-1 and 2 are looking good, but I still need some time to polish it a bit
+<p>promotion recipients</p>
 
-or point 3 we initially decided to move to latest Django 2 release, so Vincent can leverage the SSO library that he needs
+<p>Would you like to take a look and see how complex the problem is?</p>
 
-we initially decided to
+<p>Meanwhile, please let me know if you have any clue to track down the issue.</p>
 
-promotion recipients
+<p>We’ll be discussing on the Phase 2 approach, but I doubt there’ll be time for that till next week.</p>
 
-Would you like to take a look and see how complex the problem is?
+<p>Thanks, nonetheless.</p>
 
-Meanwhile, please let me know if you have any clue to track down the issue.
+<p>If this is the case, be careful not to end up with two different instances of the same file when making changes</p>
 
-We’ll be discussing on the Phase 2 approach, but I doubt there’ll be time for that till next week.
+<p>In order to deal with this situation</p>
 
-Thanks, nonetheless.
+<p>in future &amp; in the future</p>
 
-If this is the case, be careful not to end up with two different instances of the same file when making changes
+<p>other than</p>
 
-In order to deal with this situation
+<p>Perforce, obsolete, deferring, intake</p>
 
-in future & in the future
+<p>This might qualify as a separate requirement</p>
 
-other than
+<p>I’m scheduling sessions with respective leads</p>
 
-Perforce, obsolete, deferring, intake
+<p>This signifies the original offering name before subsequent rebranding</p>
 
-This might qualify as a separate requirement
+<p>premise, leftovers</p>
 
-I’m scheduling sessions with respective leads
+<p>Typical usage
+equivalent to this</p>
 
-This signifies the original offering name before subsequent rebranding
+<p>Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.</p>
 
-premise, leftovers
+<p>bringing in</p>
 
-Typical usage
-equivalent to this
+<p>result in</p>
 
-Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+<p>caveats</p>
 
-bringing in
+<p>on-demand</p>
 
-result in
+<p>There is no point in skipping sections if we want the
+pipeline to finish faster.</p>
 
-caveats
+<p>paradigm</p>
 
-on-demand
+<p>streamline</p>
 
-There is no point in skipping sections if we want the
-pipeline to finish faster.
+<p>and supply the following information</p>
 
-paradigm
+<p>I was able to clarify that this is to streamline our process of reporting false positives to the vendor. We currently give users the following instructions for filing false positives</p>
 
-streamline
+<p>respecting</p>
 
-and supply the following information
+<p>ATM</p>
 
+<p>it’s up to the user
+is up to you</p>
 
-I was able to clarify that this is to streamline our process of reporting false positives to the vendor. We currently give users the following instructions for filing false positives
-
-respecting
-
-ATM
-
-it's up to the user
-is up to you
-
-remediation
+<p>remediation
 permissive
 severity
 ongoing
@@ -5916,97 +5881,97 @@ leased
 polling frequency
 downtime, throughout
 alternate
-all dangling images
+all dangling images</p>
 
-docker save & docker export
+<p>docker save &amp; docker export</p>
 
-from time to time
+<p>from time to time</p>
 
-at once
+<p>at once</p>
 
-as per
+<p>as per</p>
 
-i would
+<p>i would</p>
 
-I'd not worry for
+<p>I’d not worry for</p>
 
-IIRC(if I recall correctly / if I remember correctly)
+<p>IIRC(if I recall correctly / if I remember correctly)</p>
 
-My take is
+<p>My take is</p>
 
-In addition to
+<p>In addition to</p>
 
-undergoing
+<p>undergoing</p>
 
-As per
+<p>As per</p>
 
-along with
+<p>along with</p>
 
-run book
+<p>run book</p>
 
-hand book
+<p>hand book</p>
 
-Sr. Technical Program Manager
+<p>Sr. Technical Program Manager</p>
 
-discrepancy
+<p>discrepancy</p>
 
-In order to reproduce, call the following command
+<p>In order to reproduce, call the following command</p>
 
-Headsup
+<p>Headsup</p>
 
-In light of
+<p>In light of</p>
 
-dismiss
+<p>dismiss</p>
 
-at ease
+<p>at ease</p>
 
-go over
+<p>go over</p>
 
-over-provisioning
+<p>over-provisioning</p>
 
-additive
+<p>additive</p>
 
-Justifications
+<p>Justifications</p>
 
-lately
+<p>lately</p>
 
-utilizing
+<p>utilizing</p>
 
-on a daily basis
+<p>on a daily basis</p>
 
-Encountered 3 file(s) that should have been pointers, but weren't:
+<p>Encountered 3 file(s) that should have been pointers, but weren’t:</p>
 
-show up
+<p>show up</p>
 
-It's very likely that
+<p>It’s very likely that</p>
 
-physical security & resiliency
+<p>physical security &amp; resiliency</p>
 
-spam
+<p>spam</p>
 
-despair & despise
+<p>despair &amp; despise</p>
 
-one-off
+<p>one-off</p>
 
-on-going
+<p>on-going</p>
 
-has no means
+<p>has no means</p>
 
-provision
+<p>provision</p>
 
-delegate
+<p>delegate</p>
 
-workaround
+<p>workaround</p>
 
-assume
+<p>assume</p>
 
-pronoun
+<p>pronoun</p>
 
-warehouse
+<p>warehouse</p>
 
-hands-on
+<p>hands-on</p>
 
-hint: Pulling without specifying how to reconcile divergent branches is
+<p>hint: Pulling without specifying how to reconcile divergent branches is
 hint: discouraged. You can squelch this message by running one of the following
 hint: commands sometime before your next pull:
 hint:
@@ -6014,685 +5979,701 @@ hint:   git config pull.rebase false  # merge (the default strategy)
 hint:   git config pull.rebase true   # rebase
 hint:   git config pull.ff only       # fast-forward only
 hint:
-hint: You can replace "git config" with "git config --global" to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
+hint: You can replace “git config” with “git config –global” to set a default
+hint: preference for all repositories. You can also pass –rebase, –no-rebase,
+hint: or –ff-only on the command line to override the configured default per
+hint: invocation.</p>
 
-unlikely
+<p>unlikely</p>
 
-tumbled
+<p>tumbled</p>
 
-replication
+<p>replication</p>
 
-ripple
+<p>ripple</p>
 
-suspected
+<p>suspected</p>
 
-We have received a PD for this issue
+<p>We have received a PD for this issue</p>
 
-ETA
+<p>ETA</p>
 
-plenary
+<p>plenary</p>
 
-the plan is to go live on the 22nd
+<p>the plan is to go live on the 22nd</p>
 
-Just giving you a heads up
+<p>Just giving you a heads up</p>
 
-a couple of peers
+<p>a couple of peers</p>
 
-disregard
+<p>disregard</p>
 
-interfere
+<p>interfere</p>
 
-Is that intentional?
+<p>Is that intentional?</p>
 
-stay tuned
+<p>stay tuned</p>
 
-lag
+<p>lag</p>
 
-mimic
+<p>mimic</p>
 
-underlying
+<p>underlying</p>
 
-inverted
+<p>inverted</p>
 
-negate
+<p>negate</p>
 
-elaborate
+<p>elaborate</p>
 
-Non Disclosure Agreement
+<p>Non Disclosure Agreement</p>
 
-mimic
+<p>mimic</p>
 
-Along with this
+<p>Along with this</p>
 
-by now
+<p>by now</p>
 
-imperative mood
+<p>imperative mood</p>
 
-proprietary
+<p>proprietary</p>
 
-filtering criteria
+<p>filtering criteria</p>
 
-self-explanatory
+<p>self-explanatory</p>
 
-across all days
+<p>across all days</p>
 
-how to frame up the query to check if the counts are distributed uniformly across all the days?
+<p>how to frame up the query to check if the counts are distributed uniformly across all the days?</p>
 
-prior to
+<p>prior to</p>
 
-other than
+<p>other than</p>
 
-on a second turn
+<p>on a second turn</p>
 
-I haven't had the need to clean my browser cache for ages
-我很久没有清理浏览器缓存了
+<p>I haven’t had the need to clean my browser cache for ages
+我很久没有清理浏览器缓存了</p>
 
-lift off
+<p>lift off</p>
 
-off topic
+<p>off topic</p>
 
-accomplish
+<p>accomplish</p>
 
-comply with
+<p>comply with</p>
 
-made the format a bit distorted
+<p>made the format a bit distorted</p>
 
-The following commands inventory the usage for their respective framework
+<p>The following commands inventory the usage for their respective framework</p>
 
-A tool that `facilitates` continuous development for Kubernetes applications.
+<p>A tool that <code class="language-plaintext highlighter-rouge">facilitates</code> continuous development for Kubernetes applications.</p>
 
-off-the-shelf
+<p>off-the-shelf</p>
 
-revision
+<p>revision</p>
 
-confinement
+<p>confinement</p>
 
-confined
+<p>confined</p>
 
-renewal
+<p>renewal</p>
 
-vzhong@vzhong:~/buildaudit/bdba-lb/helm$ sudo snap install helm
+<p>vzhong@vzhong:~/buildaudit/bdba-lb/helm$ sudo snap install helm
 [sudo] password for vzhong:
-error: This revision of snap "helm" was published using classic confinement and thus may perform
+error: This revision of snap “helm” was published using classic confinement and thus may perform
        arbitrary system changes outside of the security sandbox that snaps are usually confined to,
        which may put your system at risk.
-       If you understand and want to proceed repeat the command including --classic.
+       If you understand and want to proceed repeat the command including –classic.</p>
 
-mimic
+<p>mimic</p>
 
-Reap finished successfully
+<p>Reap finished successfully</p>
 
-Runbook
+<p>Runbook</p>
 
-The triage of pcakges come in various forms, including:
+<p>The triage of pcakges come in various forms, including:</p>
 
-retention
+<p>retention</p>
 
-get missing   找不到
+<p>get missing   找不到</p>
 
-negotiation
+<p>negotiation</p>
 
-Summit
+<p>Summit</p>
 
-could be that 可能是这样(不是'可以是这样')
+<p>could be that 可能是这样(不是’可以是这样’)</p>
 
-ongoing
+<p>ongoing</p>
 
-IDK
+<p>IDK</p>
 
-Intermittent    断断续续的；间歇的
+<p>Intermittent    断断续续的；间歇的</p>
 
-discrepancy  n  差异;不符合;不一致
+<p>discrepancy  n  差异;不符合;不一致</p>
 
-right-most
+<p>right-most</p>
 
-Once you get a chance please keep us posted
+<p>Once you get a chance please keep us posted</p>
 
-Once you have inventoried your project
+<p>Once you have inventoried your project</p>
 
-Can you elaborate more on it ?
+<p>Can you elaborate more on it ?</p>
 
-I will priority this task
+<p>I will priority this task</p>
 
-take some significant time
+<p>take some significant time</p>
 
-redact
+<p>redact</p>
 
-This is also not entirely trivial
+<p>This is also not entirely trivial</p>
 
-by means of
+<p>by means of</p>
 
-initiatives contribute to revenue generation
+<p>initiatives contribute to revenue generation</p>
 
-vacation
+<p>vacation</p>
 
-cryptography
+<p>cryptography</p>
 
-will try to sneak it into Q3
+<p>will try to sneak it into Q3</p>
 
-stay for a while
+<p>stay for a while</p>
 
-I got knocked out of Grafana admin account
+<p>I got knocked out of Grafana admin account</p>
 
-I've managed to reproduce it  我设法复制了它
+<p>I’ve managed to reproduce it  我设法复制了它</p>
 
-Well, my take would be something like this  嗯，我的看法是这样的
+<p>Well, my take would be something like this  嗯，我的看法是这样的</p>
 
-from scratch  从头开始
+<p>from scratch  从头开始</p>
 
-estimated time of arrival   估计的到达时间
+<p>estimated time of arrival   估计的到达时间</p>
 
-vice versa      反之亦然
+<p>vice versa      反之亦然</p>
 
-lack  /  leak
+<p>lack  /  leak</p>
 
-Package manipulation
+<p>Package manipulation</p>
 
-Please be advised        请注意
+<p>Please be advised        请注意</p>
 
-How is your evaluation going?
+<p>How is your evaluation going?</p>
 
-I want to make sure you're aware of our enterprise-tailored offerings, designed to help organizations such as yours get the most out of Data Center.
-我想确保您了解我们为企业量身定制的产品，旨在帮助像您这样的组织充分利用数据中心
+<p>I want to make sure you’re aware of our enterprise-tailored offerings, designed to help organizations such as yours get the most out of Data Center.
+我想确保您了解我们为企业量身定制的产品，旨在帮助像您这样的组织充分利用数据中心</p>
 
-It turns out that her aunt and my cousin are one and the same.
-原来她姑妈就是我表姐
+<p>It turns out that her aunt and my cousin are one and the same.
+原来她姑妈就是我表姐</p>
 
-circumstances
+<p>circumstances</p>
 
-loop in
+<p>loop in</p>
 
-Please join me in welcoming xxx
+<p>Please join me in welcoming xxx</p>
 
-rotate the password
+<p>rotate the password</p>
 
-revision
+<p>revision</p>
 
-homological
+<p>homological</p>
 
-along with
+<p>along with</p>
 
-take it into consideration
+<p>take it into consideration</p>
 
-out of curiosity     出于好奇
+<p>out of curiosity     出于好奇</p>
 
-across
+<p>across</p>
 
-timely updates
+<p>timely updates</p>
 
-reserve  &  preserve
+<p>reserve  &amp;  preserve</p>
 
-should fulfill the needs of Dashboard scan capability
+<p>should fulfill the needs of Dashboard scan capability</p>
 
-Informative
+<p>Informative</p>
 
-identical twins   同卵双胞胎
+<p>identical twins   同卵双胞胎</p>
 
-substitution
+<p>substitution</p>
 
-retention
+<p>retention</p>
 
-WARNING: the set_pipeline step is experimental and subject to change!
+<p>WARNING: the set_pipeline step is experimental and subject to change!</p>
 
-Dedicated new solution
+<p>Dedicated new solution</p>
 
-based on the filtering criteria
+<p>based on the filtering criteria</p>
 
-preliminary activation
+<p>preliminary activation</p>
 
-short for & stand for
+<p>short for &amp; stand for</p>
 
-stretch
+<p>stretch</p>
 
-Approximately equal : ~=
+<p>Approximately equal : ~=</p>
 
-Proceed to www.iftty.com (unsafe)
+<p>Proceed to www.iftty.com (unsafe)</p>
 
-recipient
+<p>recipient</p>
 
-There're a lot of potential features around configuring notifications.
+<p>There’re a lot of potential features around configuring notifications.</p>
 
-resides
+<p>resides</p>
 
-A sample configuration pane which can handle the majority of needs is drawn below
+<p>A sample configuration pane which can handle the majority of needs is drawn below</p>
 
-send notification
+<p>send notification</p>
 
-In addition to
+<p>In addition to</p>
 
-one-stop
+<p>one-stop</p>
 
-are based off of
-e.g. All prices are based off of USD, so there always must be a USD price. 
+<p>are based off of
+e.g. All prices are based off of USD, so there always must be a USD price.</p>
 
-N/A
-不适用;不可用;不知道;不适用的;不限 
+<p>N/A
+不适用;不可用;不知道;不适用的;不限</p>
 
-line up
+<p>line up</p>
 
-imminently
+<p>imminently</p>
 
-out-of-the-box
+<p>out-of-the-box</p>
 
-thoughtful
+<p>thoughtful</p>
 
-overhead
+<p>overhead</p>
 
-On Linux systems, idle overhead is reduced most by using a Minikube cluster deployed on Docker.
- 在Linux系统上，使用部署在Docker上的Minikube集群可以最大程度地减少空闲开销
+<p>On Linux systems, idle overhead is reduced most by using a Minikube cluster deployed on Docker.
+ 在Linux系统上，使用部署在Docker上的Minikube集群可以最大程度地减少空闲开销</p>
 
-bring up
+<p>bring up</p>
 
-facilitates
+<p>facilitates</p>
 
-leave out
+<p>leave out</p>
 
-yes, not ready yet, but will be till end of the week
+<p>yes, not ready yet, but will be till end of the week</p>
 
-preventive measure
+<p>preventive measure</p>
 
-maternity leave
+<p>maternity leave</p>
 
-I have not context
+<p>I have not context</p>
 
-which is mostly done so that the control of where to place a scan is completely going through this new tool.
-这主要是为了通过这个新工具完全控制扫描的位置
+<p>which is mostly done so that the control of where to place a scan is completely going through this new tool.
+这主要是为了通过这个新工具完全控制扫描的位置</p>
 
-deposit
+<p>deposit</p>
 
-drawback
+<p>drawback</p>
 
-principle engineer
+<p>principle engineer</p>
 
-in case the owner shall be changed with svc account, we forbid that
+<p>in case the owner shall be changed with svc account, we forbid that</p>
 
-consequent & subsequent
+<p>consequent &amp; subsequent</p>
 
-interpolation
+<p>interpolation</p>
 
-partially
+<p>partially</p>
 
-would be more indicative
+<p>would be more indicative</p>
 
-obfuscation
+<p>obfuscation</p>
 
-xx elapsed time 3:15:02, completed on Fri Aug 12 21:08:33 2022
+<p>xx elapsed time 3:15:02, completed on Fri Aug 12 21:08:33 2022</p>
 
-sustainability
+<p>sustainability</p>
 
-laid out
+<p>laid out</p>
 
-recipe
+<p>recipe</p>
 
-adhere to
+<p>adhere to</p>
 
-WARNING: The file has been changed since reading it!!!
+<p>WARNING: The file has been changed since reading it!!!</p>
 
-In contrast
+<p>In contrast</p>
 
-on-demand
+<p>on-demand</p>
 
-specifically
+<p>specifically</p>
 
-we'll try this out
+<p>we’ll try this out</p>
 
-I ended up using something similar to the accepted answer, with minor modifications
+<p>I ended up using something similar to the accepted answer, with minor modifications</p>
 
-Sundial: An instrument that indicates the time of day `by means of` the position
+<p>Sundial: An instrument that indicates the time of day <code class="language-plaintext highlighter-rouge">by means of</code> the position</p>
 
-ought to
+<p>ought to</p>
 
-with no guarantees whatsoever
+<p>with no guarantees whatsoever</p>
 
-are subject to
+<p>are subject to</p>
 
-in some other fashion
+<p>in some other fashion</p>
 
-to ensure the comprehensiveness of this doc
+<p>to ensure the comprehensiveness of this doc</p>
 
-pre-installed
+<p>pre-installed</p>
 
-It’s better to avoid the use of LD_LIBRARY_PATH and use alternatives
+<p>It’s better to avoid the use of LD_LIBRARY_PATH and use alternatives</p>
 
-foreseeable
+<p>foreseeable</p>
 
-distraction
+<p>distraction</p>
 
-maybe something wrong with the URL concatenation
+<p>maybe something wrong with the URL concatenation</p>
 
-campaign
+<p>campaign</p>
 
-passive
+<p>passive</p>
 
-on-premise
+<p>on-premise</p>
 
-Please let me know if you can help me with the same.
+<p>Please let me know if you can help me with the same.</p>
 
-Will the missing data from Aug 3-Aug 22 be replenished? 
+<p>Will the missing data from Aug 3-Aug 22 be replenished?</p>
 
-Any new PVCs have been failing to get provisioned but the existing ones will continue to work fine.
+<p>Any new PVCs have been failing to get provisioned but the existing ones will continue to work fine.</p>
 
-Going forward
+<p>Going forward</p>
 
-submission
+<p>submission</p>
 
-We would like to discuss our progress and get some clarification on the best way to proceed
+<p>We would like to discuss our progress and get some clarification on the best way to proceed</p>
 
-I hope you are doing well!
+<p>I hope you are doing well!</p>
 
-Looks like a sane plan to me
+<p>Looks like a sane plan to me</p>
 
-Thank you for all the effort you put into this!
+<p>Thank you for all the effort you put into this!</p>
 
+<p>recap</p>
 
+<p>Could you look able to help on it on priority ?</p>
 
-recap
+<p>compliant &amp; complain</p>
 
-Could you look able to help on it on priority ?
+<p>Hi all, I am moving to accommodate holiday and schedule conflicts. Please let me know if this works.</p>
 
-compliant & complain
+<p>could barely talk</p>
 
-Hi all, I am moving to accommodate holiday and schedule conflicts. Please let me know if this works.
+<p>comment out</p>
 
-could barely talk
+<p>By this change</p>
 
-comment out
+<p>synonym</p>
 
-By this change
+<p>obscurely</p>
 
-synonym
+<p>Encountered errors while bringing up the project</p>
 
-obscurely
+<p>TypeError: exceptions must derive from BaseException</p>
 
-Encountered errors while bringing up the project
+<p>Do you by any chance have any idea about this method?  – by any chance</p>
 
-TypeError: exceptions must derive from BaseException
+<p>proceed with</p>
 
-Do you by any chance have any idea about this method?  -- by any chance
+<p>Issue is still ongoing</p>
 
-proceed with
+<p>nonetheless</p>
 
-Issue is still ongoing
+<p>decommission</p>
 
-nonetheless
+<h2 id="咬文嚼字">咬文嚼字</h2>
+<ul>
+  <li>flag &amp; argument</li>
+</ul>
 
-decommission
+<h2 id="technical-terms">Technical Terms</h2>
+<h3 id="math-copy-from-httpszhuanlanzhihucomp51015057">Math (copy from https://zhuanlan.zhihu.com/p/51015057)</h3>
+<h5 id="代数-数论">代数-数论</h5>
+<ul>
+  <li>natural number 自然数</li>
+  <li>positive number 正数</li>
+  <li>negative number 负数</li>
+  <li><code class="language-plaintext highlighter-rouge">odd integer/number 奇数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">even integer/number 偶数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Integer/whole number 整数</code></li>
+  <li>positive whole number 正整数</li>
+  <li>negative whole number 负整数</li>
+  <li><code class="language-plaintext highlighter-rouge">consecutive number 连续整数</code>    (consecutive  连续的;连续不断的)</li>
+  <li>real/rational number 实数,有理数</li>
+  <li>Irrational number 无理数</li>
+  <li><code class="language-plaintext highlighter-rouge">inverse /reciprocal 倒数</code></li>
+  <li>mode 众数</li>
+  <li>composite number 合数</li>
+  <li><code class="language-plaintext highlighter-rouge">prime number 质数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">common divisor 公约数</code></li>
+  <li>multiple 倍数</li>
+  <li>common multiple 公倍数</li>
+  <li>(prime) factor(质)因子</li>
+  <li><code class="language-plaintext highlighter-rouge">common factor 公因子</code></li>
+  <li>common ratio 公比</li>
+  <li>non-negative 非负的</li>
+  <li><code class="language-plaintext highlighter-rouge">mean平均数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">median中值</code></li>
+  <li>mode 众数</li>
+  <li>composite number 合数</li>
+  <li>prime number 质数</li>
+  <li>common divisor 公约数</li>
+  <li>multiple 倍数</li>
+  <li>common multiple 公倍数</li>
+  <li>(prime) factor(质)因子</li>
+  <li>common factor 公因子</li>
+  <li>common ratio 公比</li>
+  <li>nonnegative 非负的</li>
+  <li>mean平均数</li>
+  <li>median中值</li>
+</ul>
 
-## 咬文嚼字
-- flag & argument
+<h5 id="代数-基本数学概念">代数-基本数学概念</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ALGEBRA 代数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">arithmetic mean 算术平均值</code></li>
+  <li>weighted average 加权平均值</li>
+  <li><code class="language-plaintext highlighter-rouge">geometric mean 几何平均数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">exponent 指数，幂</code></li>
+  <li>base 乘幂的底数,底边</li>
+  <li>cube 立方数，立方体</li>
+  <li><code class="language-plaintext highlighter-rouge">square root 平方根</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cube root 立方根</code></li>
+  <li>common <code class="language-plaintext highlighter-rouge">logarithm</code> 常用对数</li>
+  <li><code class="language-plaintext highlighter-rouge">divisor 因子,除数,公约数</code></li>
+  <li>cardinal 基数</li>
+  <li>ordinal 序数</li>
+  <li>constant 常数</li>
+  <li>variable 变量</li>
+  <li>inverse function 反函数</li>
+  <li>complementary function 余函数</li>
+  <li>linear 一次的，线性的</li>
+  <li>factorization 因式分解</li>
+  <li>absolute value 绝对值</li>
+  <li><code class="language-plaintext highlighter-rouge">round to/off ,to the nearest 四舍五入</code></li>
+  <li>difference 差</li>
+  <li>product 积</li>
+  <li><code class="language-plaintext highlighter-rouge">quotient 商</code></li>
+  <li><code class="language-plaintext highlighter-rouge">remainder 余数</code>
+    <h4 id="代数-基本运算-小数分数">代数-基本运算, 小数,分数</h4>
+  </li>
+  <li>Add/plus 加</li>
+  <li><code class="language-plaintext highlighter-rouge">subtract 减</code></li>
+  <li>Multiply / times 乘</li>
+  <li><code class="language-plaintext highlighter-rouge">divide 除</code></li>
+  <li><code class="language-plaintext highlighter-rouge">divisible 可被整除的</code></li>
+  <li>divided evenly 被整除</li>
+  <li><code class="language-plaintext highlighter-rouge">dividend 被除数，红利</code></li>
+  <li>factorial 阶乘</li>
+  <li>power 乘方</li>
+  <li><code class="language-plaintext highlighter-rouge">radical /root sign 根号</code></li>
+  <li>decimal fraction 纯小数</li>
+  <li>infinite decimal 无穷小数</li>
+  <li>recurring decimal 循环小数</li>
+  <li>proper fraction 真分数</li>
+  <li>improper fraction 假分数</li>
+  <li>mixed number 带分数</li>
+  <li>vulgar /common fraction 普通分数</li>
+  <li>simple fraction 简分数</li>
+  <li>complex fraction 繁分数</li>
+  <li><code class="language-plaintext highlighter-rouge">numerator 分子</code></li>
+  <li><code class="language-plaintext highlighter-rouge">denominator 分母</code></li>
+  <li>common denominator 公分母</li>
+  <li><code class="language-plaintext highlighter-rouge">quarter 四分之一</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ordinary /decimal scale 十进制</code></li>
+  <li>tens 十位 , units 个位</li>
+  <li>tenths unit 十分位</li>
+</ul>
 
-## Technical Terms
-### Math (copy from https://zhuanlan.zhihu.com/p/51015057)
-##### 代数-数论
-- natural number 自然数
-- positive number 正数
-- negative number 负数
-- `odd integer/number 奇数`
-- `even integer/number 偶数`
-- `Integer/whole number 整数`
-- positive whole number 正整数
-- negative whole number 负整数
-- `consecutive number 连续整数`    (consecutive  连续的;连续不断的)
-- real/rational number 实数,有理数
-- Irrational number 无理数
-- `inverse /reciprocal 倒数`
-- mode 众数
-- composite number 合数
-- `prime number 质数`
-- `common divisor 公约数`
-- multiple 倍数
-- common multiple 公倍数
-- (prime) factor(质)因子
-- `common factor 公因子`
-- common ratio 公比
-- non-negative 非负的
-- `mean平均数`
-- `median中值`
-- mode 众数
-- composite number 合数
-- prime number 质数
-- common divisor 公约数
-- multiple 倍数
-- common multiple 公倍数
-- (prime) factor(质)因子
-- common factor 公因子
-- common ratio 公比
-- nonnegative 非负的
-- mean平均数
-- median中值
-
-
-##### 代数-基本数学概念
-- `ALGEBRA 代数`
-- `arithmetic mean 算术平均值`
-- weighted average 加权平均值
-- `geometric mean 几何平均数`
-- `exponent 指数，幂`
-- base 乘幂的底数,底边
-- cube 立方数，立方体
-- `square root 平方根`
-- `cube root 立方根`
-- common `logarithm` 常用对数
-- `divisor 因子,除数,公约数`
-- cardinal 基数
-- ordinal 序数
-- constant 常数
-- variable 变量
-- inverse function 反函数
-- complementary function 余函数
-- linear 一次的，线性的
-- factorization 因式分解
-- absolute value 绝对值
-- `round to/off ,to the nearest 四舍五入`
-- difference 差
-- product 积
-- `quotient 商`
-- `remainder 余数`
-#### 代数-基本运算, 小数,分数
-- Add/plus 加
-- `subtract 减`
-- Multiply / times 乘
-- `divide 除`
-- `divisible 可被整除的`
-- divided evenly 被整除
-- `dividend 被除数，红利`
-- factorial 阶乘
-- power 乘方
-- `radical /root sign 根号`
-- decimal fraction 纯小数
-- infinite decimal 无穷小数
-- recurring decimal 循环小数
-- proper fraction 真分数
-- improper fraction 假分数
-- mixed number 带分数
-- vulgar /common fraction 普通分数
-- simple fraction 简分数
-- complex fraction 繁分数
-- `numerator 分子`
-- `denominator 分母`
-- common denominator 公分母
-- `quarter 四分之一`
-- `ordinary /decimal scale 十进制`
-- tens 十位 , units 个位
-- tenths unit 十分位
-
-##### 代数-方程,集合,数列等
-- algebraic term 代数项
-- like terms, similar terms 同类项
-- numerical coefficient 数字系数
-- literal coefficient 字母系数
-- inequality 不等式
-- triangle inequality 三角不等式
-- range 值域
-- original equation 原方程
-- equivalent equation 同解/等价方程
-- `linear equation 线性方程`
-- union 并集
-- proper subset 真子集
-- solution set 解集
-- arithmetic progression(sequence) 等差数列
-- geometric progression(sequence) 等比数列
-- `approximate 近似`
-- `(anti)clockwise (逆) 顺时针方向`
-- direct proportion 正比
-- parentheses 括号
-- `proportion 比例`
-- `permutation 排列`
-- combination 组合
-- trigonometric function 三角函数
-##### 几何-三角
-- plane geometry 平面几何
-- plane 平面
-- alternate angle 内错角
-- corresponding angle 同位角
-- vertical angle 对顶角
-- supplementary angles 补角
-- complementary angle 余角
-- `adjacent angle 邻角`
-- right angle 直角
-- round angle 周角
-- straight angle 平角
-- included angle 夹角
-- central angle 圆心角
-- interior angle 内角
-- exterior angle 外角
-- acute angle 锐角
-- obtuse angle 钝角
-- `trigonometry 三角学`
-- equilateral triangle 等边三角形
-- scalene triangle 不等边三角形
-- isosceles triangle 等腰三角形
-- right triangle 直角三角形
-- oblique 斜三角形
-- inscribed triangle 内接三角形 几何-平面, 立体
-- quadrilateral 四边形
-- pentagon 五边形
-- hexagon 六边形
-- heptagon 七边形
-- octagon 八边形
-- nonagon 九边形
-- decagon 十边形
-- polygon 多边形
-- `parallelogram 平行四边形`
-- `square 正方形，平方`
-- `rectangle长方形`
-- `rhombus 菱形`
-- trapezoid 梯形
-- equilateral 等边形
-- regular polygon 正多边形
-- concentric circles 同心圆
-- line, straight line 直线
-- line segment 线段
-- `parallel lines 平行线`
-- `rectangular solid 长方体`
-- regular solid/polyhedron 正多面体
-- circular cylinder 圆柱体
-- cone 圆锥
-- `sphere 球体`
-- solid 立体的
-
-##### 几何-图形概念
-- `bisect 平分`
-- circumscribe 外切
-- inscribe 内切
-- `intersect 相交`
-- `perpendicular 垂直`
-- congruent 全等的
-- multilateral 多边的
-- side 边长
-- `circumference, perimeter 周长`
-- `diameter 直径`
-- `radius 半径`
-- `chord 弦`
-- `arc 弧`
-- semicircle 半圆
-- `radian 弧度`
-- center of a circle 圆心
-- segment of a circle 弧形
-- angle bisector 角平分线
-- diagonal 对角线
-- cube 立方体，立方数
-- face of a solid 立体的面
-- `altitude 高`
-- depth 深度
-- `volume 体积`
-- `surface area 表面积`
-- edge 棱
-
-##### 几何-坐标
-- arm 直角三角形的股
-- hypotenuse 斜边
-- included side 夹边
-- Pythagorean theorem 勾股定理
-- `leg 三角形的直角边`
-- median（三角形的）中线
-- base底边，底数
-- opposite 直角三角形中的对边
-- cross section 横截面
-- vertex (复数形式vertices)顶点
-- `tangent 切线的`
-- complex plane 复平面
-- midpoint 中点
-- endpoint 端点
-- `coordinate system 坐标系`
-- `rectangular coordinate 直角坐标系`
-- origin 原点
-- `abscissa 横坐标`
-- `ordinate 纵坐标`
-- number line 数轴
-- `quadrant 象限`
-- `slope 斜率`
-- transversal 截线
-- `intercept 截距`
-##### 商业术语,计量单位
-- Intercalary/leap year 闰年(366天)
-- common year 平年(365天)
-- depreciation 折旧
-- down payment 直接付款
-- `discount 打折 / denote 表示`
-- `margin /profit 利润`
-- `interest 利息/ dividend 红利`
-- simple interest 单利
-- compounded interest 复利
-- Increase / decrease to 增加/减少到
-- increase /decrease by 增加/减少了
-- list price 标价 /markup 涨价
-- retail price 零售价 /per capita 每人
-- cent 美分/penny 一美分硬币
-- nickel 5美分硬币 /dime 一角硬币
-- dozen 打(12个) / score 廿 (20个)
-- `Centigrade 摄氏`/Fahrenheit 华氏
-- quart 夸脱/ gallon 加仑 (1 gallon = 4 quart)
-- yard 码 / inch 英寸/ foot 英尺
-- meter 米/ micron 微米
-- square measure 平方单位制
-- cubic meter 立方米
-- pint 品脱(干量或液量的单位)
-
-## 时间有关的单词
-- 频率
-  - 持续地
-
-[back](./)
-
-
-```shell
-Use apt-cache policy libc6 to find out the installed version and the candidate version, whereas the installed version can be also shown with ldd --version.
-
-```
-
-<a href="http://english.z7z8.cc/public/mark">z7z8 public</a>
-
-
-### Videos
-- [ Hacker interview - gummo ](./hacker-interview-gummo.html)
-
-
-By this change
-
-proof of concept
-
-alan watts https://www.organism.earth/library/document/eastern-wisdom-3
+<h5 id="代数-方程集合数列等">代数-方程,集合,数列等</h5>
+<ul>
+  <li>algebraic term 代数项</li>
+  <li>like terms, similar terms 同类项</li>
+  <li>numerical coefficient 数字系数</li>
+  <li>literal coefficient 字母系数</li>
+  <li>inequality 不等式</li>
+  <li>triangle inequality 三角不等式</li>
+  <li>range 值域</li>
+  <li>original equation 原方程</li>
+  <li>equivalent equation 同解/等价方程</li>
+  <li><code class="language-plaintext highlighter-rouge">linear equation 线性方程</code></li>
+  <li>union 并集</li>
+  <li>proper subset 真子集</li>
+  <li>solution set 解集</li>
+  <li>arithmetic progression(sequence) 等差数列</li>
+  <li>geometric progression(sequence) 等比数列</li>
+  <li><code class="language-plaintext highlighter-rouge">approximate 近似</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(anti)clockwise (逆) 顺时针方向</code></li>
+  <li>direct proportion 正比</li>
+  <li>parentheses 括号</li>
+  <li><code class="language-plaintext highlighter-rouge">proportion 比例</code></li>
+  <li><code class="language-plaintext highlighter-rouge">permutation 排列</code></li>
+  <li>combination 组合</li>
+  <li>trigonometric function 三角函数
+    <h5 id="几何-三角">几何-三角</h5>
+  </li>
+  <li>plane geometry 平面几何</li>
+  <li>plane 平面</li>
+  <li>alternate angle 内错角</li>
+  <li>corresponding angle 同位角</li>
+  <li>vertical angle 对顶角</li>
+  <li>supplementary angles 补角</li>
+  <li>complementary angle 余角</li>
+  <li><code class="language-plaintext highlighter-rouge">adjacent angle 邻角</code></li>
+  <li>right angle 直角</li>
+  <li>round angle 周角</li>
+  <li>straight angle 平角</li>
+  <li>included angle 夹角</li>
+  <li>central angle 圆心角</li>
+  <li>interior angle 内角</li>
+  <li>exterior angle 外角</li>
+  <li>acute angle 锐角</li>
+  <li>obtuse angle 钝角</li>
+  <li><code class="language-plaintext highlighter-rouge">trigonometry 三角学</code></li>
+  <li>equilateral triangle 等边三角形</li>
+  <li>scalene triangle 不等边三角形</li>
+  <li>isosceles triangle 等腰三角形</li>
+  <li>right triangle 直角三角形</li>
+  <li>oblique 斜三角形</li>
+  <li>inscribed triangle 内接三角形 几何-平面, 立体</li>
+  <li>quadrilateral 四边形</li>
+  <li>pentagon 五边形</li>
+  <li>hexagon 六边形</li>
+  <li>heptagon 七边形</li>
+  <li>octagon 八边形</li>
+  <li>nonagon 九边形</li>
+  <li>decagon 十边形</li>
+  <li>polygon 多边形</li>
+  <li><code class="language-plaintext highlighter-rouge">parallelogram 平行四边形</code></li>
+  <li><code class="language-plaintext highlighter-rouge">square 正方形，平方</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rectangle长方形</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rhombus 菱形</code></li>
+  <li>trapezoid 梯形</li>
+  <li>equilateral 等边形</li>
+  <li>regular polygon 正多边形</li>
+  <li>concentric circles 同心圆</li>
+  <li>line, straight line 直线</li>
+  <li>line segment 线段</li>
+  <li><code class="language-plaintext highlighter-rouge">parallel lines 平行线</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rectangular solid 长方体</code></li>
+  <li>regular solid/polyhedron 正多面体</li>
+  <li>circular cylinder 圆柱体</li>
+  <li>cone 圆锥</li>
+  <li><code class="language-plaintext highlighter-rouge">sphere 球体</code></li>
+  <li>solid 立体的</li>
+</ul>
+
+<h5 id="几何-图形概念">几何-图形概念</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bisect 平分</code></li>
+  <li>circumscribe 外切</li>
+  <li>inscribe 内切</li>
+  <li><code class="language-plaintext highlighter-rouge">intersect 相交</code></li>
+  <li><code class="language-plaintext highlighter-rouge">perpendicular 垂直</code></li>
+  <li>congruent 全等的</li>
+  <li>multilateral 多边的</li>
+  <li>side 边长</li>
+  <li><code class="language-plaintext highlighter-rouge">circumference, perimeter 周长</code></li>
+  <li><code class="language-plaintext highlighter-rouge">diameter 直径</code></li>
+  <li><code class="language-plaintext highlighter-rouge">radius 半径</code></li>
+  <li><code class="language-plaintext highlighter-rouge">chord 弦</code></li>
+  <li><code class="language-plaintext highlighter-rouge">arc 弧</code></li>
+  <li>semicircle 半圆</li>
+  <li><code class="language-plaintext highlighter-rouge">radian 弧度</code></li>
+  <li>center of a circle 圆心</li>
+  <li>segment of a circle 弧形</li>
+  <li>angle bisector 角平分线</li>
+  <li>diagonal 对角线</li>
+  <li>cube 立方体，立方数</li>
+  <li>face of a solid 立体的面</li>
+  <li><code class="language-plaintext highlighter-rouge">altitude 高</code></li>
+  <li>depth 深度</li>
+  <li><code class="language-plaintext highlighter-rouge">volume 体积</code></li>
+  <li><code class="language-plaintext highlighter-rouge">surface area 表面积</code></li>
+  <li>edge 棱</li>
+</ul>
+
+<h5 id="几何-坐标">几何-坐标</h5>
+<ul>
+  <li>arm 直角三角形的股</li>
+  <li>hypotenuse 斜边</li>
+  <li>included side 夹边</li>
+  <li>Pythagorean theorem 勾股定理</li>
+  <li><code class="language-plaintext highlighter-rouge">leg 三角形的直角边</code></li>
+  <li>median（三角形的）中线</li>
+  <li>base底边，底数</li>
+  <li>opposite 直角三角形中的对边</li>
+  <li>cross section 横截面</li>
+  <li>vertex (复数形式vertices)顶点</li>
+  <li><code class="language-plaintext highlighter-rouge">tangent 切线的</code></li>
+  <li>complex plane 复平面</li>
+  <li>midpoint 中点</li>
+  <li>endpoint 端点</li>
+  <li><code class="language-plaintext highlighter-rouge">coordinate system 坐标系</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rectangular coordinate 直角坐标系</code></li>
+  <li>origin 原点</li>
+  <li><code class="language-plaintext highlighter-rouge">abscissa 横坐标</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ordinate 纵坐标</code></li>
+  <li>number line 数轴</li>
+  <li><code class="language-plaintext highlighter-rouge">quadrant 象限</code></li>
+  <li><code class="language-plaintext highlighter-rouge">slope 斜率</code></li>
+  <li>transversal 截线</li>
+  <li><code class="language-plaintext highlighter-rouge">intercept 截距</code>
+    <h5 id="商业术语计量单位">商业术语,计量单位</h5>
+  </li>
+  <li>Intercalary/leap year 闰年(366天)</li>
+  <li>common year 平年(365天)</li>
+  <li>depreciation 折旧</li>
+  <li>down payment 直接付款</li>
+  <li><code class="language-plaintext highlighter-rouge">discount 打折 / denote 表示</code></li>
+  <li><code class="language-plaintext highlighter-rouge">margin /profit 利润</code></li>
+  <li><code class="language-plaintext highlighter-rouge">interest 利息/ dividend 红利</code></li>
+  <li>simple interest 单利</li>
+  <li>compounded interest 复利</li>
+  <li>Increase / decrease to 增加/减少到</li>
+  <li>increase /decrease by 增加/减少了</li>
+  <li>list price 标价 /markup 涨价</li>
+  <li>retail price 零售价 /per capita 每人</li>
+  <li>cent 美分/penny 一美分硬币</li>
+  <li>nickel 5美分硬币 /dime 一角硬币</li>
+  <li>dozen 打(12个) / score 廿 (20个)</li>
+  <li><code class="language-plaintext highlighter-rouge">Centigrade 摄氏</code>/Fahrenheit 华氏</li>
+  <li>quart 夸脱/ gallon 加仑 (1 gallon = 4 quart)</li>
+  <li>yard 码 / inch 英寸/ foot 英尺</li>
+  <li>meter 米/ micron 微米</li>
+  <li>square measure 平方单位制</li>
+  <li>cubic meter 立方米</li>
+  <li>pint 品脱(干量或液量的单位)</li>
+</ul>
+
+<h2 id="时间有关的单词">时间有关的单词</h2>
+<ul>
+  <li>频率
+    <ul>
+      <li>持续地</li>
+    </ul>
+  </li>
+</ul>
+
+<p><a href="./">back</a></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Use apt-cache policy libc6 to find out the installed version and the candidate version, whereas the installed version can be also shown with ldd <span class="nt">--version</span><span class="nb">.</span>
+
+</code></pre></div></div>
+
+<p><a href="http://english.z7z8.cc/public/mark">z7z8 public</a></p>
+
+<h3 id="videos">Videos</h3>
+<ul>
+  <li><a href="./hacker-interview-gummo.html"> Hacker interview - gummo </a></li>
+</ul>
+
+<p>By this change</p>
+
+<p>proof of concept</p>
+
+<p>alan watts https://www.organism.earth/library/document/eastern-wisdom-3</p>
+:ET

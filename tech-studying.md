@@ -311,6 +311,13 @@ https://tox.wiki/en/latest/
 ## Jira
 todo
 
+### Gitlab
+- gitlab runner
+- tag
+- executor
+- registry
+
+
 ## skaffold
 https://skaffold.dev
 
@@ -327,6 +334,8 @@ https://concourse-ci.org/resources.html
 - resource_types、resources、var_sources、groups、jobs
 
 - Practice
+
+- minimum_succeeded_builds
 
 ## RabbitMQ
 - What is channel ? Why channel ?
@@ -663,3 +672,28 @@ s: https://stackoverflow.com/questions/68775869/message-support-for-password-aut
 
 
 - [back](./)
+
+
+
+
+
+
+
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.6' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.15' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.26' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.27' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.7' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.17' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.9' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.10' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.6' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.15' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.26' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.27' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.7' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.17' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
+2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.9' not found 

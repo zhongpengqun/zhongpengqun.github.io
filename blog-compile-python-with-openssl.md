@@ -29,6 +29,10 @@ Steps:
 Further:
 - [References](#mac_references)
 
+↓ On `Centos5.11`
+
+Steps:
+# todo
 
 ## <a name='prepare'>Run Ubuntu container and install required packages</a>
 
@@ -571,5 +575,417 @@ The end, hope it helps!
 <hr>
 
 
+
+## CentOS 5.11
+
+```shell
+sh-3.2# head -n 1 /etc/issue
+CentOS release 5.11 (Final)
+```
+
+```shell
+sh-3.2# yum update
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+YumRepo Error: All mirror URLs are not using ftp, http[s] or file.
+ Eg. Invalid release/repo/arch combination/
+removing mirrorlist with no valid mirrors: /var/cache/yum/base/mirrorlist.txt
+Error: Cannot find a valid baseurl for repo: base
+```
+```shell
+sh-3.2# yum install vim-enhanced -y 
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+YumRepo Error: All mirror URLs are not using ftp, http[s] or file.
+ Eg. Invalid release/repo/arch combination/
+removing mirrorlist with no valid mirrors: /var/cache/yum/base/mirrorlist.txt
+Error: Cannot find a valid baseurl for repo: base
+sh-3.2# 
+```
+solution ↓
+```shell
+cp /etc/yum/pluginconf.d/fastestmirror.conf /etc/yum/pluginconf.d/fastestmirror.conf.bak
+sed -i "s|enabled=1|enabled=0|g" /etc/yum/pluginconf.d/fastestmirror.conf
+
+
+cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+
+echo '' > /etc/yum.repos.d/CentOS-Base.repo
+
+vi /etc/yum.repos.d/CentOS-Base.repo
+
+# CentOS-Base.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[base]
+name=CentOS-$releasever - Base
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+baseurl=https://vault.centos.org/6.10/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#released updates
+[updates]
+name=CentOS-$releasever - Updates
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/
+baseurl=https://vault.centos.org/6.10/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
+baseurl=https://vault.centos.org/6.10/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+```
+
+```shell
+sh-3.2# yum update
+
+Traceback (most recent call last):
+  File "/usr/bin/yum", line 29, in ?
+    yummain.user_main(sys.argv[1:], exit_code=True)
+  File "/usr/share/yum-cli/yummain.py", line 309, in user_main
+    errcode = main(args)
+  File "/usr/share/yum-cli/yummain.py", line 178, in main
+    result, resultmsgs = base.doCommands()
+  File "/usr/share/yum-cli/cli.py", line 345, in doCommands
+    self._getTs(needTsRemove)
+  File "/usr/lib/python2.4/site-packages/yum/depsolve.py", line 101, in _getTs
+    self._getTsInfo(remove_only)
+  File "/usr/lib/python2.4/site-packages/yum/depsolve.py", line 112, in _getTsInfo
+    pkgSack = self.pkgSack
+  File "/usr/lib/python2.4/site-packages/yum/__init__.py", line 662, in <lambda>
+    pkgSack = property(fget=lambda self: self._getSacks(),
+  File "/usr/lib/python2.4/site-packages/yum/__init__.py", line 502, in _getSacks
+    self.repos.populateSack(which=repos)
+  File "/usr/lib/python2.4/site-packages/yum/repos.py", line 260, in populateSack
+    sack.populate(repo, mdtype, callback, cacheonly)
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 168, in populate
+    if self._check_db_version(repo, mydbtype):
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 226, in _check_db_version
+    return repo._check_db_version(mdtype)
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 1226, in _check_db_version
+    repoXML = self.repoXML
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 1399, in <lambda>
+    repoXML = property(fget=lambda self: self._getRepoXML(),
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 1391, in _getRepoXML
+    self._loadRepoXML(text=self)
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 1381, in _loadRepoXML
+    return self._groupLoadRepoXML(text, ["primary"])
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 1365, in _groupLoadRepoXML
+    if self._commonLoadRepoXML(text):
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 1201, in _commonLoadRepoXML
+    result = self._getFileRepoXML(local, text)
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 974, in _getFileRepoXML
+    cache=self.http_caching == 'all')
+  File "/usr/lib/python2.4/site-packages/yum/yumRepo.py", line 811, in _getFile
+    http_headers=headers,
+  File "/usr/lib/python2.4/site-packages/urlgrabber/mirror.py", line 412, in urlgrab
+    return self._mirror_try(func, url, kw)
+  File "/usr/lib/python2.4/site-packages/urlgrabber/mirror.py", line 398, in _mirror_try
+    return func_ref( *(fullurl,), **kwargs )
+  File "/usr/lib/python2.4/site-packages/urlgrabber/grabber.py", line 936, in urlgrab
+    return self._retry(opts, retryfunc, url, filename)
+  File "/usr/lib/python2.4/site-packages/urlgrabber/grabber.py", line 854, in _retry
+    r = apply(func, (opts,) + args, {})
+  File "/usr/lib/python2.4/site-packages/urlgrabber/grabber.py", line 922, in retryfunc
+    fo = URLGrabberFileObject(url, filename, opts)
+  File "/usr/lib/python2.4/site-packages/urlgrabber/grabber.py", line 1010, in __init__
+    self._do_open()
+  File "/usr/lib/python2.4/site-packages/urlgrabber/grabber.py", line 1093, in _do_open
+    fo, hdr = self._make_request(req, opener)
+  File "/usr/lib/python2.4/site-packages/urlgrabber/grabber.py", line 1202, in _make_request
+    fo = opener.open(req)
+  File "/usr/lib64/python2.4/urllib2.py", line 364, in open
+    response = meth(req, response)
+  File "/usr/lib64/python2.4/urllib2.py", line 471, in http_response
+    response = self.parent.error(
+  File "/usr/lib64/python2.4/urllib2.py", line 396, in error
+    result = self._call_chain(*args)
+  File "/usr/lib64/python2.4/urllib2.py", line 337, in _call_chain
+    result = func(*args)
+  File "/usr/lib64/python2.4/urllib2.py", line 565, in http_error_302
+    return self.parent.open(new)
+  File "/usr/lib64/python2.4/urllib2.py", line 358, in open
+    response = self._open(req, data)
+  File "/usr/lib64/python2.4/urllib2.py", line 376, in _open
+    '_open', req)
+  File "/usr/lib64/python2.4/urllib2.py", line 337, in _call_chain
+    result = func(*args)
+  File "/usr/lib64/python2.4/site-packages/M2Crypto/m2urllib2.py", line 82, in https_open
+    h.request(req.get_method(), req.get_selector(), req.data, headers)
+  File "/usr/lib64/python2.4/httplib.py", line 810, in request
+    self._send_request(method, url, body, headers)
+  File "/usr/lib64/python2.4/httplib.py", line 833, in _send_request
+    self.endheaders()
+  File "/usr/lib64/python2.4/httplib.py", line 804, in endheaders
+    self._send_output()
+  File "/usr/lib64/python2.4/httplib.py", line 685, in _send_output
+    self.send(msg)
+  File "/usr/lib64/python2.4/httplib.py", line 652, in send
+    self.connect()
+  File "/usr/lib64/python2.4/site-packages/M2Crypto/httpslib.py", line 55, in connect
+    sock.connect((self.host, self.port))
+  File "/usr/lib64/python2.4/site-packages/M2Crypto/SSL/Connection.py", line 174, in connect
+    ret = self.connect_ssl()
+  File "/usr/lib64/python2.4/site-packages/M2Crypto/SSL/Connection.py", line 167, in connect_ssl
+    return m2.ssl_connect(self.ssl, self._timeout)
+M2Crypto.SSL.SSLError: unknown protocol
+```
+solution
+https://www.modb.pro/db/451337
+
+```shell
+# yum update
+C5.8-base                                                                                         | 1.1 kB     00:00     
+C5.8-base/primary                                                                                 | 1.2 MB     00:00     
+C5.8-base                                                                                                      3591/3591
+C5.8-centosplus                                                                                   | 1.9 kB     00:00     
+C5.8-centosplus/primary_db                                                                        |  89 kB     00:00     
+C5.8-extras                                                                                       | 2.1 kB     00:00     
+C5.8-extras/primary_db                                                                            | 207 kB     00:00     
+C5.8-updates                                                                                      | 1.9 kB     00:00     
+C5.8-updates/primary_db                                                                           | 1.0 MB     00:00     
+Setting up Update Process
+No Packages marked for Update
+```
+
+```shell
+yum install vim-enhanced -y
+```
+
+```shell
+sh-3.2# wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+--2022-10-20 09:51:09--  https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+Resolving github.com... 192.30.255.113
+Connecting to github.com|192.30.255.113|:443... connected.
+OpenSSL: error:1407742E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert protocol version
+Unable to establish SSL connection.
+sh-3.2# 
+```
+
+```shell
+sh-3.2# wget --secure-protocol=TLSv1 https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+--2022-10-20 09:54:03--  https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+Resolving github.com... 192.30.255.113
+Connecting to github.com|192.30.255.113|:443... connected.
+OpenSSL: error:1409442E:SSL routines:SSL3_READ_BYTES:tlsv1 alert protocol version
+Unable to establish SSL connection.
+```
+
+
+```shell
+# tar -xvjf openssl-3.0.5.tar.gz
+tar: bzip2: Cannot exec: No such file or directory
+tar: Error is not recoverable: exiting now
+tar: Child returned status 2
+tar: Error exit delayed from previous errors
+
+
+# yum install bzip2
+
+# tar -xvjf openssl-3.0.5.tar.gz
+
+bzip2: Compressed file ends unexpectedly;
+        perhaps it is corrupted?  *Possible* reason follows.
+bzip2: Inappropriate ioctl for device
+        Input file = (stdin), output file = (stdout)
+
+It is possible that the compressed file(s) have become corrupted.
+You can use the -tvv option to test integrity of such files.
+
+You can use the `bzip2recover' program to attempt to recover
+data from undamaged sections of corrupted files.
+
+tar: Child returned status 2
+tar: Error exit delayed from previous errors
+```
+
+```shell
+# ./config --prefix=/usr/local/openssl-3.0.5 --openssldir=/usr/local/openssl-3.0.5
+Perl v5.10.0 required--this is only v5.8.8, stopped at /openssl-openssl-3.0.5/Configure line 12.
+BEGIN failed--compilation aborted at /openssl-openssl-3.0.5/Configure line 12.
+```
+
+```shell
+sh-3.2# getconf GNU_LIBC_VERSION
+```
+
+Create docker image from iso image
+
+https://wiki.metacentrum.cz/wiki/Creating_Docker_Image_from_.iso_File
+
+
+### muratayusuke/centos5.8
+
+```shell
+docker pull muratayusuke/centos5.8
+
+docker exec -it muratayusuke/centos5.8:latest /bin/sh
+
+
+
+# head -n 1 /etc/issue
+CentOS release 5.8 (Final)
+```
+
+```shell
+wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+
+--2022-10-26 00:05:29--  https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+Resolving github.com... 192.30.255.112
+Connecting to github.com|192.30.255.112|:443... connected.
+OpenSSL: error:1407742E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert protocol version
+Unable to establish SSL connection.
+sh-3.2# 
+sh-3.2# 
+sh-3.2# wget http://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+--2022-10-26 00:06:06--  http://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+Resolving github.com... 140.82.112.4
+Connecting to github.com|140.82.112.4|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz [following]
+--2022-10-26 00:06:21--  https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+Connecting to github.com|140.82.112.4|:443... connected.
+OpenSSL: error:1407742E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert protocol version
+Unable to establish SSL connection.
+```
+
+##### upgrade perl version
+
+I referred to this article `https://blog.csdn.net/GUI1259802368/article/details/84935290`
+but a bit different.
+
+```shell
+./Configure -des -Dprefix=/usr/local/perl -Dusethreads -Uversiononly -Dcc=gcc
+```
+after installed
+
+```shell
+ln -s /usr/local/perl/bin/perl /usr/bin/perl
+
+# perl -v
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "C.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+
+This is perl 5, version 36, subversion 0 (v5.36.0) built for x86_64-linux-thread-multi
+
+Copyright 1987-2022, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at https://www.perl.org/, the Perl Home Page.
+```
+
+##### upgrade openssl
+https://cloud.tencent.com/developer/article/1602967
+
+
+##### upgrade wget
+
+```shell
+sh-3.2# ./configure --with-ssl=openssl
+
+configure: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+```
+solution ↓
+```shell
+yum install -y pkgconfig
+```
+
+yum install gnutls-devel
+
+```shell
+checking for GNUTLS... no
+configure: error: Package requirements (gnutls) were not met:
+
+No package 'gnutls' found
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables GNUTLS_CFLAGS
+and GNUTLS_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+```
+
+configure succeed ?
+
+```shell
+sh-3.2# ./configure --with-openssl
+
+config.status: creating gnulib_po/Makefile
+configure: Summary of build options:
+
+  Version:           1.21
+  Host OS:           linux-gnu
+  Install prefix:    /usr/local
+  Compiler:          gcc
+  CFlags:              -DHAVE_LIBGNUTLS -DNDEBUG -g -O2
+  LDFlags:
+  Libs:              -lgnutls   -lz
+  SSL:               gnutls
+  Zlib:              yes
+  PSL:               no
+  PCRE:              no
+  Digest:            yes
+  NTLM:              auto
+  OPIE:              yes
+  POSIX xattr:       yes
+  Debugging:         yes
+  Assertions:        no
+  Valgrind:          Valgrind testing not enabled
+  Metalink:          no
+  Resolver:          libc, --bind-dns-address and --dns-servers not available
+  GPGME:             no
+  IRI:               no
+  Fuzzing build:     no,
+```
+
+```shell
+make
+
+
+  CC       sys_socket.o
+  CC       tempname.o
+tempname.c: In function 'try_tempname_len':
+tempname.c:288: error: 'for' loop initial declarations are only allowed in C99 mode
+tempname.c:288: note: use option -std=c99 or -std=gnu99 to compile your code
+make[3]: *** [tempname.o] Error 1
+make[3]: Leaving directory `/wget-1.21/lib'
+make[2]: *** [all] Error 2
+make[2]: Leaving directory `/wget-1.21/lib'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/wget-1.21'
+make: *** [all] Error 2
+```
+
+
+How to set =99
 
 [back](./)
