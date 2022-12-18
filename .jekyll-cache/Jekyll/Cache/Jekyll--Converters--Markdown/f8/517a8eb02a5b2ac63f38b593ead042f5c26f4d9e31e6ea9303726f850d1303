@@ -1,0 +1,347 @@
+I"_F<h2 id="purpose">Purpose</h2>
+<p>To run a complete project that life cycle managed by CI/CD.</p>
+
+<h2 id="prerequsites">Prerequsites</h2>
+
+<h4 id="setup-k8s-cluster-locally">Setup k8s cluster locally</h4>
+<p>you can use <code class="language-plaintext highlighter-rouge">minikube</code> to do it.</p>
+
+<ul>
+  <li>Install minikube
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-Lo</span> minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 <span class="o">&amp;&amp;</span> <span class="nb">chmod</span> +x minikube
+<span class="nv">$ </span><span class="nb">sudo mv</span> <span class="nt">-v</span> minikube /usr/local/bin
+<span class="nv">$ </span>minikube version
+</code></pre></div>    </div>
+  </li>
+  <li>Install kubectl
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/</li>
+</ul>
+
+<p>For me, ubuntu</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snap <span class="nb">install </span>kubectl <span class="nt">--classic</span>
+kubectl version <span class="nt">--client</span>
+</code></pre></div></div>
+
+<h4 id="deploy-gitlab">Deploy Gitlab</h4>
+<p><a href="https://docs.gitlab.com/ee/install/docker.html"> Official tutorial </a></p>
+
+<p>I choose Helm to deploy gitlab on cluster, for i’d like to have a practise on Helm.</p>
+
+<p>Basically, i referred to this articles</p>
+
+<p>https://www.yangpiqiulaotou.cn/2021/03/25/helm3%E5%AE%89%E8%A3%85gitlab/
+https://cloud.tencent.com/developer/article/1471464
+https://www.jianshu.com/p/024aa83f1dac</p>
+
+<h3 id="prerequisite">prerequisite</h3>
+<p>kubectl create ns gitlab
+kubectl config set-context –current –namespace=gitlab
+kubectl config get-contexts</p>
+
+<p>helm upgrade –install gitlab gitlab-jh/gitlab <br />
+  –version 5.6.2 <br />
+  –timeout 600s <br />
+  –set global.hosts.domain=example.com <br />
+  –set global.hosts.externalIP=10.79.128.59 <br />
+  –set certmanager-issuer.email=me@example.com</p>
+
+<h5 id="setup-helm--and-then-helm-install-gitlab">setup Helm  and then helm install gitlab</h5>
+<ul>
+  <li>Install Helm
+https://helm.sh/docs/intro/install/</li>
+</ul>
+
+<p>Add Helm repo source, btw, what does repo source do ?</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm repo add stable https://kubernetes-charts.storage.googleapis.com
+helm repo add aliyun https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+helm repo add  apphub https://apphub.aliyuncs.com/
+
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vz@vz:~<span class="nv">$ </span><span class="nb">sudo </span>snap <span class="nb">install </span>helm
+
+error: This revision of snap <span class="s2">"helm"</span> was published using classic confinement and thus may perform
+       arbitrary system changes outside of the security sandbox that snaps are usually confined to,
+       which may put your system at risk.
+
+       If you understand and want to proceed repeat the <span class="nb">command </span>including <span class="nt">--classic</span><span class="nb">.</span>
+</code></pre></div></div>
+
+<p>https://gitlab-docs.creationline.com/charts/installation/deployment.html</p>
+
+<hr />
+
+<p>Give it up temporarily</p>
+
+<h3 id="k8s-deploy-gitlab">K8S deploy gitlab</h3>
+<p>refer to https://medium.com/@SergeyNuzhdin/how-to-easily-deploy-gitlab-on-kubernetes-75f5868cea78
+failed !</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl create <span class="nt">-f</span> gitlab/redis-deployment.yml
+error: resource mapping not found <span class="k">for </span>name: <span class="s2">"gitlab-redis"</span> namespace: <span class="s2">"gitlab"</span> from <span class="s2">"gitlab/redis-deployment.yml"</span>: no matches <span class="k">for </span>kind <span class="s2">"Deployment"</span> <span class="k">in </span>version <span class="s2">"extensions/v1beta1"</span>
+ensure CRDs are installed first
+
+
+solution: ↓
+<span class="nv">$ </span>k version <span class="nt">--short</span>
+Flag <span class="nt">--short</span> has been deprecated, and will be removed <span class="k">in </span>the future. The <span class="nt">--short</span> output will become the default.
+Client Version: v1.25.4
+Kustomize Version: v4.5.7
+Server Version: v1.25.2
+
+<span class="nv">$ </span>k convert
+error: unknown <span class="nb">command</span> <span class="s2">"convert"</span> <span class="k">for</span> <span class="s2">"kubectl"</span>
+<span class="nt">----</span>
+<span class="nb">command </span>convert has removed from kubectl since 1.22 <span class="nt">---</span> https://github.com/kubernetes/website/issues/28724
+- <span class="nb">install </span>convert https://www.cnblogs.com/varden/p/15907141.html
+  - <span class="nv">$ </span>curl <span class="nt">-LO</span> https://dl.k8s.io/release/<span class="si">$(</span>curl <span class="nt">-L</span> <span class="nt">-s</span> https://dl.k8s.io/release/stable.txt<span class="si">)</span>/bin/linux/amd64/kubectl-convert
+  - <span class="nv">$ </span><span class="nb">sudo install</span> <span class="nt">-o</span> root <span class="nt">-g</span> root <span class="nt">-m</span> 0755 kubectl-convert /usr/local/bin/kubectl-convert
+
+<span class="nt">--</span> convert usage
+<span class="nv">$ </span>kubectl-convert <span class="nt">-f</span> gitlab-deployment.yaml <span class="nt">--output-version</span> apps/v1
+<span class="nv">$ </span>kubectl-convert <span class="nt">-f</span> gitlab-ingress.yaml <span class="nt">--output-version</span> networking.k8s.io/v1  
+
+<span class="c">## todo</span>
+online kubectl convert
+
+</code></pre></div></div>
+
+<ul>
+  <li>K8S的apiVersion该用哪个
+https://segmentfault.com/a/1190000017134399</li>
+</ul>
+
+<h3 id="deploy-gitlab-on-k8s-2---not-succeed">Deploy gitlab on k8s –2   (not succeed)</h3>
+<p>refer to 
+https://www.qikqiak.com/post/gitlab-install-on-k8s/</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get pods <span class="nt">-n</span> kube-ops
+NAME                          READY   STATUS             RESTARTS   AGE
+gitlab-6cdc798c55-tdrjx       0/1     ImagePullBackOff   0          8m3s
+postgresql-77cc99bc49-s8sjq   0/1     ImagePullBackOff   0          11m
+redis-594bb69b45-8ds69        0/1     ImagePullBackOff   0          134m
+</code></pre></div></div>
+
+<h3 id="deploy-gitlab-by-docker-compose-succeed-">Deploy gitlab by docker-compose (succeed !!!)</h3>
+<p>refer to https://www.czerniga.it/2021/11/14/how-to-install-gitlab-using-docker-compose/</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>gitlab
+<span class="nb">export </span><span class="nv">GITLAB_HOME</span><span class="o">=</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>/gitlab
+
+<span class="nb">cd </span>gitlab
+
+vim docker-compose.yml
+<span class="nt">-------------------------</span>
+version: <span class="s1">'3.7'</span>
+services:
+  web:
+    image: <span class="s1">'gitlab/gitlab-ce:latest'</span>
+    restart: always
+    <span class="nb">hostname</span>: <span class="s1">'localhost'</span>
+    container_name: gitlab-ce
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url <span class="s1">'http://localhost'</span>
+    ports:
+      - <span class="s1">'8080:80'</span>
+      - <span class="s1">'8443:443'</span>
+    volumes:
+      - <span class="s1">'$GITLAB_HOME/config:/etc/gitlab'</span>
+      - <span class="s1">'$GITLAB_HOME/logs:/var/log/gitlab'</span>
+      - <span class="s1">'$GITLAB_HOME/data:/var/opt/gitlab'</span>
+    networks:
+      - gitlab
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+    container_name: gitlab-runner    
+    restart: always
+    depends_on:
+      - web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - <span class="s1">'$GITLAB_HOME/gitlab-runner:/etc/gitlab-runner'</span>
+    networks:
+      - gitlab
+
+networks:
+  gitlab:
+    name: gitlab-network
+<span class="nt">-------------------</span>
+
+docker-compose up <span class="nt">-d</span>
+after about 2 minutes, when the pod startup successfully.
+<span class="k">then </span>access login page, e.g http://10.79.128.59:8080/users/sign_in
+
+To get passwoed:
+docker <span class="nb">exec</span> <span class="nt">-it</span> gitlab-ce /bin/sh
+<span class="nb">cat</span> /etc/gitlab/initial_root_password
+
+
+<span class="nt">-------</span>
+vz@vz:~/gitlab<span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> gitlab-runner gitlab-runner register <span class="nt">--url</span> <span class="s2">"http://gitlab-ce"</span> <span class="nt">--clone-url</span> <span class="s2">"http://gitlab-ce"</span>
+Runtime platform                                    <span class="nb">arch</span><span class="o">=</span>amd64 <span class="nv">os</span><span class="o">=</span>linux <span class="nv">pid</span><span class="o">=</span>16 <span class="nv">revision</span><span class="o">=</span>133d7e76 <span class="nv">version</span><span class="o">=</span>15.6.1
+WARNING: The <span class="s1">'register'</span> <span class="nb">command </span>has been deprecated <span class="k">in </span>GitLab Runner 15.6 and will be replaced with a <span class="s1">'deploy'</span> command. For more information, see https://gitlab.com/gitlab-org/gitlab/-/issues/380872 
+Running <span class="k">in </span>system-mode.                            
+                                                   
+Enter the GitLab instance URL <span class="o">(</span><span class="k">for </span>example, https://gitlab.com/<span class="o">)</span>:
+<span class="o">[</span>http://gitlab-ce]: http://10.79.128.59:8080
+Enter the registration token:
+Ju7NhyV59_a93mvxeUuc
+Enter a description <span class="k">for </span>the runner:
+<span class="o">[</span>a9e996f49f79]: gitlab-runner
+Enter tags <span class="k">for </span>the runner <span class="o">(</span>comma-separated<span class="o">)</span>:
+
+Enter optional maintenance note <span class="k">for </span>the runner:
+
+Registering runner... succeeded                     <span class="nv">runner</span><span class="o">=</span>Ju7NhyV5
+Enter an executor: docker+machine, instance, kubernetes, custom, docker-ssh, parallels, virtualbox, docker-ssh+machine, docker, shell, ssh:
+docker
+Enter the default Docker image <span class="o">(</span><span class="k">for </span>example, ruby:2.7<span class="o">)</span>:
+
+Enter the default Docker image <span class="o">(</span><span class="k">for </span>example, ruby:2.7<span class="o">)</span>:
+maven: latest
+Runner registered successfully. Feel free to start it, but <span class="k">if </span>it<span class="s1">'s running already the config should be automatically reloaded!
+ 
+Configuration (with the authentication token) was saved in "/etc/gitlab-runner/config.toml" 
+
+↑ As we can see, config file(/etc/gitlab-runner/config.toml) has generated in runner container. let'</span>s check it
+
+/ <span class="c"># cat /etc/gitlab-runner/config.toml</span>
+concurrent <span class="o">=</span> 1
+check_interval <span class="o">=</span> 0
+shutdown_timeout <span class="o">=</span> 0
+
+<span class="o">[</span>session_server]
+  session_timeout <span class="o">=</span> 1800
+
+<span class="o">[[</span>runners]]
+  name <span class="o">=</span> <span class="s2">"gitlab-runner"</span>
+  url <span class="o">=</span> <span class="s2">"http://10.79.128.59:8080"</span>
+  <span class="nb">id</span> <span class="o">=</span> 1
+  token <span class="o">=</span> <span class="s2">"A8tE7CQMxuMVLzRkqGGa"</span>
+  token_obtained_at <span class="o">=</span> 2022-11-27T09:45:23Z
+  token_expires_at <span class="o">=</span> 0001-01-01T00:00:00Z
+  executor <span class="o">=</span> <span class="s2">"docker"</span>
+  clone_url <span class="o">=</span> <span class="s2">"http://gitlab-ce"</span>
+  <span class="o">[</span>runners.custom_build_dir]
+  <span class="o">[</span>runners.cache]
+    MaxUploadedArchiveSize <span class="o">=</span> 0
+    <span class="o">[</span>runners.cache.s3]
+    <span class="o">[</span>runners.cache.gcs]
+    <span class="o">[</span>runners.cache.azure]
+  <span class="o">[</span>runners.docker]
+    tls_verify <span class="o">=</span> <span class="nb">false
+    </span>image <span class="o">=</span> <span class="s2">"maven: latest"</span>
+    privileged <span class="o">=</span> <span class="nb">false
+    </span>disable_entrypoint_overwrite <span class="o">=</span> <span class="nb">false
+    </span>oom_kill_disable <span class="o">=</span> <span class="nb">false
+    </span>disable_cache <span class="o">=</span> <span class="nb">false
+    </span>volumes <span class="o">=</span> <span class="o">[</span><span class="s2">"/cache"</span><span class="o">]</span>
+    shm_size <span class="o">=</span> 0
+</code></pre></div></div>
+
+<p>Example of file <code class="language-plaintext highlighter-rouge">.gitlab-ci.yml</code></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image: maven:latest
+
+stages:
+  - build
+  - <span class="nb">test
+
+</span>build-job:
+  stage: build
+  script:
+    - <span class="nb">echo</span> <span class="s2">"Compiling the code..."</span>
+    - mvn clean package
+    - <span class="nb">echo</span> <span class="s2">"Compile complete."</span>
+  artifacts:    <span class="c"># https://meigit.readthedocs.io/en/latest/gitlab_ci_.gitlab-ci.yml_detail.html#artifacts</span>
+    paths:
+    - target   
+
+test-job:
+  stage: <span class="nb">test
+  </span>dependencies: 
+    - build-job  
+  script:
+    - <span class="nb">ls</span> <span class="nt">-al</span>
+    - <span class="nb">echo</span> <span class="s2">"Running tests"</span>
+    - java <span class="nt">-cp</span> target/helloworld-1.1.jar com.coveros.demo.helloworld.HelloWorld
+</code></pre></div></div>
+
+<h3 id="todo-concourse-with-gitlab">TODO, concourse with gitlab</h3>
+<h5 id="concourse">concourse</h5>
+<ul>
+  <li>Adventage
+    <ul>
+      <li>Config file is complete yaml, so it can be managed by git or other version controller.</li>
+    </ul>
+  </li>
+  <li>Short-coming
+    <ul>
+      <li>Yaml file too long.</li>
+      <li>Is there any thing can generate concourse yaml file?</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="jira">Jira</h3>
+<ul>
+  <li>Is it free ?</li>
+  <li>How to deploy Jira use docker ?
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--detach</span> <span class="nt">--publish</span> 8080:8080 cptactionhank/atlassian-jira:latest
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="kustomize">kustomize</h3>
+<ul>
+  <li>Why Kustomize ?
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xx
+</code></pre></div>    </div>
+  </li>
+  <li>Kustomize VS Helm</li>
+  <li>Helm DSL syntax ?</li>
+</ul>
+
+<h3 id="concourse-1">concourse</h3>
+<ul>
+  <li>deploy</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vz@vz:~/kubernetes-gitlab/another-try<span class="nv">$ </span>helm repo add bitnami https://charts.bitnami.com/bitnami
+<span class="s2">"bitnami"</span> already exists with the same configuration, skipping
+vz@vz:~/kubernetes-gitlab/another-try<span class="nv">$ </span>helm <span class="nb">install </span>my-release bitnami/concourse
+NAME: my-release
+LAST DEPLOYED: Wed Nov 23 15:52:21 2022
+NAMESPACE: kube-ops
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: concourse
+CHART VERSION: 2.0.0
+APP VERSION: 7.8.3
+
+<span class="k">**</span> Please be patient <span class="k">while </span>the chart is being deployed <span class="k">**</span>
+<span class="c">###############################################################################</span>
+<span class="c">### ERROR: You did not provide an external host in your 'helm install' call ###</span>
+<span class="c">###############################################################################</span>
+
+This deployment will be incomplete <span class="k">until </span>you configure Concourse with a resolvable
+host. To configure Concourse with the URL of your service:
+
+1. Get the Concourse URL by running:
+
+  NOTE: It may take a few minutes <span class="k">for </span>the LoadBalancer IP to be available.
+        Watch the status with: <span class="s1">'kubectl get svc --namespace kube-ops -w my-release-concourse-web'</span>
+
+    <span class="nb">export </span><span class="nv">APP_HOST</span><span class="o">=</span><span class="si">$(</span>kubectl get svc <span class="nt">--namespace</span> kube-ops my-release-concourse-web <span class="nt">--template</span> <span class="s2">""</span><span class="si">)</span>
+
+2. Complete your Concourse deployment by running:
+    <span class="nb">export </span><span class="nv">LOCAL_USERS</span><span class="o">=</span><span class="si">$(</span>kubectl get secret <span class="nt">--namespace</span> <span class="s2">"kube-ops"</span> my-release-concourse-web <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.data.local_users}"</span> | <span class="nb">base64</span> <span class="nt">-d</span><span class="si">)</span>
+    helm upgrade <span class="nt">--namespace</span> kube-ops my-release my-repo/concourse <span class="se">\</span>
+      <span class="nt">--set</span> secrets.localUsers<span class="o">=</span><span class="nv">$LOCAL_USERS</span> <span class="se">\</span>
+      <span class="nt">--set</span> service.web.type<span class="o">=</span>LoadBalancer <span class="se">\</span>
+      <span class="nt">--set</span> web.externalUrl<span class="o">=</span><span class="nv">$APP_HOST</span>
+</code></pre></div></div>
+
+<p><a href="./">back</a></p>
+:ET

@@ -4,9 +4,22 @@ title: Hello
 description: Introduction about this site and me.
 ---
 
+### CS Basic
+
+
+### Contents
+- Python
+- Cloud Native
+    - Architecture
+    - K8S
+        - Docker
+
+### Questions
+- What's runtime ?
+
 ### CNCF
 
-## Docker
+### Docker
 - Docker
     - Use case of docker tags
     - Is it possible that 2 same pods run on one k8s node ?
@@ -23,6 +36,29 @@ description: Introduction about this site and me.
     - docker export & docker save ?
     - docker import & docker load ?
     - docker export -o english-db-`date +%Y%m%d-%H:%M:%S`.tar c7962a4fee17
+    - docker stop then remove all containers
+        - `docker stop $(docker ps -aq)`
+    - run container from dockerfile
+    ```shell
+    docker build -t xxx .
+    docker run -d xxx
+    ```
+
+```shell
+$ systemctl restart docker
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+Authentication is required to restart 'docker.service'.
+Authenticating as: vz
+Password: 
+==== AUTHENTICATION COMPLETE ===
+Job for docker.service failed because the control process exited with error code.
+See "systemctl status docker.service" and "journalctl -xe" for details.
+-----
+solution:
+https://ithelp.ithome.com.tw/m/articles/10294103
+https://blog.51cto.com/u_15162069/2743910
+```
+
 - Docker-compose
 - kubectl
   - kubectl create & kubectl apply
@@ -48,6 +84,13 @@ description: Introduction about this site and me.
 
 - Which command both in docker and docker-compose, is there any difference in usage in docker and docker-compose ?
 - docker save & docker export
+
+- save docker running container and push to dockerhub
+```shell
+docker commit 0a887a75b48b centos5.8-pkgs-and-tools-preinstalled:v1
+docker tag centos5.8-pkgs-and-tools-preinstalled:v1 zhongpengqun/centos5.8-pkgs-and-tools-preinstalled:v1
+docker push zhongpengqun/centos5.8-pkgs-and-tools-preinstalled:v1
+```
 
 # docker-compose
 - Why `links` ? Is it has any association with `depends_on` ?
@@ -200,6 +243,39 @@ secrets:
 - Is k8s node a physical computer ?
    - A node can be a physical machine or a virtual machine, and can be hosted on-premises or in the cloud.
 - Nginx ingress controller
+- namespace
+    - get current namespace: `kubectl config get-contexts`
+    - switch namespace: `$ kubectl config set-context --current --namespace=kube-ops`
+- Cluster
+    - How run multi clusters ?
+    - How to enter a cluster ?
+
+- kubectl
+    - kubectl restart pod `kubectl replace --force -f gitlab-deployment.yaml`
+
+- ConfigMap & secret
+- Label, what, why
+- How to deploy a flask app to k8s cluster ? speak out
+- yaml file changes, how to make it take effect ?
+- operator
+- Deploy database is different from deploying applications like a Django application.
+
+- Storage
+    - Storage Class
+    - PV admin
+
+- Stateful
+    - Stateless
+
+- Run database in k8s.
+
+- eliminate docker pull limitation
+https://www.chenshaowen.com/blog/how-to-cross-the-limit-of-dockerhub.html
+
+- CRD
+https://www.youtube.com/watch?v=u1X5Rf7fWwM
+- controller
+
 
 ## Concourse
 - What is concourse target, why fly -t (target) ?
@@ -214,11 +290,15 @@ secrets:
 
 ## Make
 - make -p
+- make --dry-run
 
 ## Helm
 - Charts & release
 - https://artifacthub.io/
 
+
+## harbor
+https://www.cnblogs.com/gengxiaonuo/p/16840026.html
 
 ## Python
 - Modules
@@ -300,6 +380,9 @@ Only compress files in folder, not include this folder.
 tar -czvf python-3.10.6-with-openssl-3.0.5.tar.gz -C python-3.10.6/ .
 ```
 
+### etcd
+- xx
+
 ## Owner of this site
 - /etc/localtime
 - apt-get update
@@ -308,13 +391,31 @@ tar -czvf python-3.10.6-with-openssl-3.0.5.tar.gz -C python-3.10.6/ .
 ## tox
 https://tox.wiki/en/latest/
 
+## Jenkins
+- Installation
+  - xx
+- How config github and gitlab project integration ?
+- Project types
+  - Freestyle Project
+    Apply to projects which is simple
+  - Pipeline Project
+    Apply to projects which more complex, e.g. includes test process, build process    
+  - Jenkins manages github repo ?
+
+- Tutorials
+    - Complete Jenkins Pipeline Tutorial | Jenkinsfile explained
+      https://www.youtube.com/watch?v=7KCS70sCoK0
+    - Complete Jenkins Tutorial | Learn Jenkins From Scratch In 3 Hours 🎯| LambdaTest
+      https://www.youtube.com/watch?v=nCKxl7Q_20I&t=8610s
+
 ## Jira
 todo
+- transition
 
 ### Gitlab
 - gitlab runner
-- tag
 - executor
+- tag
 - registry
 
 
@@ -324,10 +425,6 @@ https://skaffold.dev
 ## kustomize
 https://kustomize.io/
 - patchesStrategicMerge
-
-## k8s
-- ConfigMap & secret
-- Label, what, why
 
 ## Concourse
 https://concourse-ci.org/resources.html
@@ -342,18 +439,28 @@ https://concourse-ci.org/resources.html
 - Channel is able to basic_consume and basic_publish ?
 
 
-## Shell
+### POSIX
+
+
+### Linux
+- Kernel Headers
+https://unix.stackexchange.com/questions/47330/what-exactly-are-linux-kernel-headers
+  - Install kernel headers https://linuxhint.com/install-kernel-headers-debian/
+  - History: https://blog.csdn.net/trochiluses/article/details/9390855?spm=1001.2101.3001.6650.14&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14-9390855-blog-54137564.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14-9390855-blog-54137564.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=14
+
+### Shell
+- bash VS zsh
 - Is it possible to write a game by shell script ?
 - Makefile
- - $(1) means ?
- - What does colon do in path ?
-
+- $(1) means ?
+- What does colon do in path ?
+- eval
 
 ### My life and experiences
 - Don't integrate other team API which is still on beta, not upgraded on production.
 - atomic a series of operations.
 - Never hardcode
-
+- Timeout effects user experience
 
 ### Software management
 <b>What is the Difference Between Build and Release in Software Testing ?</b>
@@ -394,6 +501,9 @@ TODO
 
 ## Mark
 - 2022年09月12日11:17:14
+
+
+## Shell
 ```Shell
 tar zcvf dist.tar.gz -C dist 
 ```
@@ -424,29 +534,6 @@ vzhong@vzhong-vm-2:~/osspi-cli$ sudo ln -s /home/vzhong/osspi-cli/build/resource
 
 ```shell
 openssl: error while loading shared libraries: libssl.so.3
-```
-
-```shell
-DYLD_LIBRARY_PATH=/home/vzhong/osspi-cli/build/python/lib:/home/vzhong/osspi-cli/build/resources/openssl/Openssl-3.0.5/lib64/ build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3 -m ensurepip
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.35' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.28' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.33' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.33' not found (required by /usr/lib/libcrypto.so.3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by /usr/lib/libcrypto.so.3)
-Makefile:121: recipe for target 'virtualenv' failed
-make: *** [virtualenv] Error 1
-
-solution:
-
-wget https://ftp.gnu.org/gnu/libc/glibc-2.36.tar.gz
-
-```
-
-```shell
-GNU M4 1.4.6 or later is required; 1.4.16 or newer is recommended.
 ```
 
 
@@ -514,6 +601,14 @@ Referer is insecure while host is secure
 '.com'
 ```
 
+```shell
+# ./restart.sh
+Error response from daemon: client and server don't have same version (client : 1.24, server: 1.18)
+[+] Building 0.0s (0/0)                                                                                                                  
+Error response from daemon: client and server don't have same version (client : 1.24, server: 1.18): driver not connecting
+Error response from daemon: client and server don't have same version (client : 1.24, server: 1.18)
+```
+
 scrum与waterfall，难道不是只是粒度变细了吗？
 
 2022年09月20日10:09:50
@@ -537,6 +632,8 @@ differences between `helpnow` and `servicedesk`
 ```shell
 pytest tox.ini lint
 ```
+
+## Software test
 
 ```shell
 coverage run --branch --source=. --omit=*/tests*,*__init__* -m unittest discover
@@ -599,6 +696,7 @@ s: https://stackoverflow.com/questions/68775869/message-support-for-password-aut
 - echo $(PWD) 啥都没有..
 
 
+- self-contained
 
 - 沟通技巧
 
@@ -643,6 +741,7 @@ s: https://stackoverflow.com/questions/68775869/message-support-for-password-aut
       - when staticmethod, when classmethod ?
       - collections
       - array & list
+        - https://medium.com/backticks-tildes/list-vs-array-python-data-type-40ac4f294551
       - lambda, filter
   - Git
       - Git branch strategy
@@ -671,29 +770,88 @@ s: https://stackoverflow.com/questions/68775869/message-support-for-password-aut
     - [The Communist Manifesto](./the-communist-manifesto.html)
 
 
+
+
+
+### PyInstaller
+- .spec file
+```python
+# 
+configuration = Analysis(['moccasin/__main__.py'],
+                         pathex = ['.'],
+                         binaries = [(libsbml_lib_path(), '.')],
+                         datas = [],
+                         hiddenimports = [],
+                         hookspath = [],
+                         runtime_hooks = [],
+                         excludes = [],
+                         win_no_prefer_redirects = False,
+                         win_private_assemblies = False,
+                         cipher = None,
+                        )
+
+application_pyz    = PYZ(configuration.pure,
+                         configuration.zipped_data,
+                         cipher = None,
+                        )
+
+executable         = EXE(application_pyz,
+                         configuration.scripts,
+                         configuration.binaries,
+                         configuration.zipfiles,
+                         configuration.datas,
+                         name = 'moccasin',
+                         debug = False,
+                         strip = False,
+                         upx = True,
+                         runtime_tmpdir = None,
+                         console = False,
+                        )
+
+app             = BUNDLE(executable,
+                         name = 'MOCCASIN.app',
+                         icon = 'dev/icon/moccasin.icns',
+                         bundle_identifier = None,
+                         info_plist = {'NSHighResolutionCapable': 'True'},
+                        )
+```
+
+
+### mess
+- What does inline mean ?
+
+
+- https://www.cnblogs.com/god-of-death/p/12767113.html
+
+- Splunk
+    - https://www.youtube.com/watch?v=m95GiTF0zd0
+    - https://www.youtube.com/watch?v=bO_-fv6e7u4
+    - https://medium.com/airwalk/log-aggregation-in-kubernetes-and-transporting-logs-to-splunk-for-analysis-ad8599607372
+
+
+setup a splunk server:
+```shell
+docker run --name splunk -p 8000:8000 -p 8088:8088 -d outcoldman/splunk:6.3.3
+
+
+docker run --name hello --log-driver=splunk --log-opt splunk-token=022F1FCE-B904-4E0E-B0A1-EB4492F61B9D --log-opt splunk-url=http://139.196.39.92:8088 --log-opt splunk-sourcetype=Docker rickfast/hello-oreilly
+
+docker run --name hello --log-driver=splunk --log-opt splunk-token=1620a639-5064-43dc-8d81-72ae38ec639b --log-opt splunk-url=http://10.79.128.59:8088 --log-opt splunk-sourcetype=Docker rickfast/hello-oreilly
+```
+
+splunk log success: https://www.youtube.com/watch?v=qROXrFGqWAU&t=11s
+
+curl https://10.79.128.59:8088/services/collector/event -H "Authorization: Splunk 1620a639-5064-43dc-8d81-72ae38ec639b" -d '{"event": "hello world"}'
+
+docker built-in send log to splunk ?
+https://www.w3cschool.cn/doc_docker_1_13/docker_1_13-engine-admin-logging-splunk-index.html
+
+install splunk by cmd
+https://www.inmotionhosting.com/support/security/install-splunk/
+
+9ED0A79E-F7B8-43DC-B7A0-7B49AE7450B9
+
 - [back](./)
 
 
-
-
-
-
-
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.6' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.15' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.26' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.27' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.7' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.17' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.9' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.10' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.6' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.15' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.26' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.27' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.7' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.17' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version `GLIBC_2.9' not found 
+gcc - https://blog.csdn.net/lailaiquququ11/article/details/126691913

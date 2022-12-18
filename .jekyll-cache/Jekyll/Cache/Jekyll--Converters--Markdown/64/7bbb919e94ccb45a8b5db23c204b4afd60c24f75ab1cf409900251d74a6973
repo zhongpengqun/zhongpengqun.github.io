@@ -1,0 +1,77 @@
+I"�<h2 id="assembly-language">Assembly Language</h2>
+<ul>
+  <li></li>
+  <li>Visualization
+    <ul>
+      <li>EMU8086</li>
+    </ul>
+  </li>
+  <li>从零开始实现一个汇编模拟器——初 https://juejin.cn/post/6910914774582689800</li>
+  <li>8051 simulator https://www.google.com.hk/search?q=51+single+chip+emulator&amp;newwindow=1&amp;hl=zh-CN&amp;tbm=vid&amp;ei=R4CDY4_NELWrz7sPw42vgAw&amp;start=10&amp;sa=N&amp;ved=2ahUKEwjPjP7g1M77AhW11XMBHcPGC8AQ8NMDegQIDRAW&amp;biw=1645&amp;bih=788&amp;dpr=2#fpstate=ive&amp;vld=cid:29eaeca1,vid:nO3KrnogwEo</li>
+</ul>
+
+<h2 id="linux-011">linux 0.11</h2>
+<ul>
+  <li>linux lab https://gitee.com/tinylab/linux-lab#https://gitee.com/link?target=https%3A%2F%2Ftinylab.org%2Fcloud-lab</li>
+</ul>
+
+<h2 id="how-to-use-linux-command-man">How to use Linux command <code class="language-plaintext highlighter-rouge">man</code></h2>
+<ul>
+  <li>Man a specific option ?
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>press <span class="sb">`</span>/-O<span class="sb">`</span> to search <span class="sb">`</span>man <span class="nt">-O</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="gcc">GCC</h2>
+<ul>
+  <li>Bilibili 小布老师gcc https://www.bilibili.com/video/BV1rJ411V7EV?p=4&amp;vd_source=397a53882c67614973bf614e08b1047f</li>
+  <li>
+    <p>4 stages of</p>
+  </li>
+  <li>key options
+    <ul>
+      <li>For <code class="language-plaintext highlighter-rouge">CFLAGS</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">-l</code>, <code class="language-plaintext highlighter-rouge">-L</code>
+            <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-l</span> links with a library file.
+gcc <span class="nt">-L</span> looks <span class="k">in </span>directory <span class="k">for </span>library files.
+</code></pre></div>            </div>
+          </li>
+          <li><code class="language-plaintext highlighter-rouge">-O</code></li>
+          <li><code class="language-plaintext highlighter-rouge">-fPIC</code></li>
+          <li>`-D</li>
+        </ul>
+      </li>
+      <li>For <code class="language-plaintext highlighter-rouge">LDFLAGS</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">-lxxx</code></li>
+          <li><code class="language-plaintext highlighter-rouge">-Ldir</code></li>
+          <li><code class="language-plaintext highlighter-rouge">-WL, option</code></li>
+          <li><code class="language-plaintext highlighter-rouge">-static</code></li>
+          <li><code class="language-plaintext highlighter-rouge">-s</code></li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">LIBS</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>https://www.bilibili.com/video/BV1RV411v75E/?spm_id_from=333.337.search-card.all.click
+below are my notes of this video tutorial.</p>
+  </li>
+  <li>Configure
+    <ul>
+      <li>CPPFLAGS</li>
+      <li>LDFLAGS</li>
+    </ul>
+  </li>
+  <li>ldd</li>
+  <li>
+    <p>ldconfig</p>
+  </li>
+  <li>
+    <p>https://www.cnblogs.com/god-of-death/p/12767113.html</p>
+  </li>
+  <li><a href="./">back</a></li>
+</ul>
+:ET

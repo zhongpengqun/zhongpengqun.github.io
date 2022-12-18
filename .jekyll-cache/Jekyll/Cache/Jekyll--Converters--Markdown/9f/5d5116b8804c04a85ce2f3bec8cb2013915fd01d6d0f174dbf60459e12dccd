@@ -1,0 +1,42 @@
+I"�<p>This blog is a tutorial of how to compile <code class="language-plaintext highlighter-rouge">python 3.10.6</code> with <code class="language-plaintext highlighter-rouge">openssl 3.0.5</code> module on <code class="language-plaintext highlighter-rouge">Ubuntu 18.04</code> and <code class="language-plaintext highlighter-rouge">mac os</code>.</p>
+
+<h3 id="what-is-codesign-">What is codesign ?</h3>
+<p>https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html</p>
+
+<h3 id="why-codesign-">Why codesign ?</h3>
+
+<h3 id="how-to-create-a-codesign-and-use-it-">How to create a codesign and use it ?</h3>
+<ul>
+  <li>must create CA firstly. how https://www.simplified.guide/macos/keychain-ca-code-signing-create</li>
+</ul>
+
+<p>https://www.youtube.com/watch?v=VbbhhXEGH8o</p>
+
+<h3 id="what-is-the-basic-principle-of-codesign-">What is the basic principle of codesign ?</h3>
+
+<h3 id="during-generating-codesign-is-it-necessary-to-connect-to-internet-or-apple-data-center-">During generating codesign, is it necessary to connect to internet or apple data center ?</h3>
+
+<h3 id="what-is-xcode-">What is xcode ?</h3>
+
+<h3 id="证书与秘钥-">证书与秘钥 ？</h3>
+
+<h3 id="certificate-authority-ca">Certificate Authority (CA)</h3>
+<p>https://www.ssl.com/faqs/what-is-a-certificate-authority/</p>
+
+<h3 id="tips">Tips</h3>
+<ul>
+  <li>to list all codesign
+```shell</li>
+</ul>
+
+<p>```</p>
+
+<p>similary issue:
+https://stackoverflow.com/questions/68884906/pyinstaller-error-systemerror-codesign-failure-on-macos</p>
+
+<p>https://www.jianshu.com/p/edc337fd76b2</p>
+
+<p>https://comodosslstore.com/resources/macos-codesign-how-do-i-sign-a-file-with-code-signing-certificate-in-macos/</p>
+
+<p><a href="./">back</a></p>
+:ET

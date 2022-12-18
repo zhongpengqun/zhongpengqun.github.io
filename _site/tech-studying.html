@@ -49,9 +49,31 @@
     </header>
 
     <main id="content" class="main-content" role="main">
-      <h3 id="cncf">CNCF</h3>
+      <h3 id="cs-basic">CS Basic</h3>
 
-<h2 id="docker">Docker</h2>
+<h3 id="contents">Contents</h3>
+<ul>
+  <li>Python</li>
+  <li>Cloud Native
+    <ul>
+      <li>Architecture</li>
+      <li>K8S
+        <ul>
+          <li>Docker</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="questions">Questions</h3>
+<ul>
+  <li>What’s runtime ?</li>
+</ul>
+
+<h3 id="cncf">CNCF</h3>
+
+<h3 id="docker">Docker</h3>
 <ul>
   <li>Docker
     <ul>
@@ -73,8 +95,35 @@
       <li>docker export &amp; docker save ?</li>
       <li>docker import &amp; docker load ?</li>
       <li>docker export -o english-db-<code class="language-plaintext highlighter-rouge">date +%Y%m%d-%H:%M:%S</code>.tar c7962a4fee17</li>
+      <li>docker stop then remove all containers
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">docker stop $(docker ps -aq)</code></li>
+        </ul>
+      </li>
+      <li>run container from dockerfile
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker build <span class="nt">-t</span> xxx <span class="nb">.</span>
+  docker run <span class="nt">-d</span> xxx
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl restart docker
+<span class="o">====</span> AUTHENTICATING FOR org.freedesktop.systemd1.manage-units <span class="o">===</span>
+Authentication is required to restart <span class="s1">'docker.service'</span><span class="nb">.</span>
+Authenticating as: vz
+Password: 
+<span class="o">====</span> AUTHENTICATION COMPLETE <span class="o">===</span>
+Job <span class="k">for </span>docker.service failed because the control process exited with error code.
+See <span class="s2">"systemctl status docker.service"</span> and <span class="s2">"journalctl -xe"</span> <span class="k">for </span>details.
+<span class="nt">-----</span>
+solution:
+https://ithelp.ithome.com.tw/m/articles/10294103
+https://blog.51cto.com/u_15162069/2743910
+</code></pre></div></div>
+
+<ul>
   <li>Docker-compose</li>
   <li>kubectl
     <ul>
@@ -113,7 +162,15 @@
     <p>Host-port:Container-port</p>
   </li>
   <li>Which command both in docker and docker-compose, is there any difference in usage in docker and docker-compose ?</li>
-  <li>docker save &amp; docker export</li>
+  <li>
+    <p>docker save &amp; docker export</p>
+  </li>
+  <li>save docker running container and push to dockerhub
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker commit 0a887a75b48b centos5.8-pkgs-and-tools-preinstalled:v1
+docker tag centos5.8-pkgs-and-tools-preinstalled:v1 zhongpengqun/centos5.8-pkgs-and-tools-preinstalled:v1
+docker push zhongpengqun/centos5.8-pkgs-and-tools-preinstalled:v1
+</code></pre></div>    </div>
+  </li>
 </ul>
 
 <h1 id="docker-compose">docker-compose</h1>
@@ -290,6 +347,52 @@
     </ul>
   </li>
   <li>Nginx ingress controller</li>
+  <li>namespace
+    <ul>
+      <li>get current namespace: <code class="language-plaintext highlighter-rouge">kubectl config get-contexts</code></li>
+      <li>switch namespace: <code class="language-plaintext highlighter-rouge">$ kubectl config set-context --current --namespace=kube-ops</code></li>
+    </ul>
+  </li>
+  <li>Cluster
+    <ul>
+      <li>How run multi clusters ?</li>
+      <li>How to enter a cluster ?</li>
+    </ul>
+  </li>
+  <li>kubectl
+    <ul>
+      <li>kubectl restart pod <code class="language-plaintext highlighter-rouge">kubectl replace --force -f gitlab-deployment.yaml</code></li>
+    </ul>
+  </li>
+  <li>ConfigMap &amp; secret</li>
+  <li>Label, what, why</li>
+  <li>How to deploy a flask app to k8s cluster ? speak out</li>
+  <li>yaml file changes, how to make it take effect ?</li>
+  <li>operator</li>
+  <li>
+    <p>Deploy database is different from deploying applications like a Django application.</p>
+  </li>
+  <li>Storage
+    <ul>
+      <li>Storage Class</li>
+      <li>PV admin</li>
+    </ul>
+  </li>
+  <li>Stateful
+    <ul>
+      <li>Stateless</li>
+    </ul>
+  </li>
+  <li>
+    <p>Run database in k8s.</p>
+  </li>
+  <li>
+    <p>eliminate docker pull limitation
+https://www.chenshaowen.com/blog/how-to-cross-the-limit-of-dockerhub.html</p>
+  </li>
+  <li>CRD
+https://www.youtube.com/watch?v=u1X5Rf7fWwM</li>
+  <li>controller</li>
 </ul>
 
 <h2 id="concourse">Concourse</h2>
@@ -307,6 +410,7 @@
 <h2 id="make">Make</h2>
 <ul>
   <li>make -p</li>
+  <li>make –dry-run</li>
 </ul>
 
 <h2 id="helm">Helm</h2>
@@ -314,6 +418,9 @@
   <li>Charts &amp; release</li>
   <li>https://artifacthub.io/</li>
 </ul>
+
+<h2 id="harbor">harbor</h2>
+<p>https://www.cnblogs.com/gengxiaonuo/p/16840026.html</p>
 
 <h2 id="python">Python</h2>
 <ul>
@@ -400,6 +507,11 @@ typing module, TypedDict</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-czvf</span> python-3.10.6-with-openssl-3.0.5.tar.gz <span class="nt">-C</span> python-3.10.6/ <span class="nb">.</span>
 </code></pre></div></div>
 
+<h3 id="etcd">etcd</h3>
+<ul>
+  <li>xx</li>
+</ul>
+
 <h2 id="owner-of-this-site">Owner of this site</h2>
 <ul>
   <li>/etc/localtime</li>
@@ -411,14 +523,44 @@ typing module, TypedDict</p>
   </li>
 </ul>
 
+<h2 id="jenkins">Jenkins</h2>
+<ul>
+  <li>Installation
+    <ul>
+      <li>xx</li>
+    </ul>
+  </li>
+  <li>How config github and gitlab project integration ?</li>
+  <li>Project types
+    <ul>
+      <li>Freestyle Project
+Apply to projects which is simple</li>
+      <li>Pipeline Project
+Apply to projects which more complex, e.g. includes test process, build process</li>
+      <li>Jenkins manages github repo ?</li>
+    </ul>
+  </li>
+  <li>Tutorials
+    <ul>
+      <li>Complete Jenkins Pipeline Tutorial | Jenkinsfile explained
+https://www.youtube.com/watch?v=7KCS70sCoK0</li>
+      <li>Complete Jenkins Tutorial | Learn Jenkins From Scratch In 3 Hours 🎯| LambdaTest
+https://www.youtube.com/watch?v=nCKxl7Q_20I&amp;t=8610s</li>
+    </ul>
+  </li>
+</ul>
+
 <h2 id="jira">Jira</h2>
 <p>todo</p>
+<ul>
+  <li>transition</li>
+</ul>
 
 <h3 id="gitlab">Gitlab</h3>
 <ul>
   <li>gitlab runner</li>
-  <li>tag</li>
   <li>executor</li>
+  <li>tag</li>
   <li>registry</li>
 </ul>
 
@@ -429,12 +571,6 @@ typing module, TypedDict</p>
 <p>https://kustomize.io/</p>
 <ul>
   <li>patchesStrategicMerge</li>
-</ul>
-
-<h2 id="k8s-1">k8s</h2>
-<ul>
-  <li>ConfigMap &amp; secret</li>
-  <li>Label, what, why</li>
 </ul>
 
 <h2 id="concourse-1">Concourse</h2>
@@ -457,12 +593,27 @@ typing module, TypedDict</p>
   <li>Channel is able to basic_consume and basic_publish ?</li>
 </ul>
 
-<h2 id="shell">Shell</h2>
+<h3 id="posix">POSIX</h3>
+
+<h3 id="linux">Linux</h3>
 <ul>
+  <li>Kernel Headers
+https://unix.stackexchange.com/questions/47330/what-exactly-are-linux-kernel-headers
+    <ul>
+      <li>Install kernel headers https://linuxhint.com/install-kernel-headers-debian/</li>
+      <li>History: https://blog.csdn.net/trochiluses/article/details/9390855?spm=1001.2101.3001.6650.14&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14-9390855-blog-54137564.pc_relevant_3mothn_strategy_and_data_recovery&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14-9390855-blog-54137564.pc_relevant_3mothn_strategy_and_data_recovery&amp;utm_relevant_index=14</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="shell">Shell</h3>
+<ul>
+  <li>bash VS zsh</li>
   <li>Is it possible to write a game by shell script ?</li>
   <li>Makefile</li>
   <li>$(1) means ?</li>
   <li>What does colon do in path ?</li>
+  <li>eval</li>
 </ul>
 
 <h3 id="my-life-and-experiences">My life and experiences</h3>
@@ -470,6 +621,7 @@ typing module, TypedDict</p>
   <li>Don’t integrate other team API which is still on beta, not upgraded on production.</li>
   <li>atomic a series of operations.</li>
   <li>Never hardcode</li>
+  <li>Timeout effects user experience</li>
 </ul>
 
 <h3 id="software-management">Software management</h3>
@@ -514,11 +666,12 @@ project mindset vs product mindset</p>
 
 <h2 id="mark">Mark</h2>
 <ul>
-  <li>2022年09月12日11:17:14
-    <pre><code class="language-Shell">tar zcvf dist.tar.gz -C dist 
-</code></pre>
-  </li>
+  <li>2022年09月12日11:17:14</li>
 </ul>
+
+<h2 id="shell-1">Shell</h2>
+<pre><code class="language-Shell">tar zcvf dist.tar.gz -C dist 
+</code></pre>
 
 <pre><code class="language-Shell">python3 -m ensurepip
 </code></pre>
@@ -540,27 +693,6 @@ project mindset vs product mindset</p>
 </code></pre></div></div>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl: error <span class="k">while </span>loading shared libraries: libssl.so.3
-</code></pre></div></div>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/home/vzhong/osspi-cli/build/python/lib:/home/vzhong/osspi-cli/build/resources/openssl/Openssl-3.0.5/lib64/ build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3 <span class="nt">-m</span> ensurepip
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libm.so.6: version <span class="sb">`</span>GLIBC_2.29<span class="s1">' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.35'</span> not found <span class="o">(</span>required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3<span class="o">)</span>
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version <span class="sb">`</span>GLIBC_2.28<span class="s1">' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32'</span> not found <span class="o">(</span>required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3<span class="o">)</span>
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version <span class="sb">`</span>GLIBC_2.33<span class="s1">' not found (required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34'</span> not found <span class="o">(</span>required by build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3<span class="o">)</span>
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version <span class="sb">`</span>GLIBC_2.33<span class="s1">' not found (required by /usr/lib/libcrypto.so.3)
-build/python/Python-3.10.7-with-openssl-3.0.5/bin/python3: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34'</span> not found <span class="o">(</span>required by /usr/lib/libcrypto.so.3<span class="o">)</span>
-Makefile:121: recipe <span class="k">for </span>target <span class="s1">'virtualenv'</span> failed
-make: <span class="k">***</span> <span class="o">[</span>virtualenv] Error 1
-
-solution:
-
-wget https://ftp.gnu.org/gnu/libc/glibc-2.36.tar.gz
-
-</code></pre></div></div>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GNU M4 1.4.6 or later is required<span class="p">;</span> 1.4.16 or newer is recommended.
 </code></pre></div></div>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/install <span class="nt">-c</span> /home/vzhong/glibc/glibc-2.36/build/elf/ld.so /lib64/ld-linux-x86-64.so.2.new
@@ -614,6 +746,13 @@ docker-compose up <span class="nt">--build</span> gunicorn
 <span class="s">'.com'</span>
 </code></pre></div></div>
 
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ./restart.sh</span>
+Error response from daemon: client and server don<span class="s1">'t have same version (client : 1.24, server: 1.18)
+[+] Building 0.0s (0/0)                                                                                                                  
+Error response from daemon: client and server don'</span>t have same version <span class="o">(</span>client : 1.24, server: 1.18<span class="o">)</span>: driver not connecting
+Error response from daemon: client and server don<span class="s1">'t have same version (client : 1.24, server: 1.18)
+</span></code></pre></div></div>
+
 <p>scrum与waterfall，难道不是只是粒度变细了吗？</p>
 
 <p>2022年09月20日10:09:50</p>
@@ -635,6 +774,8 @@ docker-compose up <span class="nt">--build</span> gunicorn
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest tox.ini lint
 </code></pre></div></div>
+
+<h2 id="software-test">Software test</h2>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>coverage run <span class="nt">--branch</span> <span class="nt">--source</span><span class="o">=</span><span class="nb">.</span> <span class="nt">--omit</span><span class="o">=</span><span class="k">*</span>/tests<span class="k">*</span>,<span class="k">*</span>__init__<span class="k">*</span> <span class="nt">-m</span> unittest discover
 </code></pre></div></div>
@@ -699,6 +840,9 @@ fatal: Authentication failed <span class="k">for</span> <span class="s1">'https:
 <ul>
   <li>
     <p>echo $(PWD) 啥都没有..</p>
+  </li>
+  <li>
+    <p>self-contained</p>
   </li>
   <li>
     <p>沟通技巧</p>
@@ -767,7 +911,11 @@ fatal: Authentication failed <span class="k">for</span> <span class="s1">'https:
       <li>super 放在不同的位置会怎样？</li>
       <li>when staticmethod, when classmethod ?</li>
       <li>collections</li>
-      <li>array &amp; list</li>
+      <li>array &amp; list
+        <ul>
+          <li>https://medium.com/backticks-tildes/list-vs-array-python-data-type-40ac4f294551</li>
+        </ul>
+      </li>
       <li>lambda, filter</li>
     </ul>
   </li>
@@ -813,27 +961,92 @@ fatal: Authentication failed <span class="k">for</span> <span class="s1">'https:
       <li><a href="./the-communist-manifesto.html">The Communist Manifesto</a></li>
     </ul>
   </li>
+</ul>
+
+<h3 id="pyinstaller">PyInstaller</h3>
+<ul>
+  <li>.spec file
+```python
+# 
+configuration = Analysis([‘moccasin/<strong>main</strong>.py’],
+                       pathex = [’.’],
+                       binaries = [(libsbml_lib_path(), ‘.’)],
+                       datas = [],
+                       hiddenimports = [],
+                       hookspath = [],
+                       runtime_hooks = [],
+                       excludes = [],
+                       win_no_prefer_redirects = False,
+                       win_private_assemblies = False,
+                       cipher = None,
+                      )</li>
+</ul>
+
+<p>application_pyz    = PYZ(configuration.pure,
+                         configuration.zipped_data,
+                         cipher = None,
+                        )</p>
+
+<p>executable         = EXE(application_pyz,
+                         configuration.scripts,
+                         configuration.binaries,
+                         configuration.zipfiles,
+                         configuration.datas,
+                         name = ‘moccasin’,
+                         debug = False,
+                         strip = False,
+                         upx = True,
+                         runtime_tmpdir = None,
+                         console = False,
+                        )</p>
+
+<p>app             = BUNDLE(executable,
+                         name = ‘MOCCASIN.app’,
+                         icon = ‘dev/icon/moccasin.icns’,
+                         bundle_identifier = None,
+                         info_plist = {‘NSHighResolutionCapable’: ‘True’},
+                        )</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+### mess
+- What does inline mean ?
+
+
+- https://www.cnblogs.com/god-of-death/p/12767113.html
+
+- Splunk
+    - https://www.youtube.com/watch?v=m95GiTF0zd0
+    - https://www.youtube.com/watch?v=bO_-fv6e7u4
+    - https://medium.com/airwalk/log-aggregation-in-kubernetes-and-transporting-logs-to-splunk-for-analysis-ad8599607372
+
+
+setup a splunk server:
+```shell
+docker run --name splunk -p 8000:8000 -p 8088:8088 -d outcoldman/splunk:6.3.3
+
+
+docker run --name hello --log-driver=splunk --log-opt splunk-token=022F1FCE-B904-4E0E-B0A1-EB4492F61B9D --log-opt splunk-url=http://139.196.39.92:8088 --log-opt splunk-sourcetype=Docker rickfast/hello-oreilly
+
+docker run --name hello --log-driver=splunk --log-opt splunk-token=1620a639-5064-43dc-8d81-72ae38ec639b --log-opt splunk-url=http://10.79.128.59:8088 --log-opt splunk-sourcetype=Docker rickfast/hello-oreilly
+</code></pre></div></div>
+
+<p>splunk log success: https://www.youtube.com/watch?v=qROXrFGqWAU&amp;t=11s</p>
+
+<p>curl https://10.79.128.59:8088/services/collector/event -H “Authorization: Splunk 1620a639-5064-43dc-8d81-72ae38ec639b” -d ‘{“event”: “hello world”}’</p>
+
+<p>docker built-in send log to splunk ?
+https://www.w3cschool.cn/doc_docker_1_13/docker_1_13-engine-admin-logging-splunk-index.html</p>
+
+<p>install splunk by cmd
+https://www.inmotionhosting.com/support/security/install-splunk/</p>
+
+<p>9ED0A79E-F7B8-43DC-B7A0-7B49AE7450B9</p>
+
+<ul>
   <li><a href="./">back</a></li>
 </ul>
 
-<p>2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.6' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.15’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.25' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.26’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.27' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.7’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.17' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.9’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.14' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.10’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.6' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.15’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.25' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.26’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.27' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.7’ not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version <code class="language-plaintext highlighter-rouge">GLIBC_2.17' not found (required by /build/mts/release/sb-60321806/osspi-cli/build/python/lib/libpython3.10.so.1.0)
-2022-10-19 00:58:27 gobuilds.Compile : build/python/bin/python3: /lib64/libc.so.6: version </code>GLIBC_2.9’ not found</p>
+<p>gcc - https://blog.csdn.net/lailaiquququ11/article/details/126691913</p>
 
 
       <footer class="site-footer">

@@ -1,0 +1,408 @@
+I"�<<h3 id="glossary-of-computer-science"><a name="Glossary of computer science">Glossary of computer science</a></h3>
+<p>Here are terms which stranger for me.</p>
+
+<h4 id="a">A</h4>
+
+<p><strong>abstract data type (ADT)</strong></p>
+
+<p>A mathematical model for data types in which a data type is defined by its behavior (semantics) from the point of view of a user of the data, specifically in terms of possible values, possible operations on data of this type, and the behavior of these operations. 
+This contrasts with data structures, which are concrete representations of data from the point of view of an implementer rather than a user.</p>
+
+<p><strong>agent architecture</strong></p>
+
+<p>A blueprint for software agents and intelligent control systems <code class="language-plaintext highlighter-rouge">depicting</code> the arrangement of components. The architectures implemented by intelligent agents are referred to as <code class="language-plaintext highlighter-rouge">cognitive</code> architectures.</p>
+
+<p><strong>Access modifiers</strong></p>
+
+<p>Keywords that specify how the members (attributes and methods) of a class can be accessed. Common modifiers include ‘public’, ‘private’, and ‘protected’.</p>
+
+<p><strong>Accessibility</strong></p>
+
+<p>The practice of removing barriers that prevent access to, or interaction with, products, services, and environments.</p>
+
+<p><strong>Adjacency list</strong></p>
+
+<p>A list of nodes and their adjacent nodes.</p>
+
+<p><strong>Adjacency matrix</strong></p>
+
+<p>A two-dimensional array used to store graph data.</p>
+
+<p><strong>ADSL</strong></p>
+
+<p>Asymmetric digital subscriber line. Technology that enables the use of a standard telephone line to receive and transmit data. It enables higher download speeds than upload speeds.</p>
+
+<p><strong>Aggregation</strong></p>
+
+<p>Defines a ‘has-a’ relationship between two classes. In aggregation, the objects can exist independently of each other.</p>
+
+<p><strong>Agile methodology</strong></p>
+
+<p>A software development methodology used to manage the stages of the software development life cycle.</p>
+
+<p><strong>ALU</strong></p>
+
+<p>Arithmetic logic unit. A component of the processor that performs arithmetic operations and logical comparisons.</p>
+
+<p><strong>Analogue</strong></p>
+
+<p>A signal that varies continuously over a period of time. Sound waves are typical examples of analogue wave forms.</p>
+
+<p><strong>Anomaly</strong></p>
+
+<p>A deviation from the common rule that does not fit into any established pattern.</p>
+
+<p><strong>Append mode</strong></p>
+
+<p>A file handling mode that allows a program to write extra data at the end of a file without erasing the existing contents of the file.</p>
+
+<p><strong>Append operator (++)</strong></p>
+
+<p>Used to add a new item or items to the end of a list.</p>
+
+<p><strong>Application software</strong></p>
+
+<p>Software designed to carry out a task for an end user, such as creating a document or sending an email.</p>
+
+<p><strong>Arc</strong></p>
+
+<p>A connection between two nodes in a graph data structure. Also called edge.</p>
+
+<p><strong>Argument</strong></p>
+
+<p>A data value or reference passed to a subroutine as required by its defined parameters.</p>
+
+<p><strong>Arithmetic operators</strong></p>
+
+<p>Operators that perform mathematical operations on data, such as addition or division.</p>
+
+<p><strong>Assembler</strong></p>
+
+<p>A program that translates assembly code into machine code.</p>
+
+<p><strong>Asymmetric encryption</strong></p>
+
+<p>A method of encryption in which a pair of keys (a public key and a private key) are used to encrypt and decrypt data.</p>
+
+<p><strong>Asynchronous communication</strong></p>
+
+<p>A method of communication where data is transmitted over a channel that is not controlled by a shared clock signal.</p>
+
+<p><strong>Authentication</strong></p>
+
+<p>A security measure used to verify a user’s identity and level of permissions.</p>
+
+<h4 id="b">B</h4>
+
+<p><strong>Backtracking</strong></p>
+
+<p>A technique for solving problems recursively.</p>
+
+<p><strong>Barcode</strong></p>
+
+<p>A means of representing data in machine-readable form. Barcodes have traditionally represented data by a set of parallel lines of varied width and spacing.</p>
+
+<p><strong>Base case</strong></p>
+
+<p>A value for which there is a solution for a basic instance of a problem and which provides a stopping condition for recursion.</p>
+
+<p><strong>Blagging</strong></p>
+
+<p>An attack in which the attacker invents a scenario in order to convince the victim to give them personal information or money.</p>
+
+<p><strong>BNF</strong></p>
+
+<p>Backus-Naur Form. A formal notation for describing a context-free language such as a programming language.</p>
+
+<p><strong>direct linkBoolean algebra</strong></p>
+
+<p>A branch of algebra where the variables have one of two possible values — True or False. These values are often expressed as 1 and 0.</p>
+
+<p><strong>direct linkBoolean expression</strong></p>
+
+<p>A logical statement, made up of Boolean variables, Boolean constants and Boolean operators that will always evaluate as True or False.</p>
+
+<p><strong>direct linkBoolean identity</strong></p>
+
+<p>A relation between two elements that always holds true for all possible values of the variable(s).</p>
+
+<p><strong>direct linkBoolean operator</strong></p>
+
+<p>An operator that perform a logical comparison, such as AND, NOT, or OR. Also called logical operator.</p>
+
+<p><strong>direct linkBoolean variable</strong></p>
+
+<p>A variable that takes one of only two values: True or False. These values are represented in binary as 1,1 or 0,0. Some systems will display the values as Yes/No.</p>
+
+<p><strong>Botnet</strong></p>
+
+<p>A group of computers infected by malware that can be controlled remotely.</p>
+
+<p><strong>Boundary data</strong></p>
+
+<p>Test data that is on the limit of the acceptable range of valid data.</p>
+
+<p><strong>Breadth-first search</strong></p>
+
+<p>A method of searching a graph data structure that visits all nodes adjacent to the current node before moving on. Uses a queue to support the process.</p>
+
+<p><strong>Brute force attack</strong></p>
+
+<p>A method of systematically trying all possibilities to find secret information (eg a password or encryption key).</p>
+
+<p><strong>Bytecode</strong></p>
+
+<p>Low-level code, produced by a compiler, that can be interpreted by a virtual machine.</p>
+
+<p><strong>Caesar cipher</strong></p>
+
+<p>A simple substitution cipher in which each letter is shifted by a certain number of places.</p>
+
+<p><strong>Cardinality</strong></p>
+
+<p>The number of (distinct) elements in a set.</p>
+
+<p><strong>Cartesian product</strong></p>
+
+<p>The set of all ordered pairs formed by multiplying the elements of two sets.</p>
+
+<p><strong>Casting</strong></p>
+
+<p>Changing the data type of a piece of data, for example, converting a string to an integer.</p>
+
+<p><strong>Certification Authority (CA)</strong></p>
+
+<p>A trusted organisation that can authenticate the certificate for a website provider.</p>
+
+<p><strong>Character</strong></p>
+
+<p>A single letter, number, or symbol.</p>
+
+<p><strong>Ciphertext</strong></p>
+
+<p>An encrypted message that is the result of applying an encryption algorithm to a plaintext message.</p>
+
+<p><strong>Circuit switching</strong></p>
+
+<p>A method of transferring data across a network, where the end-to-end path is established before any data is sent.</p>
+
+<p><strong>Coaxial cable</strong></p>
+
+<p>A cable made up of an inner conductor and an outer conducting shield, separated by an insulator.</p>
+
+<p><strong>Collision (hashing)</strong></p>
+
+<p>Occurs when two (different) keys generate the same hash value.</p>
+
+<p><strong>Comparison operators</strong></p>
+
+<p>Operators, such as greater than, that perform comparisons on two data values. The operation returns either True or False.</p>
+
+<p><strong>Composite key</strong></p>
+
+<p>A key that is made up of more than one attribute</p>
+
+<p><strong>Composition</strong></p>
+
+<p>Defines an ‘is-part-of’ relationship between two classes. In composition, one object can exist only as part of another object.</p>
+
+<p><strong>Concatenation</strong></p>
+
+<p>Joining two strings together to make a new string.</p>
+
+<p><strong>Convex combination</strong></p>
+
+<p>One or more vectors that lie within the convex hull.</p>
+
+<p><strong>Countable set</strong></p>
+
+<p>A finite set where the members can be counted using natural numbers.</p>
+
+<p><strong>Cyberattack</strong></p>
+
+<p>An attempt to gain unauthorised access to a computer, computing system, or computer network with the intent to cause damage, to cause disruption, or to steal data.</p>
+
+<p><strong>Data mining</strong></p>
+
+<p>The process of extracting valuable information by discovering patterns in large data sets.</p>
+
+<p><strong>direct linkData warehousing</strong></p>
+
+<p>Data from different sources that is brought together to be used in data analysis.</p>
+
+<p><strong>Decomposition</strong></p>
+
+<p>The process of breaking down a large task into several subtasks.</p>
+
+<p><strong>direct linkDecrement</strong></p>
+
+<p>To decrease the value of a variable. For example, count = count - 1</p>
+
+<p><strong>direct linkDefragmentation</strong></p>
+
+<p>The process of organising file blocks stored on a disk by grouping them into adjacent sectors.</p>
+
+<p><strong>direct linkDegree of relationship</strong></p>
+
+<p>The relationship between two entities (one-to-one, one-to-many, or many-to-many).</p>
+
+<p><strong>Denary</strong></p>
+
+<p>A number system that uses ten distinct symbols (the numbers 0–9) to represent a number. Also called decimal or base-10.</p>
+
+<p><strong>direct linkDepth-first tree traversal</strong></p>
+
+<p>An algorithm for traversing a tree data structure that starts at the root node and explores as far as possible along each branch before backtracking.</p>
+
+<p><strong>Eavesdropping</strong></p>
+
+<p>The process of monitoring network traffic to intercept the data being transmitted.</p>
+
+<p><strong>Efficiency</strong></p>
+
+<p>An expression of the computational time and space required to perform an algorithm.</p>
+
+<p><strong>direct linkEncapsulation (OOP)</strong></p>
+
+<p>The concept of packaging data together with the methods that operate on that data.</p>
+
+<p><strong>direct linkEntity</strong></p>
+
+<p>Something about which data will be stored, e.g. a customer or booking.</p>
+
+<p><strong>direct linkErroneous data</strong></p>
+
+<p>Test data that should be caught by validation and rejected by a system.</p>
+
+<p><strong>Ethical hacking</strong></p>
+
+<p>The process of trying to break into a computer system with the permission of its owner, to determine its vulnerabilities and weak points. Also called penetration testing.</p>
+
+<p><strong>direct linkExponent</strong></p>
+
+<p>Part of a floating point number that determines the position of the binary point.</p>
+
+<p><strong>direct linkExponential time</strong></p>
+
+<p>The time complexity of an algorithm where the time taken to run it increases by an exponential factor on each single addition to the input data set.</p>
+
+<p><strong>direct linkFibre-optic cable</strong></p>
+
+<p>A cable that can be used to transport electromagnetic waves in the infrared region. These waves are modulated to carry digital data at high speeds over long distances.</p>
+
+<p><strong>File type extension</strong></p>
+
+<p>A suffix given to a file name to mark what kind of data is contained in the file, or what type of program created it. Examples include ‘.docx’, ‘.jpg’, and ‘.pdf’.</p>
+
+<p><strong>Filter function</strong></p>
+
+<p>A higher-order function that takes a list and some criteria as arguments, and returns a new list. The new list contains only those items that meet the specified criteria.</p>
+
+<p><strong>Flip-flop</strong></p>
+
+<p>A circuit that can store a single-bit value to act as a simple memory unit.</p>
+
+<p><strong>Gibibyte</strong></p>
+
+<p>One gibibyte is 1, comma, 073, comma, 741, comma, 824,1,073,741,824 bytes (2, to the power 30 ,2 
+30
+ ). The symbol for the gibibyte is GiB. See also gigabyte.</p>
+
+<p><strong>Halting problem</strong></p>
+
+<p>A problem that is significant to the theory of computation as it proves that some problems are undecidable or cannot be computed.</p>
+
+<p><strong>Heuristic</strong></p>
+
+<p>An approach to solving a problem that will provide an approximate or “good enough” solution to an intractable problem.</p>
+
+<p><strong>Hexadecimal</strong></p>
+
+<p>A number system that uses 16 distinct symbols (the numbers 0-9 and the letters A-F) to represent a number. Also called hex or base-16.</p>
+
+<p><strong>Hierarchy chart</strong></p>
+
+<p>A diagram that shows the design of a system from a top-down perspective.</p>
+
+<p><strong>Immutable</strong></p>
+
+<p>Not able to be changed.</p>
+
+<p><strong>Imperative languages</strong></p>
+
+<p>A programming language where the programmer defines a set of statements that must be followed (in the given order) to solve a problem.</p>
+
+<p><strong>In-order traversal</strong></p>
+
+<p>A method of traversing a tree so that a node is processed after its left subtree has been examined and before its right subtree has been examined.</p>
+
+<p><strong>Indefinite iteration</strong></p>
+
+<p>A set of instructions that is repeated until a condition is met. Typically it is implemented by using condition-controlled loops, such as a while loop.</p>
+
+<p><strong>Initialisation</strong></p>
+
+<p>Setting the initial value for a variable.</p>
+
+<p><strong>Integrity</strong></p>
+
+<p>The reliability of data in terms of its accuracy, completeness and consitency.</p>
+
+<p><strong>Interrupt service routine</strong></p>
+
+<p>A program that handles a processor interrupt</p>
+
+<p><strong>Intractable problem</strong></p>
+
+<p>A problem that cannot be solved by a computer system in a reasonable amount of time.</p>
+
+<p><strong>Latency</strong></p>
+
+<p>The time delay between a signal being sent and a signal being received.</p>
+
+<p><strong>Least significant bit (LSB)</strong></p>
+
+<p>The rightmost bit in a binary number.</p>
+
+<p><strong>Legislation</strong></p>
+
+<p>The laws that apply within a country. Computing legislation is a set of laws that regulate the use of computers and related areas.</p>
+
+<p><strong>Logarithmic time</strong></p>
+
+<p>The time complexity of an algorithm where the time taken to run it is proportional to the logarithm of the size of input data set.</p>
+
+<p><strong>Logic puzzle</strong></p>
+
+<p>A puzzle that can be solved by logical thinking.</p>
+
+<p><strong>Logical operators</strong></p>
+
+<p>Operators (such as AND, OR, and NOT) that are used to form logical expressions. Also called Boolean operators.</p>
+
+<p><strong>Lossless compression</strong></p>
+
+<p>A method of compression where no data is permanently lost during the process.</p>
+
+<p><strong>Lossy compression</strong></p>
+
+<p>A method where data is permanently lost during the compression process and must be approximated when the file is decompressed.</p>
+
+<p><strong>Magnetic storage</strong></p>
+
+<p>A technique to store data using polarised magnetic dots. The polarity of the dot is used to represent a 1 or a 0.</p>
+
+<p><strong>Majority voting</strong></p>
+
+<p>A method of error detection where each bit is sent multiple times and the majority value is used by the receiving device.</p>
+
+<p><strong>Mantissa</strong></p>
+
+<p>Part of a floating point number that contains the significant digits.</p>
+
+<p><strong>Mealy machine</strong></p>
+
+<p>A type of finite state machine that produces outputs</p>
+
+<p><a href="./">back</a></p>
+:ET

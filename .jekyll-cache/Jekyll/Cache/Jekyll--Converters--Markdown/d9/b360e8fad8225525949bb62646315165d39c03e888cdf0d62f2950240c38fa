@@ -1,0 +1,281 @@
+I"!4<ul>
+  <li>
+    <p>Induction vs Deduction
+https://www.youtube.com/watch?v=yAjkQ1YqLEE</p>
+  </li>
+  <li>
+    <p>Python math lib.</p>
+  </li>
+  <li>Basis
+    <h2 id="technical-terms">Technical Terms</h2>
+    <h3 id="math-copy-from-httpszhuanlanzhihucomp51015057">Math (copy from https://zhuanlan.zhihu.com/p/51015057)</h3>
+    <h5 id="代数-数论">代数-数论</h5>
+  </li>
+  <li>natural number 自然数</li>
+  <li>positive number 正数</li>
+  <li>negative number 负数</li>
+  <li><code class="language-plaintext highlighter-rouge">odd integer/number 奇数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">even integer/number 偶数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Integer/whole number 整数</code></li>
+  <li>positive whole number 正整数</li>
+  <li>negative whole number 负整数</li>
+  <li><code class="language-plaintext highlighter-rouge">consecutive number 连续整数</code>    (consecutive  连续的;连续不断的)</li>
+  <li>real/rational number 实数,有理数</li>
+  <li>Irrational number 无理数</li>
+  <li><code class="language-plaintext highlighter-rouge">inverse /reciprocal 倒数</code></li>
+  <li>mode 众数</li>
+  <li>composite number 合数</li>
+  <li><code class="language-plaintext highlighter-rouge">prime number 质数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">common divisor 公约数</code></li>
+  <li>multiple 倍数</li>
+  <li>common multiple 公倍数</li>
+  <li>(prime) factor(质)因子</li>
+  <li><code class="language-plaintext highlighter-rouge">common factor 公因子</code></li>
+  <li>common ratio 公比</li>
+  <li>non-negative 非负的</li>
+  <li><code class="language-plaintext highlighter-rouge">mean平均数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">median中值</code></li>
+  <li>mode 众数</li>
+  <li>composite number 合数</li>
+  <li>prime number 质数</li>
+  <li>common divisor 公约数</li>
+  <li>multiple 倍数</li>
+  <li>common multiple 公倍数</li>
+  <li>(prime) factor(质)因子</li>
+  <li>common factor 公因子</li>
+  <li>common ratio 公比</li>
+  <li>nonnegative 非负的</li>
+  <li>mean平均数</li>
+  <li>median中值</li>
+</ul>
+
+<h5 id="代数-基本数学概念">代数-基本数学概念</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ALGEBRA 代数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">arithmetic mean 算术平均值</code></li>
+  <li>weighted average 加权平均值</li>
+  <li><code class="language-plaintext highlighter-rouge">geometric mean 几何平均数</code></li>
+  <li><code class="language-plaintext highlighter-rouge">exponent 指数，幂</code></li>
+  <li>base 乘幂的底数,底边</li>
+  <li>cube 立方数，立方体</li>
+  <li><code class="language-plaintext highlighter-rouge">square root 平方根</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cube root 立方根</code></li>
+  <li>common <code class="language-plaintext highlighter-rouge">logarithm</code> 常用对数</li>
+  <li><code class="language-plaintext highlighter-rouge">divisor 因子,除数,公约数</code></li>
+  <li>cardinal 基数</li>
+  <li>ordinal 序数</li>
+  <li>constant 常数</li>
+  <li>variable 变量</li>
+  <li>inverse function 反函数</li>
+  <li>complementary function 余函数</li>
+  <li>linear 一次的，线性的</li>
+  <li>factorization 因式分解</li>
+  <li>absolute value 绝对值</li>
+  <li><code class="language-plaintext highlighter-rouge">round to/off ,to the nearest 四舍五入</code></li>
+  <li>difference 差</li>
+  <li>product 积</li>
+  <li><code class="language-plaintext highlighter-rouge">quotient 商</code></li>
+  <li><code class="language-plaintext highlighter-rouge">remainder 余数</code></li>
+</ul>
+
+<h4 id="代数-基本运算-小数分数">代数-基本运算, 小数,分数</h4>
+<ul>
+  <li>Add/plus 加</li>
+  <li><code class="language-plaintext highlighter-rouge">subtract 减</code></li>
+  <li>Multiply / times 乘</li>
+  <li><code class="language-plaintext highlighter-rouge">divide 除</code></li>
+  <li><code class="language-plaintext highlighter-rouge">divisible 可被整除的</code></li>
+  <li>divided evenly 被整除</li>
+  <li><code class="language-plaintext highlighter-rouge">dividend 被除数，红利</code></li>
+  <li>factorial 阶乘</li>
+  <li>power 乘方</li>
+  <li><code class="language-plaintext highlighter-rouge">radical /root sign 根号</code></li>
+  <li>decimal fraction 纯小数</li>
+  <li>infinite decimal 无穷小数</li>
+  <li>recurring decimal 循环小数</li>
+  <li>proper fraction 真分数</li>
+  <li>improper fraction 假分数</li>
+  <li>mixed number 带分数</li>
+  <li>vulgar /common fraction 普通分数</li>
+  <li>simple fraction 简分数</li>
+  <li>complex fraction 繁分数</li>
+  <li><code class="language-plaintext highlighter-rouge">numerator 分子</code></li>
+  <li><code class="language-plaintext highlighter-rouge">denominator 分母</code></li>
+  <li>common denominator 公分母</li>
+  <li><code class="language-plaintext highlighter-rouge">quarter 四分之一</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ordinary /decimal scale 十进制</code></li>
+  <li>tens 十位 , units 个位</li>
+  <li>tenths unit 十分位</li>
+</ul>
+
+<h5 id="代数-方程集合数列等">代数-方程,集合,数列等</h5>
+<ul>
+  <li>algebraic term 代数项</li>
+  <li>like terms, similar terms 同类项</li>
+  <li>numerical coefficient 数字系数</li>
+  <li>literal coefficient 字母系数</li>
+  <li>inequality 不等式</li>
+  <li>triangle inequality 三角不等式</li>
+  <li>range 值域</li>
+  <li>original equation 原方程</li>
+  <li>equivalent equation 同解/等价方程</li>
+  <li><code class="language-plaintext highlighter-rouge">linear equation 线性方程</code></li>
+  <li>union 并集</li>
+  <li>proper subset 真子集</li>
+  <li>solution set 解集</li>
+  <li>arithmetic progression(sequence) 等差数列</li>
+  <li>geometric progression(sequence) 等比数列</li>
+  <li><code class="language-plaintext highlighter-rouge">approximate 近似</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(anti)clockwise (逆) 顺时针方向</code></li>
+  <li>direct proportion 正比</li>
+  <li>parentheses 括号</li>
+  <li><code class="language-plaintext highlighter-rouge">proportion 比例</code></li>
+  <li><code class="language-plaintext highlighter-rouge">permutation 排列</code></li>
+  <li>combination 组合</li>
+  <li>trigonometric function 三角函数
+    <h5 id="几何-三角">几何-三角</h5>
+  </li>
+  <li>plane geometry 平面几何</li>
+  <li>plane 平面</li>
+  <li>alternate angle 内错角</li>
+  <li>corresponding angle 同位角</li>
+  <li>vertical angle 对顶角</li>
+  <li>supplementary angles 补角</li>
+  <li>complementary angle 余角</li>
+  <li><code class="language-plaintext highlighter-rouge">adjacent angle 邻角</code></li>
+  <li>right angle 直角</li>
+  <li>round angle 周角</li>
+  <li>straight angle 平角</li>
+  <li>included angle 夹角</li>
+  <li>central angle 圆心角</li>
+  <li>interior angle 内角</li>
+  <li>exterior angle 外角</li>
+  <li>acute angle 锐角</li>
+  <li>obtuse angle 钝角</li>
+  <li><code class="language-plaintext highlighter-rouge">trigonometry 三角学</code></li>
+  <li>equilateral triangle 等边三角形</li>
+  <li>scalene triangle 不等边三角形</li>
+  <li>isosceles triangle 等腰三角形</li>
+  <li>right triangle 直角三角形</li>
+  <li>oblique 斜三角形</li>
+  <li>inscribed triangle 内接三角形 几何-平面, 立体</li>
+  <li>quadrilateral 四边形</li>
+  <li>pentagon 五边形</li>
+  <li>hexagon 六边形</li>
+  <li>heptagon 七边形</li>
+  <li>octagon 八边形</li>
+  <li>nonagon 九边形</li>
+  <li>decagon 十边形</li>
+  <li>polygon 多边形</li>
+  <li><code class="language-plaintext highlighter-rouge">parallelogram 平行四边形</code></li>
+  <li><code class="language-plaintext highlighter-rouge">square 正方形，平方</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rectangle长方形</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rhombus 菱形</code></li>
+  <li>trapezoid 梯形</li>
+  <li>equilateral 等边形</li>
+  <li>regular polygon 正多边形</li>
+  <li>concentric circles 同心圆</li>
+  <li>line, straight line 直线</li>
+  <li>line segment 线段</li>
+  <li><code class="language-plaintext highlighter-rouge">parallel lines 平行线</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rectangular solid 长方体</code></li>
+  <li>regular solid/polyhedron 正多面体</li>
+  <li>circular cylinder 圆柱体</li>
+  <li>cone 圆锥</li>
+  <li><code class="language-plaintext highlighter-rouge">sphere 球体</code></li>
+  <li>solid 立体的</li>
+</ul>
+
+<h5 id="几何-图形概念">几何-图形概念</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bisect 平分</code></li>
+  <li>circumscribe 外切</li>
+  <li>inscribe 内切</li>
+  <li><code class="language-plaintext highlighter-rouge">intersect 相交</code></li>
+  <li><code class="language-plaintext highlighter-rouge">perpendicular 垂直</code></li>
+  <li>congruent 全等的</li>
+  <li>multilateral 多边的</li>
+  <li>side 边长</li>
+  <li><code class="language-plaintext highlighter-rouge">circumference, perimeter 周长</code></li>
+  <li><code class="language-plaintext highlighter-rouge">diameter 直径</code></li>
+  <li><code class="language-plaintext highlighter-rouge">radius 半径</code></li>
+  <li><code class="language-plaintext highlighter-rouge">chord 弦</code></li>
+  <li><code class="language-plaintext highlighter-rouge">arc 弧</code></li>
+  <li>semicircle 半圆</li>
+  <li><code class="language-plaintext highlighter-rouge">radian 弧度</code></li>
+  <li>center of a circle 圆心</li>
+  <li>segment of a circle 弧形</li>
+  <li>angle bisector 角平分线</li>
+  <li>diagonal 对角线</li>
+  <li>cube 立方体，立方数</li>
+  <li>face of a solid 立体的面</li>
+  <li><code class="language-plaintext highlighter-rouge">altitude 高</code></li>
+  <li>depth 深度</li>
+  <li><code class="language-plaintext highlighter-rouge">volume 体积</code></li>
+  <li><code class="language-plaintext highlighter-rouge">surface area 表面积</code></li>
+  <li>edge 棱</li>
+</ul>
+
+<h5 id="几何-坐标">几何-坐标</h5>
+<ul>
+  <li>arm 直角三角形的股</li>
+  <li>hypotenuse 斜边</li>
+  <li>included side 夹边</li>
+  <li>Pythagorean theorem 勾股定理</li>
+  <li><code class="language-plaintext highlighter-rouge">leg 三角形的直角边</code></li>
+  <li>median（三角形的）中线</li>
+  <li>base底边，底数</li>
+  <li>opposite 直角三角形中的对边</li>
+  <li>cross section 横截面</li>
+  <li>vertex (复数形式vertices)顶点</li>
+  <li><code class="language-plaintext highlighter-rouge">tangent 切线的</code></li>
+  <li>complex plane 复平面</li>
+  <li>midpoint 中点</li>
+  <li>endpoint 端点</li>
+  <li><code class="language-plaintext highlighter-rouge">coordinate system 坐标系</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rectangular coordinate 直角坐标系</code></li>
+  <li>origin 原点</li>
+  <li><code class="language-plaintext highlighter-rouge">abscissa 横坐标</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ordinate 纵坐标</code></li>
+  <li>number line 数轴</li>
+  <li><code class="language-plaintext highlighter-rouge">quadrant 象限</code></li>
+  <li><code class="language-plaintext highlighter-rouge">slope 斜率</code></li>
+  <li>transversal 截线</li>
+  <li><code class="language-plaintext highlighter-rouge">intercept 截距</code>
+    <h5 id="商业术语计量单位">商业术语,计量单位</h5>
+  </li>
+  <li>Intercalary/leap year 闰年(366天)</li>
+  <li>common year 平年(365天)</li>
+  <li>depreciation 折旧</li>
+  <li>down payment 直接付款</li>
+  <li><code class="language-plaintext highlighter-rouge">discount 打折 / denote 表示</code></li>
+  <li><code class="language-plaintext highlighter-rouge">margin /profit 利润</code></li>
+  <li><code class="language-plaintext highlighter-rouge">interest 利息/ dividend 红利</code></li>
+  <li>simple interest 单利</li>
+  <li>compounded interest 复利</li>
+  <li>Increase / decrease to 增加/减少到</li>
+  <li>increase /decrease by 增加/减少了</li>
+  <li>list price 标价 /markup 涨价</li>
+  <li>retail price 零售价 /per capita 每人</li>
+  <li>cent 美分/penny 一美分硬币</li>
+  <li>nickel 5美分硬币 /dime 一角硬币</li>
+  <li>dozen 打(12个) / score 廿 (20个)</li>
+  <li><code class="language-plaintext highlighter-rouge">Centigrade 摄氏</code>/Fahrenheit 华氏</li>
+  <li>quart 夸脱/ gallon 加仑 (1 gallon = 4 quart)</li>
+  <li>yard 码 / inch 英寸/ foot 英尺</li>
+  <li>meter 米/ micron 微米</li>
+  <li>square measure 平方单位制</li>
+  <li>cubic meter 立方米</li>
+  <li>pint 品脱(干量或液量的单位)</li>
+</ul>
+
+<h3 id="videos">Videos</h3>
+<ul>
+  <li>Introduction to Geometry
+https://www.youtube.com/watch?v=302eJ3TzJQU</li>
+  <li>College Algebra - Full Course
+https://www.youtube.com/watch?v=LwCRRUa8yTU</li>
+</ul>
+
+<p><a href="./">back</a></p>
+:ET

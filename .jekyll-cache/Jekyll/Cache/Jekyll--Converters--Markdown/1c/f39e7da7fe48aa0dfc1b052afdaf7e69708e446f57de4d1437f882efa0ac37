@@ -1,0 +1,54 @@
+I"�
+<h2 id="owner">Owner</h2>
+<!-- <img src="https://raw.githubusercontent.com/zhongpengqun/material/master/zhong.jpeg" width="250" />
+-->
+
+<p>Hi guys, my name is Zhong PengQun(钟鹏群), i’m a Chinese.</p>
+
+<h2 id="purpose-of-this-site">Purpose of this site</h2>
+<ul>
+  <li>To record what i met and my thoughts at a certain time point.</li>
+  <li>To improve my english skills by writing and speaking, because my job needs a good skill at english.</li>
+  <li>To share some tech skills i investigated during my work.</li>
+</ul>
+
+<h2 id="how-to-build-this-blog">How to build this blog</h2>
+
+<p>I use <code class="language-plaintext highlighter-rouge">Github pages</code> and this <a href="https://github.com/pages-themes/cayman#usage">theme</a> to build this site.</p>
+
+<h3 id="markdown-syntax">Markdown syntax</h3>
+<p><a href="./markdown-guide.html">Examples</a></p>
+
+<h3 id="markdown-usage">Markdown usage</h3>
+<p>https://daringfireball.net/projects/markdown/syntax#html</p>
+
+<h3 id="is-it-possible-to-run-javascript-with-github-pages">Is it possible to run javascript with github pages.</h3>
+<p>Yes.</p>
+
+<h4 id="how-i-record-screen-">How i record screen ?</h4>
+<p>https://support.apple.com/en-us/HT208721</p>
+
+<h4 id="how-to-convert-mac-recorded-audio-to-mp3-format-">How to convert mac recorded audio to mp3 format ?</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydub</span> <span class="kn">import</span> <span class="n">AudioSegment</span>
+
+<span class="n">wav_audio</span> <span class="o">=</span> <span class="n">AudioSegment</span><span class="p">.</span><span class="n">from_file</span><span class="p">(</span><span class="s">"/Users/vzhong/audio1.m4a"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">"m4a"</span><span class="p">)</span>
+<span class="n">wav_audio</span><span class="p">.</span><span class="n">export</span><span class="p">(</span><span class="s">"/tmp/audio1.mp3"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">"mp3"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="how-to-convert-m4a-to-mp4-">How to convert m4a to mp4 ?</h4>
+
+<h3 id="speech-to-text">Speech to text</h3>
+<p>https://www.zhihu.com/question/56382679</p>
+
+<h4 id="how-to-embed-vido-on-page-">How to embed vido on page ?</h4>
+
+<video src="https://user-images.githubusercontent.com/169707/126715420-991ad821-9ac8-4b66-b79e-e0966e0f3a89.mp4" controls="controls" style="max-width: 730px;">
+</video>
+
+<p>openssl tar 我的java视频 likely x**7</p>
+
+<h4 id="mov-转-mp4">mov 转 mp4</h4>
+
+<p><a href="./">back</a></p>
+:ET

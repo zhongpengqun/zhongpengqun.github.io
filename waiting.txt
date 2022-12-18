@@ -1,0 +1,106 @@
+
+TRENDING:
+Data Analytics and SPLUNK
+Avotrix
+SPLUNK
+ELK
+IOT
+PLM
+CONTACT
+SOLVING SPLUNK KV STORE ERROR
+Posted by Avotrix | Feb 18, 2020 | Splunk, Splunk-Administration, Splunk-Architecture, Splunk-Development | 0  |
+
+Solving Splunk KV Store Error
+splunk kv store error can affect splunk environment. Along with these errors, there were several Warnings related to KV store and Buckets. It directly impacts to our clustering and make it unstable.
+Note: Here we are facing issue with our search head cluster
+
+Below is snip to show error message:
+
+splunk kv store error 1
+Steps to Solve Splunk KV Store Error:
+
+1. To solve this issue first we have to synchronize KV store on all the members of Search-Head cluster.
+
+Resync the KV Store:
+
+When a KV store member fails to transform its data from all the write operations, then it might be stale. To resolve this issue, you must resynchronize the member.
+Ø Identify the Stale Member
+                         Login to each Member from Putty and Run this command
+                          ./splunk show kvstore-status.
+This will return the summary of KV store members, as well as information about every other member in the KV store cluster.
+Look at the replicationstatus field and identify if any members that have neither “KV store captain” nor “Non-captain KV store member” as values. Then consider it as stale and need to Re-Sync
+splunk kv store error 2
+                                    (Make Sure All the members show the correct information.)
+Ø Follow these steps to resync the members.
+·         Determine which node is currently the search head cluster captain, by running below command in any of the Sh’s.
+/opt/splunk/bin/splunk show shcluster-status.
+·         Login to SH Cluster captainand run splunk resync kvstore .
+·         Use the splunk show kvstore-status command to verify that the cluster is resynced.
+On cluster members, individually perform following steps.
+·         Stop the splunk on search head on each member.
+·         Run the command splunk clean kvstore --local.
+·         Restart the search head. This triggers the initial synchronization from other KV store members.
+·         Run the command splunk show kvstore-status to verify synchronization.
+2. Check and change the Permission of splunk.key file if required on each instance.
+Go to path /opt/splunk/var/lib/splunk/kvstore/mongo/   and check the permission of the file by command ll or ls –lrth, on each Instance having the error.
+splunk kv store error 3
+
+Ø  Then change the permission of the file to read only.
+            By command: – chmod 400 splunk.key
+
+splunk kv store error 4
+
+Restart the Splunk on each instance to reflect changes.
+
+If you are still facing issue regarding splunk kv store error Feel free to Ask Doubts in the Comment Box Below and Don’t Forget to Follow us on 👍 Social Networks, happy Splunking >😉
+
+SHARE:  RATE:12345
+PREVIOUSHandling Integrity Warning in Splunk EnvironmentNEXTRecover from loss of majority (Search head clustering service not ready Error)
+ABOUT THE AUTHOR
+Avotrix
+Avotrix
+Avotrix is an Ed–Tech start-up which was set up in 2017 by entrepreneurs with more than decade of experience in the Big Data & IoT world . With a strong reputation of great achievement in the US and Canada, we are committed to deliver an apt solution to our clients with a smile.
+
+
+RELATED POSTS
+Splunk AddOn Builder for creating REST API inputs
+Splunk AddOn Builder for creating REST API inputs
+April 26, 2021
+
+Report Acceleration in Splunk
+Report Acceleration in Splunk
+May 18, 2021
+
+Creating Alert for Popup message Splunk
+Creating Alert for Popup message Splunk
+January 30, 2019
+
+How to Deploy Splunk Addons and Apps using Git
+How to Deploy Splunk Addons and Apps using Git
+January 16, 2020
+
+LEAVE A REPLY
+Your email address will not be published. Required fields are marked *
+
+COMMENT
+
+NAME *
+EMAIL *
+WEBSITE
+ Save my name, email, and website in this browser for the next time I comment.
+
+SEARCH …
+SUBSCRIBE
+Subscribe To Our Newsletter
+Subscribe To Our Newsletter
+Join our mailing list to receive the latest news and updates from our team.
+
+EMAIL
+SUBSCRIBE!
+RECENT POSTS
+Analyzefields command in Splunk
+AuTOGRESS COMMAND IN SPLUNK
+Contingency command in splunk
+TO ADD PREFIX TO THE DATA USING SEDCMD PARAMETER IN SPLUNK
+Scrub Command iN splunk
+© Copyrights 2022 Avotrix | All Rights Reserved by Scanlytics Technology Pvt. Ltd.AVOTRIX CHARITY AVOTRIX EDUCATION
