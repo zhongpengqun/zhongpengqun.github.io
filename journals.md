@@ -2,76 +2,18 @@
 layout: default
 ---
 
-### Psychological
-#### List what you like.
-Cigarette (but i should get rid of it).
-
-Sport, basketball.
-
-Food and fruits.
-
-Sleep.
-
-Reading book (maybe)
-
-bath & shave my beard.
-
-Jasmine Tea (#茉莉花茶#)
-
-#晒太阳#
-
-#烟#
-
-#### 
-
-
-## Psychological problem - 1
-In past time, i always had some weird dreams.
-There are several examples;
-1, 
-several times, i dreamed that i jumped from the top of a high building, and when i landed,
-the real me had a big convulsion in the bed, then i wake up, and i hearded my heart beat so fast and loudly.
-
-2,
-i had a dreamed what i was chased by a zombie, this zombie is not the American zombie what is
-look like a injured man. It is a zombie from Qing Dynasty, is not able to walk, but always jump.
-with a corrupt face and long tusks.
-But very straight, i'm very happy in this dream, i ran so fast, and in the dream i recognize it's possible that
-i was dreaming, but i can't make sure, and the most attractive is i don't know what the zombie will do,
-its' action is not controlled by me.
-
-3,
-The most happy dream, many times, i dreamed that i fly in the wind, i run on the water, i fly between
-buildings, like shuttle back and forth.
-
-4,
-It was the first year since i graduated from university, i went to Shanghai to find job,
-and eventually, i found a job at Songjiang district of Shanghai, and i lived in a rent room.
-It was summer when i graduated, but after about 2 months, the weather became a little cold,
-therefore i need to buy a 被子, i didn't buy it immediately, i asked 房东 if there are 被子 that
-the previous 租客 remained, then 房东 taken me to another room, he opened the room, wow,
-the room was filled by 被子, they are all remain by previous 租客, because taking 被子 to somewhere is so
-un-convenience, so many 租客 remain it.
-Then i chose a 被子 which looks cleaner than others.
-What weird happened in that night, i had a horrible dream!
-This dream was: i was sleeping on my bed, i 平躺着, and the 被子 covered on me, the light in room
-was on, and at that moment i felt that someone was standing aside by my bed, then i opened my eyes,
-i saw a woman whose hair was long, if i remember correctly, a little curly, and her face i could not see clearly, she was in a long white clothes.
-she standed there quietly, no any action, but i was a little scared, yes, a little, not too much.
-Looks like she was not unfriendly to me.
-About 5 seconds later, i waked up, and when i come back to reality and opened my eyes, everything
-is almost presented as same as in the dream, beside there was no woman stand beside by my bed.
-
-
-### Memoir
-  - Childhood
-  - High school
-  - University
-    - My experience of migrant work
 
 ### Journals
+
+##### 2022-6-15
+At XinYu sport gym, played basketball with strangers, one is an old man, i guess about 60 years.
+What surprised me is that after playing, someone are going home, someone are still shooting on the playground, as well as the old man , i sat on the 
+ground, but then old man #转过身子#, #背向# #篮筐#, moved to the #边界# of the #篮球场#, started to toke off his shorts, and pants!
+Eventually, he was naked! The whole sport gym is not small, 6 #篮球全场#, 12 #篮筐#, 70 people, include female.
+Someone noticed it, but very #淡定#, someone slightly smiled, me: "Holy shit!"
+
 ##### 2022-6-16
-As busy day ends, i went off work at 6:30 p.m.
+An busy day ends, i went off work at 6:30 p.m.
 
 And then i rode my motorcycle to the City gym, i rode fast, about 70 KM/h.
 
@@ -125,6 +67,7 @@ I arrived at `North of people's park`, the Map shows that `Yu JiangNan` only 700
 But i could not found it, so i got a taxi again to go to there, i arrived.
 I waitting for her in front of the restaurant, and sent her a message.
 She lived in a rented house nearby, she arrived here in about 8 minutes, so it was the first time i meet Little-Fish!
+
 ## TODO describe the sense when we recognized each other, the street, the crowd, etc..
 Recall past 2 days, i was hit by something straight, i became sensitive, maybe i'm always sensitive.
 I would be melancholy when she doesn't response to me in time in wechat or reject or avoid my admiration, i felt frustrated,
@@ -275,18 +218,18 @@ M, 2
 
 ##### 2022-9-30
 Today is the last day of September.
-Because tomorrow my 高中 classmate Fu WenTao will 举办 his wedding, and i as one of 伴郎 participate this wedding.
+Because tomorrow my #高中# classmate Fu WenTao will #举办# his wedding, and i as one of #伴郎# participate this wedding.
 This night we started to do some preparations for tomorrow's wedding.
-The 司仪 introduced the 流程 of wedding, the steps one by one, for example, first step, the 新娘 stand outside of the 大门,
-and when music starts, 伴郎 and 伴娘 push the 大门, then 新娘 走进 大厅 and 站在新郎对面, 新郎 will sing a song for her, and 
-单膝跪地求婚 then, at last, parents of 新郎 and 新娘 will 致辞 for all 参会者, and accept 新郎 and 新娘 的 敬拜.
+The #司仪# introduced the #流程# of wedding, the steps one by one, for example, first step, the #新娘# stand outside of the #大门#,
+and when music starts, #伴郎# and #伴娘# push the #大门#, then #新娘# walked into #大厅# and #站在新郎对面#, #新郎# will sing a song for her, and 
+#单膝跪地求婚# then, at last, parents of #新郎# and #新娘# will #致辞# for all #参会者#, and accept #新郎# and #新娘# 的 #敬拜#.
 We finished it at about 9:00 PM. 
 
-After it, i and another best-man ZhangJie which also is my 高中 classmate decided to play basketball with other classmates, we ride my motorcycle and arrived the 篮球馆, but ultimately,
-we found that the 篮球馆 has been 被拆了.
-So we went to a 饭馆 to 吃烧烤.
+After it, i and another best-man ZhangJie which also is my #高中# classmate decided to play basketball with other classmates, we ride my motorcycle and arrived the #篮球馆#, but ultimately,
+we found that the #篮球馆# has been #被拆了#.
+So we went to a #饭馆# to #吃烧烤#.
 
-LiYi, PengXiang, which also are our 高中 classmates went to 烧烤店 which named LuTianXia (means roll up the world) to 吃烧烤.
+LiYi, PengXiang, which also are our #高中# classmates went to #烧烤店# which named LuTianXia (means roll up the world) to #吃烧烤#.
 
 There was so loud in the grill, our table is at inside of the house and close to the wall, on our left, there was a table that 
 2 men and 2 women sitting, their voice is so loud! But it's common in this place, this city.
@@ -298,9 +241,9 @@ sit against this guy.
 
 At first 10 minutes, everything was alright.
 
-But then at left table, the guy who is mentioned above and his girlfriend began to quarrel, the woman 摔盘子 toward to the guy.
+But then at left table, the guy who is mentioned above and his girlfriend began to quarrel, the woman #摔盘子# toward to the guy.
 My seat is so close to them, actually, i stand up and move away quickly after her first throwing.
-She throwed about 4 盘子 toward the man, and then the man left the house.
+She throwed about 4 #盘子# toward the man, and then the man left the house.
 
 ##### 2022-10-7
 M
@@ -320,21 +263,55 @@ TZNN
 #### 2022-11-12
 Last #星期六# i came back to ShangHai, and when i arrived at ShangHaiNan station, a woman came toward me, and asked
 where i want to go, i said that i need to find a #宾馆#, then she took me to a street, and 4 or 5 #宾馆# #在街边#.
-I guess her job is to take passenger to the certain street and then the owner of #宾馆# pay money to her.
+I guess her job is to take passenger to this certain street and then the owner of #宾馆# pay money to her.
 I reject the first #宾馆# she recommanded, because the room is so small, only a small bed in the room, and the bed almost
-#占据了# the whole room, what's worse, the height of room is so #矮的#, not higher than 1.6 meter, i have to #弯着腰# to walk on the #走廊#, such room one hundred yuan one day, so i #果断# reject it.
+#占据了# the whole room, what's worse, the height of room is so #矮的#, not higher than 1.6 meter, i have to #弯着腰# to walk in the #走廊#, such room one hundred yuan one day, so i #果断# reject it.
 
-Then i found another #宾馆#, only #相隔# 10 meters, also 100 hundred yuan one day, here is the room.
-# TODO, pic of room.
+Then i found another #宾馆#, only #相隔# 10 meters, also 100 hundred yuan one day, but much better
 
-Today is the last day in the #宾馆#, i will leave it tomorrow, for today i #租了# a room， #相距# 2.5 km from here.
+↓ here is key of the room.
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG24.jpeg?raw=true" width="90%" />
+
+↓ door
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG25.jpeg?raw=true" width="90%" />
+
+
+Today is the last day in the #宾馆#, i will leave it tomorrow, because today i #租了# a room， #相距# 2.5 km from here.
 So, i took some photos to #纪念# these days.
-# TODO, pics of 宾馆
+
+↓ the street where bunch of hostels located at.
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG11.jpeg?raw=true" width="90%" />
+
+↓ the gate of the hostel
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG10.jpeg?raw=true" width="90%" />
+
+↓ there #竟然# has a layer between #1楼# and #2楼#, many small rooms in this layer. when i passed by the entrance, i #闻到了一股恶臭#
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG16.jpeg?raw=true" width="90%" />
+
+↓ you may will wonder that how the rooms exchange air, the answer is this small hole.
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG9.jpeg?raw=true" width="90%" />
+
+↓ view of this entrance from higher
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG27.jpeg?raw=true" width="90%" />
+
+↓ another layer entrance, we can see details from it. the layer is no more than 1.3 meter i guess, from here i also #闻到一股恶臭#
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG17.jpeg?raw=true" width="90%" />
+
+↓ a small door of small room
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG19.jpeg?raw=true" width="90%" />
+
+↓ some rooms have to by help of #梯子# 
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG8.jpeg?raw=true" width="90%" />
+
+↓ #梯子# 2
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG7.jpeg?raw=true" width="90%" />
+
+↓ #梯子# 3
+<img src="https://github.com/zhongpengqun/material/blob/master/WechatIMG6.jpeg?raw=true" width="90%" />
 
 
 ##### 2022-11-25
 朱梅小区
-奈津子
 
 ##### 2022-12-5
 朱梅小区
@@ -342,8 +319,77 @@ So, i took some photos to #纪念# these days.
 ##### 2022-12-15
 朱梅小区
 
-##### 2022-12-18
-XinYu
+##### 2022-12-18   Tobacco smoking
+Location: XinYu
+
+
+<img src="https://github.com/zhongpengqun/material/blob/master/Photo%20on%202022-12-18%20at%2011.38%20AM.jpg?raw=true" width="90%" />
+
+#前几天# i bought a pocket of #烟丝# #在上海# from a shop.
+
+It was made in #丹麦#, from #包装纸#, we know its' taste is original, but in fact, when i #闻#, it #散发# a strong chemical #气味#, #算不上# #难闻#
+
+<img src="https://github.com/zhongpengqun/material/blob/master/Photo%20on%202022-12-18%20at%2011.39%20AM.jpg?raw=true" width="90%" />
+
+Smoking kills, it's harmful to our health, it may #导致# a baby #畸形#.
+
+<img src="https://github.com/zhongpengqun/material/blob/master/Photo%20on%202022-12-18%20at%2011.40%20AM.jpg?raw=true" width="90%" />
+
+This is paper to roll the tobacco in it, very #薄#, at the end of it, has a #一条# #很窄# #胶#, it will be #粘粘的# when #遇到# water.
+
+
+<img src="https://github.com/zhongpengqun/material/blob/master/Photo%20on%202022-12-18%20at%2011.41%20AM%20%232.jpg?raw=true" width="90%" />
+
+Put the tobacco on the paper, then roll the paper
+
+
+<img src="https://github.com/zhongpengqun/material/blob/master/Photo%20on%202022-12-18%20at%2011.44%20AM.jpg?raw=true" width="90%" />
+
+At last, #沾上# your #口水# to close the paper, now you can enjoy it.
+
+
+<img src="https://github.com/zhongpengqun/material/blob/master/Photo%20on%202022-12-18%20at%2011.47%20AM.jpg?raw=true" width="90%" />
+
+In the #温和的# #阳光#, smoke mixed with air #被卷入# my mouth, and then #吐出# into air.
+
+Smoke around with me, i seems like a #法师#, right?
+
+<img src="https://github.com/zhongpengqun/material/blob/master/Photo%20on%202022-12-18%20at%2011.52%20AM.jpg?raw=true" width="90%" />
+
+About 3 minutes later, it almost #耗尽了#.
+
+I'm wonderring who is the frist man that found tobacco, genius!
+
+##### Covid experience.
+I can't exactly remember when i #染上了新冠#, about 15th december.
+The symptom was headache and #全身酸痛#, #嗜睡#, even slept 18 hours that day, everytime i started to work, but started to sleep, especially when turn on
+the #电热取暖器#.
+
+##### 2022-1-7   YiChun
+
+
+##### 2022-1-10
+Today 李泉(Li Quan) will come to XinYu City from 分宜(FenYi) county, with his wife、 his daughter、 and 3 girls who are his wife's friends.
+One of girls which has a #帽子# is the girl Li Quan would introduce to me, you know, intend to be as girlfriend.
+They arriveled to XinYu at 12:00, but at that moment, i was in a online meeting, so i got late to meet with them.
+
+I met LiQuan at about 12:10 at #民俗# #风情# street. Then i met his wife, daughter, and 3 girls, the girl who #戴着帽子# let's name her as 'Qin'.
+Qin had a #棕色的# #帽子# as well as her clothes, her clothes is long, almost at her #脚踝#.
+Qin has a long hair, lied on her shoulder, she #化了妆#, but was #浅的#, her eyes looks shy but #坚定的#.
+
+LiQuan's daughter is very cute, #两岁半#, her #睫毛# is so long and bold, #胖乎乎的# face let people #忍不住# to #捏几下#.
+
+We found a #餐馆# and #点了6个菜#, during the lunch, i have never talked with Qin, because any topic seems is #刻意的# 
+But we all had a pleasure lunch and we all talked with pleasure.
+
+After lunch, 3 girls wanted to #逛商场#, for them, it's a #难得的# chance, because they came to XinYu rarely.
+Then we 6 came to HengTaiCheng market, LiQuan complained it's very tired and boring to accompany girls to #逛街#, because girls will tried every shop 
+and not buy any util all shop are tried, but fortunely, 3 girls are not such kind. we ended at about 4 PM. #本来# 2 PM i have a zoom meeting, but 
+i #请了个假#.
+
+Then LiQuan's wife drived her car to prepare to go back home, but #送我回家# firstly.
+
+Got back home, i start to work, and LiQuan's wife give Qin's phone to me.
 
 
 

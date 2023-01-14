@@ -15,12 +15,15 @@ layout: default
 
 ### About this site
   - [Journals](./journals.html)
+  - [Psychology](./psychology.html)
   - [introduction](./about-this-site.html)
 
 
 
 ### Todo read
 - [Alan Watts](./alan-watts.html)
+- [Xu LiZhi](./xulizhi.html)
+- [The communist manifesto](./the-communist-manifesto.html)
 
 - 
 https://medium.com/noontide/nietzsche-the-wanderer-d8e12fa64067
@@ -79,3 +82,45 @@ https://www.bilibili.com/video/BV1WW4y1t7wt/?spm_id_from=333.337.search-card.all
 
 厚大 劳动法 鄢梦萱
 https://www.bilibili.com/video/BV1oK4y1t72x/?p=2&spm_id_from=pageDriver&vd_source=f209dde1a1d76e06b060a034f36bb756
+
+富士康诗人为何选择跳楼？许立志《新的一天》血泪和死亡铸成亿万打工人的诗！ ｜江湖举人
+https://www.youtube.com/watch?v=7Uyztcsv83I
+
+50 Advanced Adjectives to Describe Emotions | English vocabulary
+https://www.youtube.com/watch?v=7PJU92nr0mI
+
+赣锋锂业宣传片
+https://www.youtube.com/watch?v=ZVjycRImdME
+
+Alan Watts - A Short Biography
+https://www.youtube.com/watch?v=oYMp2SWszts
+
+Allen Iverson on the Dan Patrick Show Full Interview | 04/28/22
+https://www.youtube.com/watch?v=cm9dpfeOed4
+
+Parapsychology in China with Simon Duan
+https://www.youtube.com/watch?v=u3CJVyNz4ro
+
+What is Copyleft?
+https://www.youtube.com/watch?v=UkUoTWSyHks
+
+Automate your web deployments with fabric
+https://www.youtube.com/watch?v=ZpZkKbZwPoA
+
+CAP原理: 取舍的艺术
+https://www.bilibili.com/video/BV1Th41187yc/?spm_id_from=333.788.recommend_more_video.-1
+
+How to Use MailHog to Test Emails Locally (Step-by-Step Guide)
+https://www.youtube.com/watch?v=yozMCBg2sBk
+
+I Bought the MOST Expensive V Twin Motorcycle on Amazon
+https://www.youtube.com/watch?v=mSzk5iz726E
+
+
+## TODO
+- Mailhog demo
+- Splunk demo
+
+curl "https://139.196.39.92:8088/services/collector" \
+    -H "Authorization: Splunk C8D04ABF-AE0A-4FEB-935C-9F0751FEA816" \
+    -d '{"event": "Hello, vzhong!", "sourcetype": "manual"}'

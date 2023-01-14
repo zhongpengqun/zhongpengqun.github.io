@@ -44,6 +44,11 @@ description: Introduction about this site and me.
     docker run -d xxx
     ```
 
+- Dockerfile
+    - USER
+    - ARG
+    - ENTRYPOINT
+
 ```shell
 $ systemctl restart docker
 ==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
@@ -66,6 +71,7 @@ https://blog.51cto.com/u_15162069/2743910
     - ClusterIp (Default)
     - NodePort
     - 
+  - restart: unless-stopped
 
 - Dockerfile
   - VOLUME
@@ -275,6 +281,7 @@ https://www.chenshaowen.com/blog/how-to-cross-the-limit-of-dockerhub.html
 - CRD
 https://www.youtube.com/watch?v=u1X5Rf7fWwM
 - controller
+- kind: LimitRange
 
 
 ## Concourse
@@ -291,8 +298,14 @@ https://www.youtube.com/watch?v=u1X5Rf7fWwM
 ## Make
 - make -p
 - make --dry-run
+- =,:=,?=
+- .PHONY
+- firstword， wildcard, patsubst
+- include
 
 ## Helm
+- Install Helm
+    - 
 - Charts & release
 - https://artifacthub.io/
 
@@ -412,12 +425,13 @@ https://tox.wiki/en/latest/
 todo
 - transition
 
-### Gitlab
+### Gitlab & Git
 - gitlab runner
 - executor
 - tag
 - registry
-
+- Git
+    - git submodule [Chinese: https://www.youtube.com/watch?v=jhl7ruTPV-o]
 
 ## skaffold
 https://skaffold.dev
@@ -455,6 +469,7 @@ https://unix.stackexchange.com/questions/47330/what-exactly-are-linux-kernel-hea
 - $(1) means ?
 - What does colon do in path ?
 - eval
+- chmod u+x
 
 ### My life and experiences
 - Don't integrate other team API which is still on beta, not upgraded on production.
@@ -622,6 +637,10 @@ curl --unix-socket /var/run/docker.sock http://localhost/version
 install docker on ubuntu
 ```shell
 apt-get install docker.io
+```
+
+```shell
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
 ```
 
 Crash & Crush
@@ -827,6 +846,10 @@ app             = BUNDLE(executable,
     - https://www.youtube.com/watch?v=m95GiTF0zd0
     - https://www.youtube.com/watch?v=bO_-fv6e7u4
     - https://medium.com/airwalk/log-aggregation-in-kubernetes-and-transporting-logs-to-splunk-for-analysis-ad8599607372
+    - https://cloud.google.com/architecture/logging-anthos-with-splunk-connect?hl=zh-cn
+    - k8s logs
+        - objects
+        - metrics
 
 
 setup a splunk server:
@@ -837,6 +860,16 @@ docker run --name splunk -p 8000:8000 -p 8088:8088 -d outcoldman/splunk:6.3.3
 docker run --name hello --log-driver=splunk --log-opt splunk-token=022F1FCE-B904-4E0E-B0A1-EB4492F61B9D --log-opt splunk-url=http://139.196.39.92:8088 --log-opt splunk-sourcetype=Docker rickfast/hello-oreilly
 
 docker run --name hello --log-driver=splunk --log-opt splunk-token=1620a639-5064-43dc-8d81-72ae38ec639b --log-opt splunk-url=http://10.79.128.59:8088 --log-opt splunk-sourcetype=Docker rickfast/hello-oreilly
+
+minikube start --nodes 4 --extra-config=kubeadm.ignore-preflight-errors=NumCPU --force --cpus 1
+```
+
+
+
+
+
+```shell
+curl -k https://139.196.39.92:8088/services/collector/event -H "Authorization: Splunk C8D04ABF-AE0A-4FEB-935C-9F0751FEA816" -d '{"event": "hello world"}'
 ```
 
 splunk log success: https://www.youtube.com/watch?v=qROXrFGqWAU&t=11s
@@ -851,7 +884,55 @@ https://www.inmotionhosting.com/support/security/install-splunk/
 
 9ED0A79E-F7B8-43DC-B7A0-7B49AE7450B9
 
+```shell
+root@iZuf6bpc1lt9qlf2ma9p2lZ:~# helm install anthos-splunk -f values.yaml --namespace splunk-connect https://github.com/splunk/splunk-connect-for-kubernetes/releases/download/1.4.1/splunk-connect-for-kubernetes-1.4.1.tgz
+
+Error: INSTALLATION FAILED: Get "https://github.com/splunk/splunk-connect-for-kubernetes/releases/download/1.4.1/splunk-connect-for-kubernetes-1.4.1.tgz": unexpected EOF
+```
+
 - [back](./)
 
 
 gcc - https://blog.csdn.net/lailaiquququ11/article/details/126691913
+
+
+```shell
+$ kubectl create namespace splunk-connect
+$ kubectl config set-context --current --namespace=splunk-connect
+$ 
+helm install anthos-splunk -f values.yaml --namespace splunk-connect https://github.com/splunk/splunk-connect-for-kubernetes/releases/download/1.4.1/splunk-connect-for-kubernetes-1.4.1.tgz
+```
+
+```shell
+Exiting due to RSRC_INSUFFICIENT_CORES: Requested cpu count 2 is greater than the available cpus of 1
+
+minikube start --nodes 4 --extra-config=kubeadm.ignore-preflight-errors=NumCPU --force --cpus 1
+```
+
+
+阿里云 1GB memeory, 1 cpu
+k3s失败, minikube 资源不足
+kind success
+
+- xrdb
+- 
+- build-essential
+
+### Fabric
+
+
+### Vmware
+- vSphere
+- vSan
+- esx, esxi, NFS, ISCSI 
+
+
+### Legal
+- Copyleft
+
+
+
+```shell
+# mhsendmail -h
+Segmentation fault
+```

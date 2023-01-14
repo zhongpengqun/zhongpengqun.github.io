@@ -28,7 +28,7 @@ description: Introduction about this site and me.
 - exists、existing、existed
 - succeed, success, successful, successfully
 
-
+- ??buy的过去式&bring的过去式??
 
 
 ## Confusions
@@ -51,7 +51,7 @@ dealt, gave, existentialism, apotheosis, adequate, authentic, glittering, alive,
 
 
 
-
+- GDPR compliance
 
 [back](./)
 

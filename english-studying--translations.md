@@ -15,6 +15,8 @@ description: Introduction about this site and me.
 - 老用户
 - 实验性功能
 - 适用于
+- 送个礼物给你
+- 平方米
 
 
 ### Encountered during work
@@ -50,6 +52,8 @@ has 4 host outages
 
 velocity
 
+revert
+
 as for
 
 VOS-3921-Add-an-arg-to-support-filter-scan-report-by-cvss-score
@@ -74,6 +78,8 @@ Everybody can help out with
 
 enrolled
 
+is not qualified
+
 start over
 
 Finally it appears that with our changes related to xxx, we have violated the following
@@ -93,6 +99,20 @@ provision
 Even though pipeline did not succeeded yet the FE e2e tests passed once
 
 seal
+
+exemplify
+
+pervasive
+
+pivotal
+
+conjunction
+
+Escalation Policy
+
+it will be provisioned upon manager approval
+
+consolidation
 
 infected
 
@@ -118,6 +138,8 @@ by means of
 该目录不存在
 
 interim
+
+respectively
 
 As of now
 
@@ -153,6 +175,10 @@ In order to deal with this situation
 in future & in the future
 
 other than
+
+left over
+
+Opaque
 
 Perforce, obsolete, deferring, intake
 
@@ -212,6 +238,32 @@ docker save & docker export
 
 from time to time
 
+embody
+
+inherent
+
+commitments
+
+comprehension
+
+Overly
+
+fitness
+
+engage in
+
+unrivaled
+
+The five tenets of engineering excellence in open source
+
+Pitfalls/Gotchas
+
+estate
+
+onboarding, landing
+
+embody the ethos
+
 at once
 
 as per
@@ -251,6 +303,10 @@ dismiss
 at ease
 
 go over
+
+Phantom
+
+fancier
 
 over-provisioning
 
@@ -369,6 +425,8 @@ by now
 
 imperative mood
 
+adhere
+
 proprietary
 
 filtering criteria
@@ -454,7 +512,15 @@ get missing   找不到
 
 negotiation
 
+any other variant of Linux
+
+request an exception
+
 Summit
+
+corp
+
+in Place
 
 could be that 可能是这样(不是'可以是这样')
 
@@ -467,6 +533,8 @@ Intermittent    断断续续的；间歇的
 discrepancy  n  差异;不符合;不一致
 
 right-most
+
+I'm applying to re-join xxx
 
 Once you get a chance please keep us posted
 
@@ -503,6 +571,12 @@ advocate
 Content-Disposition
 
 revision
+
+inadvertent
+
+trim
+
+Fostering Inclusive Communities
 
 all XXX originated tickets
 
@@ -749,8 +823,6 @@ passive
 
 on-premise
 
-consolidation
-
 All preliminary checks passed.
 
 All installed files intact.
@@ -763,7 +835,19 @@ Any new PVCs have been failing to get provisioned but the existing ones will con
 
 Going forward
 
+comprehensive
+
 submission
+
+Uncheck 取消勾选
+
+play around
+
+reservation
+
+Templates are stored on a dedicated CI server
+
+slightly more involved
 
 We would like to discuss our progress and get some clarification on the best way to proceed
 
@@ -793,6 +877,24 @@ in favor of
 
 synonym
 
+Miscellaneous
+
+instantiate
+
+Deterministic
+
+Admission
+
+courtesy service
+
+peripheral tools
+
+testbed
+
+cheatsheet
+
+as of today
+
 obscurely
 
 mitigations
@@ -806,6 +908,24 @@ Do you by any chance have any idea about this method?  -- by any chance
 proceed with
 
 moderator
+
+chargeback
+
+catastrophe 垮塌四周飞
+
+Originating BU
+
+where docker-compose.yaml resides
+
+liability
+
+free of charge
+
+implications
+
+Orchestration
+
+accompanying slides
 
 Looks like this targets xxx functionality
 

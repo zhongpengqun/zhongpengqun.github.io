@@ -1,7 +1,11 @@
 ---
 layout: default
 ---
-https://www.organism.earth/library/document/eastern-wisdom-1
+<a href="https://www.organism.earth/library/document/eastern-wisdom-1">出处</a>
+
+中文为机器翻译
+
+<br>
 
 It was as a result of looking at paintings like this that I first became interested in Eastern philosophy. That was many years ago, when I was a boy only about fourteen years old. And the thing that grasped me and excited me about this vision of the world was the astonishing sympathy and feeling for the world of nature. Think, for example, of a painting like this, which is called Mountain After Rain: a painting by the Chinese artist Gao Kegong showing the mist and clouds drifting away after a wet night of pouring rain. And it’s fascinating for us to think that pictures of this kind are not what we would call just landscape paintings, they are also icons. That is to say, they are a religious and philosophical kind of painting. We are used to, of course—in thinking of iconographic or religious paintings—thinking of pictures of human figures; of angels and saints and divine beings. But when the mind of the Chinese expresses its religious feelings, it expresses it in the objects of nature.
 
