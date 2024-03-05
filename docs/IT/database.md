@@ -35,3 +35,19 @@ HAVING
 - pgadmin connect db container
 
 - WAL file
+
+
+- select * from user where name like '%vincent';
+- select * from user where name like '*vincent';
+    - 区别: https://blog.csdn.net/c_base_jin/article/details/74360242
+
+
+## SQLite
+- sqlite 中 varchar 的最大长度是多少 ？如果不指定长度，默认的是多少？
+- 客户端软件
+    - https://www.sqliteviewer.com/
+    - https://dbeaver.io/
+
+
+- data modeling tools
+    - https://erd.dbdesigner.net/designer/schema/guest_template

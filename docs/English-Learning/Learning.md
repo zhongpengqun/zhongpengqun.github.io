@@ -1780,61 +1780,9 @@ This was in reference to the ongoing and violent dispute between Azerbaijan and 
 - 何时用 validate ？如何准确地使用 validate ？
 
 
-
-### 程序输出
-```
-sudo snap install helm
-[sudo] password for zhong: 
-error: This revision of snap "helm" was published using classic confinement and
-       thus may perform arbitrary system changes outside of the security
-       sandbox that snaps are usually confined to, which may put your system at
-       risk.
-
-       If you understand and want to proceed repeat the command including
-       --classic.
-```
-```shell
-# Copyright (C) 2011-2012 Yaco Sistemas <lgs@yaco.es>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#            http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-```
-```
-This will upgrade your computer the latest version of macOS. It will quit out of all open applications. Please make sure to save your documents and data before proceeding. This installation will restart your computer and may take up to an hour to complete. If you have questions and/or concerns, please contact Oasis for support. 
-
-You have 7 deferrals remaining before the upgrade will automatically commence
-```
-```
-hint: Pulling without specifying how to reconcile divergent branches is
-hint: discouraged. You can squelch this message by running one of the following
-hint: commands sometime before your next pull:
-hint:
-hint:   git config pull.rebase false  # merge (the default strategy)
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint:
-hint: You can replace "git config" with "git config --global" to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
-```
-```
-$ sudo snap install helm
-[sudo] password for vzhong:
-error: This revision of snap "helm" was published using classic confinement and thus may perform
-       arbitrary system changes outside of the security sandbox that snaps are usually confined to,
-       which may put your system at risk.
-       If you understand and want to proceed repeat the command including --classic.
-```
-
-
-
+- TL;DR
+Too Long; Didn't Read的简写，一般用在比较长篇幅的内容前面，后面跟着一段内容的简短总结。主要作用就是告诉读者，这篇内容篇幅比较长，如果不想深入探讨或时间有限，可以看总结。例如这样：
+tl;dr
+* 总结1
+* 总结2
+这里是主体内容，此处省略31415926个字...

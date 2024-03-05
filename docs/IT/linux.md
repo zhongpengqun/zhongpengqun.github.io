@@ -480,3 +480,25 @@ deb-src: 源代码
 - 查看端口是否open
 	- $ echo > /dev/tcp/192.168.1.7/12001 && echo "Port is open"
 	- 打开一个端口
+
+
+- source.list VS sources.list VS sources.listd
+
+
+- arm64/ VS armhf/
+
+
+
+ubuntu@ubuntu:~$ df -h
+文件系统        容量  已用  可用 已用% 挂载点
+...
+/dev/sda1        58G  256K   58G    1% /media/ubuntu/KINGSTON
+
+
+
+- systemctl daemon-reload
+	- `命令并不会重新启动任何服务。它仅用于加载配置文件`
+
+- sysctl user.max_user_namespaces=28633
+	- `该参数限制用户所拥有的 namespace 数量。在 Kubernetes 中，每个容器都需要自己的 namespace，因此请确保将此值设置足够高以满足您的集群需求`
+

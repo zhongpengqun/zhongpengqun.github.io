@@ -525,3 +525,7 @@ ensure CRDs are installed first
 
 - Back-off pulling image
   - 意味着无法拉取所需的容器镜像
+
+- kuboard
+  - https://kuboard.cn/learning/
+    - https://demo.kuboard.cn/kubernetes/kuboard-demo/namespace/default

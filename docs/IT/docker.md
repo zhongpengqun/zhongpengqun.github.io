@@ -49,9 +49,15 @@
     - COPY --chown
     - RUN & CMD & ENTRYPOINT
         - RUN executes commands and creates new image layers
-        - CMD命令是当Docker镜像被启动后Docker容器将会默认执行的命令。一个Dockerfile仅仅最后一个CMD起作用
+            - RUN 经常用于安装软件包
+        - CMD命令是当Docker镜像被启动后Docker容器将会默认执行的命令。
             - However CMD can be replaced by docker run command line parameters.
+            - Dockerfile中只有一条CMD指定，如果列出多个，只有最后一个CMD才会生效
         - ENTRYPOINT configures the command to run when the container starts, similar to CMD from a functionality perspective
+            - 只有一条ENTRYPOINT指定，如果列出多个，只有最后一个生效
+            - dockerfile中ENTRYPOINT ["ls"]， 如果docker run entrypoint-demo:latest -alh，则执行 ls -alh
+                - 但是如果是 CMD ["ls"]， 则 docker run entrypoint-demo:latest -alh 会报错
+                - 同时提供 ENTRYPOINT ["ls"]，CMD ["-alh"]，会执行 ls -alh, 但是此时我们run的时候可以用参数覆盖CMD的
     - `$PATH`
     - `ENV PYTHONIOENCODING UTF-8`
 
@@ -415,6 +421,7 @@ sudo apt install gnupg2 pass
         ```
         docker run -d -p 15000:5000 --restart=always --name registry -v $(pwd)/docker-registry:/var/lib/registry registry:latest
 
+        // docker安装后默认没有daemon.json这个配置文件，需要进行手动创建.
         $ cat /etc/docker/daemon.json
         {
             "insecure-registries":[
@@ -484,6 +491,8 @@ Sending build context to Docker daemon  175.5MB
 
     Reason: source is not sh built-in cmd, it's bash built-in cmd.
     ```
+- `If the WORKDIR doesn’t exist, it will be created even if it’s not used in any subsequent Dockerfile instruction`
+- `you should use WORKDIR instead of proliferating instructions like RUN cd … && do-something, which are hard to read, troubleshoot, and maintain.`
 
 - docker run --rm
 ```
@@ -541,6 +550,8 @@ c3a63f84aaa5   public.ecr.aws/y5z1i2v3/zhongpengqun:postgres9.6                 
 
 - `a local docker registry`
     - https://www.allisonthackston.com/articles/local-docker-registry
+    - docker-registry
+        - Docker私服，是存放镜像的本地仓库，类似于docker hub。私服是本地的仓库，用于保存公司内部上传的Docker镜像。
 
 - docker network connect
     - `Connects a container to a network. You can connect a container by name or by ID. Once connected, the container can communicate with other containers in the same network.`
@@ -558,3 +569,30 @@ E: Unable to lock directory /var/lib/apt/lists/
 -------
 
 ```
+
+- --docker-server
+
+
+- docker/overlay2
+
+
+
+
+$ /usr/bin/dockerd --graph=/media/ubuntu/KINGSTON/docker/lib/docker
+unable to configure the Docker daemon with file /etc/docker/daemon.json: EOF
+    - /etc/docker/daemon.json is not valid json
+
+
+```
+$ sudo /usr/bin/dockerd --graph=/media/ubuntu/KINGSTON/docker/lib/docker
+WARN[2024-03-01T10:53:28.167597399+08:00] The "-g / --graph" flag is deprecated. Please use "--data-root" instead
+INFO[2024-03-01T10:53:28.167776048+08:00] Starting up
+INFO[2024-03-01T10:53:28.175151306+08:00] detected 127.0.0.53 nameserver, assuming systemd-resolved, so using resolv.conf: /run/systemd/resolve/resolv.conf
+failed to start daemon: Unable to get the TempDir under /media/ubuntu/KINGSTON/docker/lib/docker: chown /media/ubuntu/KINGSTON/docker/lib/docker/tmp: operation not permitted
+
+
+```
+
+- export XDG_RUNTIME_DIR=/home/u/.docker/run
+    - 用于指定运行时文件的存储位置
+

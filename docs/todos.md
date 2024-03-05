@@ -1,6 +1,8 @@
 - 装孙子研究
     - 见人说人话，见鬼说鬼话
     - 人情世故
+      - 马爷教你高情商打招呼！学会这几种称谓方式，与人打好交道不成问题！生活顺风又顺水！#马未都 #观复嘟嘟
+        - https://www.youtube.com/watch?v=UwDaYpsjeoA
     - 碰到冤家怎么办？
 
 - 陶瓷制作
@@ -397,3 +399,8 @@ Mash 650cc Six Hundred Classic ★ Review & TestRide ★ - ENGLISH 💯✅
   - https://www.youtube.com/watch?v=BsBpwNHpo_A
 
 - 用Selenium, 按下快捷键来打开比如shell基本使用的文档
+
+- 爱企查
+  - https://aiqicha.baidu.com/
+
+- 经济学
