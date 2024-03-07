@@ -26,3 +26,39 @@ POST方法的参数形式
         - `Using the json parameter is the preferred way to send JSON data in a POST request because it’s more concise and Pythonic. It also automatically sets the Content-Type header to application/json, which is the recommended way to send JSON data in an HTTP POST request`
         - `The data parameter is an alternative way to send JSON data in a POST request using the requests library`
             - `The data parameter expects a byte string, which is why we convert the JSON string to a byte string using json.dumps().`
+
+JSON Schema (json-schema) 本身是一段 JSON 格式的数据，如下例所示
+```
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "name":  { "type": "string" },
+        "email": { "type": "string" },
+        "age": {
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": false
+        },
+        "telephone": {
+            "type": "string",
+            "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+        }
+    },
+    "required": ["name", "email"],
+    "additionalProperties": false
+}
+```
+下面就是一个符合上面 Schema 的 JSON 数据：
+```
+{
+    "name": "C语言中文网",
+    "email": "2758010091@qq.com",
+    "age": 18
+}
+```
+    - schema如何表示比如{"xx": [{"a": "b"}，{"11":"22"}]} 这种？
+    - "additionalProperties": false,
+        - `json串只能出现schema定义的属性`
+    - 在线转schema辅助工具：https://www.lddgo.net/string/generate-json-schema
+    

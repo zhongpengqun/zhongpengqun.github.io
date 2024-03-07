@@ -11,6 +11,10 @@ ls
 
 
 
+
+##### 浏览器安装 cross-request chrome 插件
+xxx
+
 ##### 全过程中我遇到的问题及解决方法
 1.
 ```
@@ -52,12 +56,12 @@ docker run -d \
    --net=yapi \
    -p 3000:3000 \
    -v /data/yapi/config.json:/yapi/config.json \
-   zhongyapi:latest \
+   zhongpengqun/yapi:latest \
    server/app.js
 ```
 
 
-<img src="../assets/blog/yapi-1.png" width="90%" />
+<img src="https://github.com/zhongpengqun/zhongpengqun.github.io/blob/main/docs/assets/blog/yapi-1.png?raw=true" width="100%" />
 
 ```
 验证结果
@@ -66,9 +70,9 @@ assert.notEqual(status, 404)
 assert.deepEqual(body, {"code": 0})
 Error: EROFS: read-only file system, mkdir '/sys/fs/cgroup/cpu/safeify'
 Error: EROFS: read-only file system, mkdir '/sys/fs/cgroup/cpu/safeify'
-
-    - https://blog.csdn.net/iaiti/article/details/125385365
 ```
+解决方法：
+<a href="https://blog.csdn.net/iaiti/article/details/125385365"> 参考文章 </a>
 
 备份 sandbox.js
 const Safeify = require('safeify').default;
@@ -89,3 +93,78 @@ module.exports = async function sandboxFn(context, script)
     safeVm.destroy()
     return result
 }
+
+
+
+
+
+
+------------
+3.  统一的权限控制和流量控制，降低开发成本
+
+
+
+
+
+@string
+@natural
+// "@float(0, 1000, 1, 3)", // 0-1000小数,1-3位小数位
+@float
+@character
+@boolean
+@url
+@domain
+@ip
+@id
+@guid
+@now
+@timestamp
+@date
+@time
+@datetime
+// "@image(200x200)", 图片和大小
+@image
+@color
+@hex
+@rgba
+@rgb
+@hsl
+// "phone|11": "@integer(0,9)", // 11个数字0-9间的数字
+// "cardNum": "@integer(10000)", //大于1000的正整数
+@integer
+@email
+@paragraph
+@sentence
+@word
+@cparagraph
+@ctitle
+@title
+@name
+@cname
+@cfirst
+@clast
+@first
+@last
+@csentence
+@cword
+@region
+@province
+@city
+@county
+@upper
+@lower
+@pick
+@shuffle
+@protocol
+
+
+"regexp": /[a-z][A-Z][0-9]/,   三个之间随机的一个数
+
+
+- 概念：测试集合
+
+- 开启json5
+    - `JSON5是对JSON的扩展，让人可以更容易手工编写和维护，用来减少一些JSON的限制，诸如json语法不支持注释，不支持字符串换行，所有的key都必须双引号，末尾不能有多余的逗号…等等，一大堆极其严格的要求和不支持的功能`
+
+
+- 注：Test 脚本只有做自动化测试才执行

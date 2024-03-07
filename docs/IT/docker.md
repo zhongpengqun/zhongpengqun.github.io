@@ -596,3 +596,8 @@ failed to start daemon: Unable to get the TempDir under /media/ubuntu/KINGSTON/d
 - export XDG_RUNTIME_DIR=/home/u/.docker/run
     - 用于指定运行时文件的存储位置
 
+```
+denied: requested access to the resource is denied
+-------
+对要上传的镜像打 Tag，docker tag
+```
