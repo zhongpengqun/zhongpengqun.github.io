@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Blog my cicd lab - 钟鹏群的博客</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Blog my cicd lab";
+        var mkdocs_page_input_path = "blog-my-cicd-lab.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 钟鹏群的博客
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../docs">docs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">钟鹏群的博客</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Blog my cicd lab</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h4 id="todo">TODO</h4>
+<ul>
+<li>写成docker-compose</li>
+</ul>
+<h4 id="run-a-k8s-cluster">Run a k8s cluster</h4>
+<p>First of all, have to start a k8s cluster, can use <code>minikube</code> to do it.</p>
+<ul>
+<li>Install minikube</li>
+</ul>
+<pre><code class="language-shell">$ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 &amp;&amp; chmod +x minikube
+$ sudo mv -v minikube /usr/local/bin
+$ minikube version
+</code></pre>
+<ul>
+<li>Install kubectl， https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/</li>
+</ul>
+<p>For me, ubuntu OS</p>
+<pre><code>snap install kubectl --classic
+kubectl version --client
+</code></pre>
+<p>Start cluster.</p>
+<pre><code>minikube start --nodes 2 --extra-config=kubeadm.ignore-preflight-errors=NumCPU --force --cpus 2 --kubernetes-version=v1.23.1 --memory=12000
+</code></pre>
+<h4 id="concourse">Concourse</h4>
+<p><code>docker-compose.yaml</code></p>
+<pre><code>version: '3'
+
+services:
+  concourse-db:
+    image: postgres
+    environment:
+      POSTGRES_DB: concourse
+      POSTGRES_PASSWORD: concourse_pass
+      POSTGRES_USER: concourse_user
+      PGDATA: /database
+
+  concourse:
+    image: concourse/concourse
+    command: quickstart
+    privileged: true
+    depends_on: [concourse-db]
+    ports: [&quot;8081:8080&quot;]
+    environment:
+      CONCOURSE_POSTGRES_HOST: concourse-db
+      CONCOURSE_POSTGRES_USER: concourse_user
+      CONCOURSE_POSTGRES_PASSWORD: concourse_pass
+      CONCOURSE_POSTGRES_DATABASE: concourse
+      #CONCOURSE_EXTERNAL_URL: http://localhost:8081
+      CONCOURSE_EXTERNAL_URL: http://121.40.207.10:8081
+      CONCOURSE_ADD_LOCAL_USER: test:test
+      CONCOURSE_MAIN_TEAM_LOCAL_USER: test
+      # instead of relying on the default &quot;detect&quot;
+      #CONCOURSE_WORKER_BAGGAGECLAIM_DRIVER: overlay
+      CONCOURSE_CLIENT_SECRET: Y29uY291cnNlLXdlYgo=
+      CONCOURSE_TSA_CLIENT_SECRET: Y29uY291cnNlLXdvcmtlcgo=
+      CONCOURSE_X_FRAME_OPTIONS: allow
+      CONCOURSE_CONTENT_SECURITY_POLICY: &quot;*&quot;
+      CONCOURSE_CLUSTER_NAME: tutorial
+      CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: &quot;8.8.8.8&quot;
+      CONCOURSE_WORKER_RUNTIME: &quot;containerd&quot;
+</code></pre>
+<p>Deploy it by cmd <code>docker-compose up -d</code></p>
+<p>username: <code>test</code>
+pwd: <code>test</code></p>
+<h4 id="gitlab">Gitlab</h4>
+<p>There are 2 ways to deploy a Gitlab, i tried, all succeed !</p>
+<p><strong>1.</strong></p>
+<pre><code>mkdir -p /home/gitlab/etc/gitlab    
+mkdir -p /home/gitlab/var/log
+mkdir -p /home/gitlab/var/opt
+
+docker run -d -h gitlab -p 443:443 -p 8090:80  -p 8022:22  --name gitlab  --restart  always   -v /root/data/gitlab/config:/etc/gitlab  -v /root/data/gitlab/logs:/var/log/gitlab -v  /root/data/gitlab/data:/var/opt/gitlab  public.ecr.aws/y5z1i2v3/zhongpengqun:gitlab-ce
+</code></pre>
+<p>PS: it will take minutes to finish starting, during these minutes, the gitlab dashboard will keep showing 502, so be patient.</p>
+<p>Username is <code>root</code>, and password is in <code>/etc/gitlab/initial_root_password</code>, you can run command:</p>
+<pre><code>docker exec -it $(docker ps |grep &quot;gitlab/gitlab-ce&quot; | awk '{ print $1 }') cat /etc/gitlab/initial_root_password
+</code></pre>
+<p>to get it.</p>
+<p>Next, we need to register a Runner to gitlab, GitLab Runner is the open source project that is used to run your jobs and send the results back to GitLab.</p>
+<p>Refer to: https://docs.gitlab.com/runner/install/docker.html#option-1-use-local-system-volume-mounts-to-start-the-runner-container</p>
+<p>Run Runner container</p>
+<pre><code>docker run -d --name gitlab-runner --restart always \
+  -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  gitlab/gitlab-runner:latest
+</code></pre>
+<p>Register runner to gitlab</p>
+<p><strong>2.</strong></p>
+<p>Refer to <code>https://www.czerniga.it/2021/11/14/how-to-install-gitlab-using-docker-compose/</code></p>
+<pre><code class="language-shell">mkdir gitlab
+export GITLAB_HOME=$(pwd)/gitlab
+
+cd gitlab
+
+vim docker-compose.yml
+-------------------------
+version: '3.7'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'localhost'
+    container_name: gitlab-ce
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost'
+    ports:
+      - '8080:80'
+      - '8443:443'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    networks:
+      - gitlab
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+    container_name: gitlab-runner    
+    restart: always
+    depends_on:
+      - web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - '$GITLAB_HOME/gitlab-runner:/etc/gitlab-runner'
+    networks:
+      - gitlab
+
+networks:
+  gitlab:
+    name: gitlab-network
+-------------------
+
+docker-compose up -d
+after about 2 minutes, when the pod startup successfully.
+then access login page, e.g http://10.79.128.59:8080/users/sign_in
+
+To get passwoed:
+docker exec -it gitlab-ce /bin/sh
+cat /etc/gitlab/initial_root_password
+
+
+------- Register Runner
+$ docker exec -it gitlab-runner gitlab-runner register --url &quot;http://gitlab-ce&quot; --clone-url &quot;http://gitlab-ce&quot;
+Runtime platform                                    arch=amd64 os=linux pid=16 revision=133d7e76 version=15.6.1
+WARNING: The 'register' command has been deprecated in GitLab Runner 15.6 and will be replaced with a 'deploy' command. For more information, see https://gitlab.com/gitlab-org/gitlab/-/issues/380872 
+Running in system-mode.                            
+
+Enter the GitLab instance URL (for example, https://gitlab.com/):
+[http://gitlab-ce]: http://10.79.128.59:8080
+Enter the registration token:
+Ju7NhyV59_a93mvxeUuc
+Enter a description for the runner:
+[a9e996f49f79]: gitlab-runner
+Enter tags for the runner (comma-separated):
+
+Enter optional maintenance note for the runner:
+
+Registering runner... succeeded                     runner=Ju7NhyV5
+Enter an executor: docker+machine, instance, kubernetes, custom, docker-ssh, parallels, virtualbox, docker-ssh+machine, docker, shell, ssh:
+docker
+Enter the default Docker image (for example, ruby:2.7):
+
+Enter the default Docker image (for example, ruby:2.7):
+maven: latest
+Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
+
+Configuration (with the authentication token) was saved in &quot;/etc/gitlab-runner/config.toml&quot; 
+
+↑ As we can see, config file(/etc/gitlab-runner/config.toml) has generated in runner container. let's check it
+
+/ # cat /etc/gitlab-runner/config.toml
+concurrent = 1
+check_interval = 0
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = &quot;gitlab-runner&quot;
+  url = &quot;http://10.79.128.59:8080&quot;
+  id = 1
+  token = &quot;A8tE7CQMxuMVLzRkqGGa&quot;
+  token_obtained_at = 2022-11-27T09:45:23Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = &quot;docker&quot;
+  clone_url = &quot;http://gitlab-ce&quot;
+  [runners.custom_build_dir]
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]
+  [runners.docker]
+    tls_verify = false
+    image = &quot;maven: latest&quot;
+    privileged = false
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = [&quot;/cache&quot;]
+    shm_size = 0
+</code></pre>
+<p>Example of file <code>.gitlab-ci.yml</code></p>
+<pre><code class="language-shell">image: maven:latest
+
+stages:
+  - build
+  - test
+
+build-job:
+  stage: build
+  script:
+    - echo &quot;Compiling the code...&quot;
+    - mvn clean package
+    - echo &quot;Compile complete.&quot;
+  artifacts:    # https://meigit.readthedocs.io/en/latest/gitlab_ci_.gitlab-ci.yml_detail.html#artifacts
+    paths:
+    - target   
+
+test-job:
+  stage: test
+  dependencies: 
+    - build-job  
+  script:
+    - ls -al
+    - echo &quot;Running tests&quot;
+    - java -cp target/helloworld-1.1.jar com.coveros.demo.helloworld.HelloWorld
+</code></pre>
+<h4 id="jfrog">JFrog</h4>
+<p>Use cloud trial edition, https://nonezhong.jfrog.io/ui/repos/tree/General/docker</p>
+<h4 id="concourse_1">Concourse</h4>
+<ul>
+<li>Installation</li>
+</ul>
+<h4 id="trigger-concourse-pipeline-when-commit-gitlab-mr-or-merge-request">Trigger Concourse Pipeline when Commit Gitlab MR or Merge Request.</h4>
+<p>xx</p>
+<h4 id="jenkins">Jenkins</h4>
+<ul>
+<li>Installation</li>
+</ul>
+<pre><code>docker run --name jenkins-blueocean --restart=on-failure --detach \
+  --env DOCKER_HOST=tcp://docker:2376 \
+  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 \
+  --publish 8082:8080 --publish 50000:50000 \
+  --volume jenkins-data:/var/jenkins_home \
+  --volume jenkins-docker-certs:/certs/client:ro \
+  public.ecr.aws/y5z1i2v3/zhongpengqun:jenkins-lts-jdk11
+</code></pre>
+<ul>
+<li>
+<p>admin zpq123456</p>
+</li>
+<li>
+<p>我的gitlab为什么没有network settings ？</p>
+</li>
+<li>直接 /admin 进入page</li>
+</ul>
+<h4 id="gitlabjenkins">Gitlab触发Jenkins</h4>
+<ul>
+<li>配置gitlab的webhook</li>
+<li>Gitlab配置Webhooks时Secret Token从Jenkins获取方法<ul>
+<li>https://blog.csdn.net/BUG_88/article/details/108365817</li>
+</ul>
+</li>
+</ul>
+<p><a href="./">back</a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

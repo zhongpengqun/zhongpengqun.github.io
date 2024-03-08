@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Blog daily - 钟鹏群的博客</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Blog daily";
+        var mkdocs_page_input_path = "blog-daily.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 钟鹏群的博客
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../docs">docs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">钟鹏群的博客</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Blog daily</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <pre><code class="language-shell">$ docker-compose up -d
+
+...
+ERROR: for nginx  Cannot start service nginx: driver failed programming external connectivity on endpoint hello_nginx_1 (769fdb4f19f704b9f838957b5601c7c54d7288ede933eff3d16a1ce72e74d096): Error starting userland proxy: listen tcp4 0.0.0.0:80: bind: address already in use
+ERROR: Encountered errors while bringing up the project
+</code></pre>
+<p>Port 80 has been #占用#, let's have a look which process is using it.</p>
+<pre><code class="language-shell">$ netstat -tunlp
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:9200            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:9300            0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:8088            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:15672           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:8025            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:8191            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:1025            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:5672            0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:34443         0.0.0.0:*               LISTEN      -
+tcp6       0      0 :::111                  :::*                    LISTEN      -
+tcp6       0      0 :::9200                 :::*                    LISTEN      -
+tcp6       0      0 :::80                   :::*                    LISTEN      -
+tcp6       0      0 :::9300                 :::*                    LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 :::8088                 :::*                    LISTEN      -
+tcp6       0      0 :::15672                :::*                    LISTEN      -
+tcp6       0      0 :::8025                 :::*                    LISTEN      -
+tcp6       0      0 :::1025                 :::*                    LISTEN      -
+tcp6       0      0 :::5672                 :::*                    LISTEN      -
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -
+udp        0      0 0.0.0.0:828             0.0.0.0:*                           -
+udp6       0      0 :::111                  :::*                                -
+udp6       0      0 :::828                  :::*
+</code></pre>
+<p>Field <code>PID/Program name</code> is blank, we should sudo execute cmd <code>netstat</code></p>
+<pre><code class="language-shell">$ sudo netstat -tunlp
+[sudo] password for vz:
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      652/rpcbind
+tcp        0      0 0.0.0.0:9200            0.0.0.0:*               LISTEN      3887994/docker-prox
+tcp        0      0 0.0.0.0:9300            0.0.0.0:*               LISTEN      3887918/docker-prox
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      751/systemd-resolve
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1081/sshd
+tcp        0      0 0.0.0.0:8088            0.0.0.0:*               LISTEN      3888818/docker-prox
+tcp        0      0 0.0.0.0:15672           0.0.0.0:*               LISTEN      3887898/docker-prox
+tcp        0      0 0.0.0.0:8025            0.0.0.0:*               LISTEN      3887874/docker-prox
+tcp        0      0 0.0.0.0:8191            0.0.0.0:*               LISTEN      18346/mongod
+tcp        0      0 0.0.0.0:1025            0.0.0.0:*               LISTEN      3887937/docker-prox
+tcp        0      0 0.0.0.0:5672            0.0.0.0:*               LISTEN      3887957/docker-prox
+tcp        0      0 127.0.0.1:34443         0.0.0.0:*               LISTEN      976/containerd
+tcp6       0      0 :::111                  :::*                    LISTEN      652/rpcbind
+tcp6       0      0 :::9200                 :::*                    LISTEN      3888007/docker-prox
+tcp6       0      0 :::80                   :::*                    LISTEN      3805375/apache2
+tcp6       0      0 :::9300                 :::*                    LISTEN      3887924/docker-prox
+tcp6       0      0 :::22                   :::*                    LISTEN      1081/sshd
+tcp6       0      0 :::8088                 :::*                    LISTEN      3888851/docker-prox
+tcp6       0      0 :::15672                :::*                    LISTEN      3887903/docker-prox
+tcp6       0      0 :::8025                 :::*                    LISTEN      3887881/docker-prox
+tcp6       0      0 :::1025                 :::*                    LISTEN      3887943/docker-prox
+tcp6       0      0 :::5672                 :::*                    LISTEN      3887963/docker-prox
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           751/systemd-resolve
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           652/rpcbind
+udp        0      0 0.0.0.0:828             0.0.0.0:*                           652/rpcbind
+udp6       0      0 :::111                  :::*                                652/rpcbind
+udp6       0      0 :::828                  :::*                                652/rpcbind
+</code></pre>
+<p>All right! Next stop apache2</p>
+<pre><code class="language-shell">sudo systemctl stop apache2
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

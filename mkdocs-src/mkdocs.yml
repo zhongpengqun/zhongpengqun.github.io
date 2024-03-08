@@ -1,0 +1,22 @@
+site_name: 钟鹏群的博客
+theme: readthedocs
+
+site_dir:  ../docs
+
+nav:
+    - index: index.md
+    - minikube-on-raspberrypi.md: minikube-on-raspberrypi.md
+plugins:
+  - search
+  - include_dir_to_nav:
+        sort_file: true
+        sort_directory: true
+        reverse_sort_directory: true
+        flat: false
+  - categories:
+        generate_index: true
+        verbose: false
+        base_name: 'categories'
+        section_title: 'Categories'
+        no_nav: false
+        category_separator: '|'
