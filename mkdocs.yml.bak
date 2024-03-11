@@ -1,0 +1,21 @@
+site_name: My Docs
+theme: readthedocs
+
+site_dir:  docs2
+
+nav:
+    - docs: docs
+plugins:
+  - search
+  - include_dir_to_nav:
+        sort_file: true
+        sort_directory: true
+        reverse_sort_directory: true
+        flat: false
+  - categories:
+        generate_index: true
+        verbose: false
+        base_name: 'categories'
+        section_title: 'Categories'
+        no_nav: false
+        category_separator: '|'

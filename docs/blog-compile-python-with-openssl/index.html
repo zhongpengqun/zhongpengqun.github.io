@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Hello - 钟鹏群的博客</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Hello";
+        var mkdocs_page_input_path = "blog-compile-python-with-openssl.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 钟鹏群的博客
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../docs">docs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">钟鹏群的博客</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Hello</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p>This blog is a tutorial of how to compile <code>python 3.10.6</code> with <code>openssl 3.0.5</code> module on <code>Ubuntu 18.04</code> and <code>mac os</code>.</p>
+<h3 id="questions">Questions</h3>
+<ul>
+<li>Python默认是没装ssl的吗？</li>
+</ul>
+<h3 id="on-ubuntu-1804">↓ On Ubuntu 18.04</h3>
+<p>Steps:</p>
+<ul>
+<li><a href="#prepare">Prepare ubuntu container</a></li>
+<li><a href="#openssl">Compile openssl</a></li>
+<li><a href="#python">Compile python</a></li>
+</ul>
+<p>Further:
+- <a href="#issues">Issues encountered in the process</a>
+- <a href="#references">References</a></p>
+<h3 id="on-mac-os">↓ On Mac OS</h3>
+<p>Steps:</p>
+<ul>
+<li><a href="#prepare_mac">Prepare Mac OS</a></li>
+<li><a href="#openssl">Compile openssl</a></li>
+<li><a href="#python">Compile python</a></li>
+</ul>
+<p>Further:
+- <a href="#mac_references">References</a></p>
+<h3 id="on-centos58">↓ On Centos5.8</h3>
+<p>Steps:</p>
+<h1 id="todo">todo</h1>
+<h3 id="on-macos-ei-capitan">↓ On Macos EI Capitan</h3>
+<h1 id="todo_1">todo</h1>
+<h2 id="run-ubuntu-container-and-install-required-packages"><a name='prepare'>Run Ubuntu container and install required packages</a></h2>
+<p>I will demo it in Ubuntu docker container.</p>
+<p>So first of all, run a ubuntu container there is no python installed.</p>
+<pre><code class="language-shell">docker run -it ubuntu:bionic /bin/bash
+</code></pre>
+<p>As you can see, python is not installed</p>
+<pre><code class="language-shell">$ python
+bash: python: command not found
+
+$ python3
+bash: python3: command not found
+</code></pre>
+<p>↓ OS info</p>
+<pre><code class="language-shell">$ cat /etc/os-release
+NAME=&quot;Ubuntu&quot;
+VERSION=&quot;18.04.6 LTS (Bionic Beaver)&quot;
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME=&quot;Ubuntu 18.04.6 LTS&quot;
+VERSION_ID=&quot;18.04&quot;
+HOME_URL=&quot;https://www.ubuntu.com/&quot;
+SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
+BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
+PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+VERSION_CODENAME=bionic
+UBUNTU_CODENAME=bionic
+</code></pre>
+<h4 id="install-packages">Install packages</h4>
+<p>Below packages are required for compilation, otherwise will raise various errors during process.</p>
+<pre><code class="language-shell">apt-get update
+apt-get install vim -y
+
+$ vim install-pkgs.sh
+
+#!/bin/sh
+apt-get install wget -y
+apt-get install make -y
+apt-get install perl -y
+apt-get install gcc -y
+apt-get install make -y
+apt-get install tcl-dev -y
+apt-get install tk-dev -y
+apt-get install tk -y
+apt-get install libffi-dev -y
+apt-get install libreadline-dev -y
+apt-get install readline-devel -y
+apt-get install libbz2-dev -y
+apt-get install python3-tk -y
+apt-get install libgdbm-dev -y
+apt-get install libncurses* -y
+apt-get install libgdbm-compat-dev -y
+apt-get install libreadline6-dev -y
+apt-get install uuid-dev -y
+apt-get install lzma-dev -y
+apt-get install liblzma-dev -y
+</code></pre>
+<p>Install packages</p>
+<pre><code class="language-shell">chmod 777 install-pkgs.sh
+./install-pkgs.sh
+</code></pre>
+<h4 id="compile-sqlite-beforehand">Compile sqlite beforehand</h4>
+<pre><code class="language-shell">wget https://www.sqlite.org/2018/sqlite-autoconf-3240000.tar.gz
+tar -xvzf sqlite-autoconf-3240000.tar.gz
+cd sqlite-autoconf-3240000
+./configure
+make 
+make install
+</code></pre>
+<p>if not compile sqlite, will get below issue when compile python.</p>
+<pre><code class="language-shell">
+The necessary bits to build these optional modules were not found:
+_sqlite3
+
+</code></pre>
+<h2 id="compile-openssl"><a name='openssl'>Compile openssl<a></h2>
+<h5 id="download-openssl"><a name='download_openssl'>Download openssl</a></h5>
+<p>Download latest openssl</p>
+<p>Go to github <a href="https://github.com/openssl/openssl/tags">openssl tags</a>, select the latest openssl version.</p>
+<pre><code class="language-shell">wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+tar -xvzf openssl-3.0.5.tar.gz
+</code></pre>
+<h5 id="config">Config</h5>
+<pre><code class="language-shell">mkdir /usr/local/openssl-3.0.5
+
+$ ./config --prefix=/usr/local/openssl-3.0.5 --openssldir=/usr/local/openssl-3.0.5
+Configuring OpenSSL version 3.0.5 for target linux-x86_64
+Using os-specific seed configuration
+Created configdata.pm
+Running configdata.pm
+Created Makefile.in
+Created Makefile
+Created include/openssl/configuration.h
+
+**********************************************************************
+***                                                                ***
+***   OpenSSL has been successfully configured                     ***
+***                                                                ***
+***   If you encounter a problem while building, please open an    ***
+***   issue on GitHub &lt;https://github.com/openssl/openssl/issues&gt;  ***
+***   and include the output from the following command:           ***
+***                                                                ***
+***       perl configdata.pm --dump                                ***
+***                                                                ***
+***   (If you are new to OpenSSL, you might want to consult the    ***
+***   'Troubleshooting' section in the INSTALL.md file first)      ***
+***                                                                ***
+**********************************************************************
+</code></pre>
+<p>config successfully</p>
+<h5 id="make-install">Make &amp; install</h5>
+<p>It will take several minutes</p>
+<pre><code class="language-shell">make
+
+------------ log ---------------
+...
+/usr/bin/perl &quot;-I.&quot; -Mconfigdata &quot;util/dofile.pl&quot; \
+    &quot;-oMakefile&quot; util/shlib_wrap.sh.in &gt; &quot;util/shlib_wrap.sh&quot;
+chmod a+x util/shlib_wrap.sh
+rm -f &quot;util/wrap.pl&quot;
+/usr/bin/perl &quot;-I.&quot; -Mconfigdata &quot;util/dofile.pl&quot; \
+    &quot;-oMakefile&quot; util/wrap.pl.in &gt; &quot;util/wrap.pl&quot;
+chmod a+x util/wrap.pl
+make[1]: Leaving directory '/home/openssl-openssl-3.0.5'
+</code></pre>
+<pre><code class="language-shell">make install
+
+------------- log --------------
+...
+install doc/html/man7/provider-signature.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/provider-signature.html
+install doc/html/man7/provider-storemgmt.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/provider-storemgmt.html
+install doc/html/man7/provider.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/provider.html
+install doc/html/man7/proxy-certificates.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/proxy-certificates.html
+install doc/html/man7/ssl.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/ssl.html
+install doc/html/man7/x509.html -&gt; /usr/local/openssl-3.0.5/share/doc/openssl/html/man7/x509.html
+</code></pre>
+<p>When installation done, you will find these compiled files under <code>/usr/local/openssl-3.0.5</code>, for you config it as <code>--prefix</code></p>
+<pre><code class="language-shell">ls /usr/local/openssl-3.0.5
+
+bin  certs  ct_log_list.cnf  ct_log_list.cnf.dist  include  lib64  misc  openssl.cnf  openssl.cnf.dist  private  share
+</code></pre>
+<h2 id="compile-python"><a name='python'>Compile Python</a></h2>
+<h5 id="download-latest-python">Download latest python</h5>
+<pre><code class="language-shell">wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+tar -xvzf Python-3.10.6.tgz
+cd Python-3.10.6
+</code></pre>
+<h5 id="edit-setup">Edit Setup</h5>
+<p>edit <code>Modules/Setup</code>, some python version might be <code>Modules/Setup.dist</code>, but this version, this is <code>Modules/Setup</code></p>
+<pre><code class="language-shell">vim Modules/Setup
+
+</code></pre>
+<p>Below is what i changed, at about line 207</p>
+<pre><code class="language-shell">_socket socketmodule.c
+
+# Socket module helper for SSL support; you must comment out the other
+# socket line above, and edit the OPENSSL variable:
+OPENSSL=/usr/local/openssl-3.0.5
+# _ssl _ssl.c \
+#     -I$(OPENSSL)/include -L$(OPENSSL)/lib \
+#     -lssl -lcrypto
+#_hashlib _hashopenssl.c \
+#     -I$(OPENSSL)/include -L$(OPENSSL)/lib \
+#     -lcrypto
+
+# To statically link OpenSSL:
+_ssl _ssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -l:libssl.a -Wl,--exclude-libs,libssl.a \
+     -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+_hashlib _hashopenssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+</code></pre>
+<h5 id="config_1">Config</h5>
+<pre><code class="language-shell">export LD_RUN_PATH=/usr/local/openssl-3.0.5/lib64
+./configure --prefix=/usr/local/python-3.10.6-with-openssl-3.0.5 --with-openssl=/usr/local/openssl-3.0.5/ --enable-shared
+
+----------- log ------------
+...
+config.status: creating pyconfig.h
+creating Modules/Setup.local
+creating Makefile
+
+
+If you want a release build with all stable optimizations active (PGO, etc),
+please run ./configure --enable-optimizations
+</code></pre>
+<h5 id="install">Install</h5>
+<p>It will take several minutes</p>
+<pre><code class="language-shell">make
+
+-------------- log ------------
+...
+gcc -pthread -shared build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/cache.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/connection.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/cursor.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/microprotocols.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/module.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/prepare_protocol.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/row.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/statement.o build/temp.linux-x86_64-3.10/home/Python-3.10.6/Modules/_sqlite/util.o -L/usr/lib/x86_64-linux-gnu -L/usr/local/lib -lsqlite3 -o build/lib.linux-x86_64-3.10/_sqlite3.cpython-310-x86_64-linux-gnu.so
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket
+_ssl                  pwd                   time
+
+running build_scripts
+copying and adjusting /home/Python-3.10.6/Tools/scripts/pydoc3 -&gt; build/scripts-3.10
+copying and adjusting /home/Python-3.10.6/Tools/scripts/idle3 -&gt; build/scripts-3.10
+copying and adjusting /home/Python-3.10.6/Tools/scripts/2to3 -&gt; build/scripts-3.10
+changing mode of build/scripts-3.10/pydoc3 from 644 to 755
+changing mode of build/scripts-3.10/idle3 from 644 to 755
+changing mode of build/scripts-3.10/2to3 from 644 to 755
+renaming build/scripts-3.10/pydoc3 to build/scripts-3.10/pydoc3.10
+renaming build/scripts-3.10/idle3 to build/scripts-3.10/idle3.10
+renaming build/scripts-3.10/2to3 to build/scripts-3.10/2to3-3.10
+gcc -pthread     -Xlinker -export-dynamic -o Programs/_testembed Programs/_testembed.o libpython3.10.a -lcrypt -lpthread -ldl  -lutil -lm -L/usr/local/openssl/lib64 -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a  -L/usr/local/openssl/lib64 -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a   -lm
+sed -e &quot;s,@EXENAME@,/usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3.10,&quot; &lt; ./Misc/python-config.in &gt;python-config.py
+LC_ALL=C sed -e 's,\$(\([A-Za-z0-9_]*\)),\$\{\1\},g' &lt; Misc/python-config.sh &gt;python-config
+</code></pre>
+<p>make successfully!</p>
+<p>At last, install python.</p>
+<pre><code class="language-shell">make install
+
+--------------- log --------------
+...
+rm -f /usr/local/python-3.10.6-with-openssl-3.0.5/bin/2to3
+(cd /usr/local/python-3.10.6-with-openssl-3.0.5/bin; ln -s 2to3-3.10 2to3)
+if test &quot;x&quot; != &quot;x&quot; ; then \
+    rm -f /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3-32; \
+    (cd /usr/local/python-3.10.6-with-openssl-3.0.5/bin; ln -s python3.10-32 python3-32) \
+fi
+if test &quot;x&quot; != &quot;x&quot; ; then \
+    rm -f /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3-intel64; \
+    (cd /usr/local/python-3.10.6-with-openssl-3.0.5/bin; ln -s python3.10-intel64 python3-intel64) \
+fi
+rm -f /usr/local/python-3.10.6-with-openssl-3.0.5/share/man/man1/python3.1
+(cd /usr/local/python-3.10.6-with-openssl-3.0.5/share/man/man1; ln -s python3.10.1 python3.1)
+if test &quot;xupgrade&quot; != &quot;xno&quot;  ; then \
+    case upgrade in \
+        upgrade) ensurepip=&quot;--upgrade&quot; ;; \
+        install|*) ensurepip=&quot;&quot; ;; \
+    esac; \
+     ./python -E -m ensurepip \
+        $ensurepip --root=/ ; \
+fi
+Looking in links: /tmp/tmpetpcoecz
+Processing /tmp/tmpetpcoecz/setuptools-63.2.0-py3-none-any.whl
+Processing /tmp/tmpetpcoecz/pip-22.2.1-py3-none-any.whl
+Installing collected packages: setuptools, pip
+  WARNING: The scripts pip3 and pip3.10 are installed in '/usr/local/python-3.10.6-with-openssl-3.0.5/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed pip-22.2.1 setuptools-63.2.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+</code></pre>
+<p>Though the log is not perfect, but looks like has no impact on the result.</p>
+<pre><code class="language-shell">$ ls /usr/local/python-3.10.6-with-openssl-3.0.5/
+bin  include  lib  share
+</code></pre>
+<p>Validate python</p>
+<pre><code class="language-shell">root@41892223057e:~/Python-3.10.6# /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3 -v
+/usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3: error while loading shared libraries: libpython3.10.so.1.0: cannot open shared object file: No such file or directory
+</code></pre>
+<p>export LD_LIBRARY_PATH</p>
+<pre><code class="language-shell">export LD_LIBRARY_PATH=/usr/local/python-3.10.6-with-openssl-3.0.5/lib/
+</code></pre>
+<pre><code class="language-python">$ # /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3
+Python 3.10.6 (main, Oct  7 2022, 23:04:55) [GCC 7.5.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+&gt;&gt;&gt; import ssl
+&gt;&gt;&gt; ssl.OPENSSL_VERSION
+'OpenSSL 3.0.5 5 Jul 2022'
+&gt;&gt;&gt;
+</code></pre>
+<p>Python compiled successfully!!</p>
+<hr />
+<h2 id="issues-encountered"><a name='issues'>Issues encountered</a></h2>
+<h5 id="configured-incorrectly-in-modulesetup"><span style="color:Red">Configured incorrectly in Module/Setup</span></h5>
+<pre><code class="language-shell"># Socket module helper for SSL support; you must comment out the other
+# socket line above, and edit the OPENSSL variable:
+OPENSSL=/usr/local/openssl-3.0.5
+_ssl _ssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -lssl -lcrypto
+_hashlib _hashopenssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -lcrypto
+
+# To statically link OpenSSL:
+_ssl _ssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -l:libssl.a -Wl,--exclude-libs,libssl.a \
+     -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+_hashlib _hashopenssl.c \
+     -I$(OPENSSL)/include -L$(OPENSSL)/lib64 \
+     -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+</code></pre>
+<p>I guess the upper part ( line4 to line9 ) is for dynamic compiling, and lower part is for static compiling.
+So if comment out them simultaneously, will cause an error ( shown as below ) when compile python.</p>
+<pre><code class="language-shell">Modules/_ssl.o: In function `PyInit__ssl':
+/home/Python-3.10.6/./Modules/_ssl.c:6242: multiple definition of `PyInit__ssl'
+Modules/_ssl.o:/home/Python-3.10.6/./Modules/_ssl.c:6242: first defined here
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:1822: multiple definition of `HMACtype_spec'
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:1822: first defined here
+Modules/_hashopenssl.o: In function `PyInit__hashlib':
+/home/Python-3.10.6/./Modules/_hashopenssl.c:2286: multiple definition of `PyInit__hashlib'
+Modules/_hashopenssl.o:/home/Python-3.10.6/./Modules/_hashopenssl.c:2286: first defined here
+collect2: error: ld returned 1 exit status
+ln: failed to access 'libpython3.10.so.1.0': No such file or directory
+Makefile:656: recipe for target 'libpython3.10.so' failed
+make: *** [libpython3.10.so] Error 1
+</code></pre>
+<p>PS:</p>
+<p>If you encounter other issues, it's very likely due to you not install the packages ( listed in step 1 ) properly.</p>
+<p>e.g. below issue is because <code>gcc</code> is not installed. </p>
+<pre><code class="language-shell">$ ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+
+Failure!  build file wasn't produced.
+Please read INSTALL.md and associated NOTES-* files.  You may also have to
+look over your available compiler tool chain or change your configuration.
+
+ERROR!
+No C compiler found, please specify one with the environment variable CC,
+or configure with an explicit configuration target.
+</code></pre>
+<p>For there are so many similar issues during my compilation, i not paste them here one by one, i resolved them by installing step 1 packages. </p>
+<h2 id="references"><a name='references'>References</a></h2>
+<ul>
+<li><a href='https://techglimpse.com/install-python-openssl-support-tutorial/'>https://techglimpse.com/install-python-openssl-support-tutorial/</a></li>
+<li><a href='http://blog.lujianxin.com/x/art/s538bgptom7o'>http://blog.lujianxin.com/x/art/s538bgptom7o</a></li>
+</ul>
+<hr>
+<hr>
+
+<p>Compile on Mac.</p>
+<h2 id="preparation"><a name="prepare_mac">Preparation</a></h2>
+<h5 id="check-your-architecture-of-your-mac">Check your architecture of your Mac</h5>
+<p>Here is mine.</p>
+<pre><code class="language-shell">$ set | grep &quot;MACHTYPE&quot;
+MACHTYPE=x86_64-apple-darwin20
+</code></pre>
+<h5 id="download-openssl-tar-ball">Download openssl tar ball.</h5>
+<p>It's same as <a href='#download_openssl'>above process</a></p>
+<h5 id="configure">Configure</h5>
+<pre><code class="language-shell">$ ./configure --prefix=/Users/vzhong/Documents/compile-target/python-3.10.6 --with-openssl=/Users/vzhong/Documents/compile-target/openssl-3.0.5 --enable-optimizations --enable-shared
+
+Configuring OpenSSL version 3.0.5 for target darwin64-x86_64-cc
+Using os-specific seed configuration
+Created configdata.pm
+Running configdata.pm
+Created Makefile.in
+Created Makefile
+
+**********************************************************************
+***                                                                ***
+***   OpenSSL has been successfully configured                     ***
+***                                                                ***
+***   If you encounter a problem while building, please open an    ***
+***   issue on GitHub &lt;https://github.com/openssl/openssl/issues&gt;  ***
+***   and include the output from the following command:           ***
+***                                                                ***
+***       perl configdata.pm --dump                                ***
+***                                                                ***
+***   (If you are new to OpenSSL, you might want to consult the    ***
+***   'Troubleshooting' section in the INSTALL.md file first)      ***
+***                                                                ***
+**********************************************************************
+</code></pre>
+<h5 id="make-install_1">Make &amp; Install</h5>
+<pre><code class="language-shell">$ make
+
+---------- log ------------
+...
+The necessary bits to build these optional modules were not found:
+ossaudiodev           spwd
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  pwd                   time
+
+running build_scripts
+copying and adjusting /Users/vzhong/Documents/mac-compile/Python-3.10.6/Tools/scripts/pydoc3 -&gt; build/scripts-3.10
+copying and adjusting /Users/vzhong/Documents/mac-compile/Python-3.10.6/Tools/scripts/idle3 -&gt; build/scripts-3.10
+copying and adjusting /Users/vzhong/Documents/mac-compile/Python-3.10.6/Tools/scripts/2to3 -&gt; build/scripts-3.10
+changing mode of build/scripts-3.10/pydoc3 from 644 to 755
+changing mode of build/scripts-3.10/idle3 from 644 to 755
+changing mode of build/scripts-3.10/2to3 from 644 to 755
+renaming build/scripts-3.10/pydoc3 to build/scripts-3.10/pydoc3.10
+renaming build/scripts-3.10/idle3 to build/scripts-3.10/idle3.10
+renaming build/scripts-3.10/2to3 to build/scripts-3.10/2to3-3.10
+gcc -c -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall    -fno-semantic-interposition -std=c99 -Wextra -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers -Wstrict-prototypes -Werror=implicit-function-declaration -fvisibility=hidden -fprofile-instr-use=code.profclangd -I./Include/internal  -I. -I./Include    -DPy_BUILD_CORE -o Programs/_testembed.o ./Programs/_testembed.c
+clang: warning: argument unused during compilation: '-fno-semantic-interposition' [-Wunused-command-line-argument]
+gcc   -fno-semantic-interposition  -Wl,-stack_size,1000000  -framework CoreFoundation -o Programs/_testembed Programs/_testembed.o libpython3.10.a -lintl -ldl   -framework CoreFoundation
+
+</code></pre>
+<pre><code class="language-shell">$ make install
+
+---------- log ------------
+...
+if test &quot;xupgrade&quot; != &quot;xno&quot;  ; then \
+        case upgrade in \
+            upgrade) ensurepip=&quot;--upgrade&quot; ;; \
+            install|*) ensurepip=&quot;&quot; ;; \
+        esac; \
+        DYLD_LIBRARY_PATH=/Users/vzhong/Documents/mac-compile/Python-3.10.6 ./python.exe -E -m ensurepip \
+            $ensurepip --root=/ ; \
+    fi
+Looking in links: /var/folders/x3/qp_d__rn70x5hml9z4ygtvv80000gr/T/tmpp4r0himi
+Requirement already satisfied: setuptools in /Users/vzhong/Documents/compile-target/python-3.10.6/lib/python3.10/site-packages (63.2.0)
+Requirement already satisfied: pip in /Users/vzhong/Documents/compile-target/python-3.10.6/lib/python3.10/site-packages (22.2.1)
+</code></pre>
+<p>Validate if the compilation is successful.</p>
+<pre><code class="language-python">$ ~/Documents/compile-target/python-3.10.6/bin/python3
+Python 3.10.6 (main, Oct 10 2022, 15:34:10) [Clang 13.0.0 (clang-1300.0.29.30)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+&gt;&gt;&gt; import ssl
+&gt;&gt;&gt; ssl.OPENSSL_VERSION
+'OpenSSL 3.0.5 5 Jul 2022'
+</code></pre>
+<p>Ok, succeed!</p>
+<h2 id="references_1"><a name='mac_references'>References</a></h2>
+<ul>
+<li><a href='https://www.youtube.com/watch?v=15zJ0acT4NQ'>[ Youtube ] Compile Python 3.7 on macOS from scratch</a></li>
+</ul>
+<p>The end, hope it helps!</p>
+<hr>
+<hr>
+<hr>
+
+<h2 id="on-centos-58">On CentOS 5.8</h2>
+<h4 id="setup-a-docker-container">Setup a docker container</h4>
+<p>There is no centos5.8 in centos dockerhub official repos, i find out one provided by a dockerhub user.</p>
+<pre><code class="language-shell">docker pull muratayusuke/centos5.8
+
+docker run -it muratayusuke/centos5.8:latest /bin/sh
+
+
+$ 
+head -n 1 /etc/issue
+
+CentOS release 5.8 (Final)
+</code></pre>
+<p>As we can see, this version has a very low version glibc. ↓</p>
+<pre><code class="language-shell">getconf GNU_LIBC_VERSION
+
+glibc 2.5
+</code></pre>
+<p>you will encounter this error when <code>yum update</code></p>
+<pre><code class="language-shell">sh-3.2# yum update
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+YumRepo Error: All mirror URLs are not using ftp, http[s] or file.
+ Eg. Invalid release/repo/arch combination/
+removing mirrorlist with no valid mirrors: /var/cache/yum/base/mirrorlist.txt
+Error: Cannot find a valid baseurl for repo: base
+</code></pre>
+<p>solution ↓</p>
+<pre><code class="language-shell">cp /etc/yum/pluginconf.d/fastestmirror.conf /etc/yum/pluginconf.d/fastestmirror.conf.bak
+sed -i &quot;s|enabled=1|enabled=0|g&quot; /etc/yum/pluginconf.d/fastestmirror.conf
+
+
+cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+
+echo '' &gt; /etc/yum.repos.d/CentOS-Base.repo
+
+vi /etc/yum.repos.d/CentOS-Base.repo
+
+# CentOS-Base.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[base]
+name=CentOS-$releasever - Base
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os&amp;infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+baseurl=https://vault.centos.org/6.10/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#released updates
+[updates]
+name=CentOS-$releasever - Updates
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=updates&amp;infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/
+baseurl=https://vault.centos.org/6.10/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=extras&amp;infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
+baseurl=https://vault.centos.org/6.10/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+</code></pre>
+<p>Then may encounter another error.</p>
+<pre><code class="language-shell">sh-3.2# yum update
+
+Traceback (most recent call last):
+  File &quot;/usr/bin/yum&quot;, line 29, in ?
+    yummain.user_main(sys.argv[1:], exit_code=True)
+  File &quot;/usr/share/yum-cli/yummain.py&quot;, line 309, in user_main
+    errcode = main(args)
+  File &quot;/usr/share/yum-cli/yummain.py&quot;, line 178, in main
+    result, resultmsgs = base.doCommands()
+  File &quot;/usr/share/yum-cli/cli.py&quot;, line 345, in doCommands
+    self._getTs(needTsRemove)
+  File &quot;/usr/lib/python2.4/site-packages/yum/depsolve.py&quot;, line 101, in _getTs
+    self._getTsInfo(remove_only)
+  File &quot;/usr/lib/python2.4/site-packages/yum/depsolve.py&quot;, line 112, in _getTsInfo
+    pkgSack = self.pkgSack
+  File &quot;/usr/lib/python2.4/site-packages/yum/__init__.py&quot;, line 662, in &lt;lambda&gt;
+    pkgSack = property(fget=lambda self: self._getSacks(),
+  File &quot;/usr/lib/python2.4/site-packages/yum/__init__.py&quot;, line 502, in _getSacks
+    self.repos.populateSack(which=repos)
+  File &quot;/usr/lib/python2.4/site-packages/yum/repos.py&quot;, line 260, in populateSack
+    sack.populate(repo, mdtype, callback, cacheonly)
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 168, in populate
+    if self._check_db_version(repo, mydbtype):
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 226, in _check_db_version
+    return repo._check_db_version(mdtype)
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 1226, in _check_db_version
+    repoXML = self.repoXML
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 1399, in &lt;lambda&gt;
+    repoXML = property(fget=lambda self: self._getRepoXML(),
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 1391, in _getRepoXML
+    self._loadRepoXML(text=self)
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 1381, in _loadRepoXML
+    return self._groupLoadRepoXML(text, [&quot;primary&quot;])
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 1365, in _groupLoadRepoXML
+    if self._commonLoadRepoXML(text):
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 1201, in _commonLoadRepoXML
+    result = self._getFileRepoXML(local, text)
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 974, in _getFileRepoXML
+    cache=self.http_caching == 'all')
+  File &quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;, line 811, in _getFile
+    http_headers=headers,
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/mirror.py&quot;, line 412, in urlgrab
+    return self._mirror_try(func, url, kw)
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/mirror.py&quot;, line 398, in _mirror_try
+    return func_ref( *(fullurl,), **kwargs )
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/grabber.py&quot;, line 936, in urlgrab
+    return self._retry(opts, retryfunc, url, filename)
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/grabber.py&quot;, line 854, in _retry
+    r = apply(func, (opts,) + args, {})
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/grabber.py&quot;, line 922, in retryfunc
+    fo = URLGrabberFileObject(url, filename, opts)
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/grabber.py&quot;, line 1010, in __init__
+    self._do_open()
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/grabber.py&quot;, line 1093, in _do_open
+    fo, hdr = self._make_request(req, opener)
+  File &quot;/usr/lib/python2.4/site-packages/urlgrabber/grabber.py&quot;, line 1202, in _make_request
+    fo = opener.open(req)
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 364, in open
+    response = meth(req, response)
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 471, in http_response
+    response = self.parent.error(
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 396, in error
+    result = self._call_chain(*args)
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 337, in _call_chain
+    result = func(*args)
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 565, in http_error_302
+    return self.parent.open(new)
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 358, in open
+    response = self._open(req, data)
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 376, in _open
+    '_open', req)
+  File &quot;/usr/lib64/python2.4/urllib2.py&quot;, line 337, in _call_chain
+    result = func(*args)
+  File &quot;/usr/lib64/python2.4/site-packages/M2Crypto/m2urllib2.py&quot;, line 82, in https_open
+    h.request(req.get_method(), req.get_selector(), req.data, headers)
+  File &quot;/usr/lib64/python2.4/httplib.py&quot;, line 810, in request
+    self._send_request(method, url, body, headers)
+  File &quot;/usr/lib64/python2.4/httplib.py&quot;, line 833, in _send_request
+    self.endheaders()
+  File &quot;/usr/lib64/python2.4/httplib.py&quot;, line 804, in endheaders
+    self._send_output()
+  File &quot;/usr/lib64/python2.4/httplib.py&quot;, line 685, in _send_output
+    self.send(msg)
+  File &quot;/usr/lib64/python2.4/httplib.py&quot;, line 652, in send
+    self.connect()
+  File &quot;/usr/lib64/python2.4/site-packages/M2Crypto/httpslib.py&quot;, line 55, in connect
+    sock.connect((self.host, self.port))
+  File &quot;/usr/lib64/python2.4/site-packages/M2Crypto/SSL/Connection.py&quot;, line 174, in connect
+    ret = self.connect_ssl()
+  File &quot;/usr/lib64/python2.4/site-packages/M2Crypto/SSL/Connection.py&quot;, line 167, in connect_ssl
+    return m2.ssl_connect(self.ssl, self._timeout)
+M2Crypto.SSL.SSLError: unknown protocol
+</code></pre>
+<p>solution (refer to <a href="https://www.modb.pro/db/451337">here</a> ) ↓</p>
+<pre><code class="language-shell">rm -rf etc/yum.repos.d/*
+touch etc/yum.repos.d/Bento-Vault.repo
+
+
+
+
+vi /etc/yum.repos.d/Bento-Vault.repo
+
+#BENTO-BEGIN
+
+[C5.8-base]
+
+name=CentOS-5.8 - Base
+
+#baseurl=http://vault.centos.org/5.8/os/$basearch/
+
+baseurl=http://archive.kernel.org/centos-vault/5.8/os/$basearch/
+
+gpgcheck=1
+
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+
+enabled=1
+
+[C5.8-updates]
+
+name=CentOS-5.8 - Updates
+
+#baseurl=http://vault.centos.org/5.8/updates/$basearch/
+
+baseurl=http://archive.kernel.org/centos-vault/5.8/updates/$basearch/
+
+gpgcheck=1
+
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+
+enabled=1
+
+[C5.8-extras]
+
+name=CentOS-5.8 - Extras
+
+#baseurl=http://vault.centos.org/5.8/extras/$basearch/
+
+baseurl=http://archive.kernel.org/centos-vault/5.8/extras/$basearch/
+
+gpgcheck=1
+
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+
+enabled=1
+
+[C5.8-centosplus]
+
+name=CentOS-5.8 - Plus
+
+#baseurl=http://vault.centos.org/5.8/centosplus/$basearch/
+
+baseurl=http://archive.kernel.org/centos-vault/5.8/centosplus/$basearch/
+
+gpgcheck=1
+
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+
+enabled=1
+
+#BENTO-END
+</code></pre>
+<p><code>yum update</code> succeed ↓</p>
+<pre><code class="language-shell"># yum update
+Failed to set locale, defaulting to C
+C5.8-base                                                                                                       | 1.1 kB     00:00     
+C5.8-base/primary                                                                                               | 1.2 MB     00:00     
+C5.8-base                                                                                                                    3591/3591
+C5.8-centosplus                                                                                                 | 1.9 kB     00:00     
+C5.8-centosplus/primary_db                                                                                      |  89 kB     00:00     
+C5.8-extras                                                                                                     | 2.1 kB     00:00     
+C5.8-extras/primary_db                                                                                          | 207 kB     00:00     
+C5.8-updates                                                                                                    | 1.9 kB     00:00     
+C5.8-updates/primary_db                                                                                         | 1.0 MB     00:00     
+Setting up Update Process
+No Packages marked for Update
+</code></pre>
+<p>Let's install vim</p>
+<pre><code class="language-shell">yum install vim-enhanced -y
+</code></pre>
+<h4 id="compile-openssl_1">Compile openssl</h4>
+<pre><code class="language-shell">Supposed to be wget, but actually wget not works
+wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+
+
+--2022-10-20 09:51:09--  https://github.com/openssl/openssl/archive/refs/tags/openssl-3.0.5.tar.gz
+Resolving github.com... 192.30.255.113
+Connecting to github.com|192.30.255.113|:443... connected.
+OpenSSL: error:1407742E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert protocol version
+Unable to establish SSL connection.
+
+
+-------(′ꈍᴗꈍ‵)-------------
+Above error i have tried varity of approches, but not solve it,
+so my workaround is to download this tarball on my host, then docker cp to this container.
+</code></pre>
+<p>Uncompress openssl tarball.</p>
+<pre><code class="language-shell">$ 
+tar -xvzf openssl-3.0.5.tar.gz
+
+tar: bzip2: Cannot exec: No such file or directory
+tar: Error is not recoverable: exiting now
+tar: Child returned status 2
+tar: Error exit delayed from previous errors
+</code></pre>
+<p>Solution ↓</p>
+<pre><code class="language-shell">$ 
+yum install bzip2
+
+$
+tar -xvzf openssl-3.0.5.tar.gz
+</code></pre>
+<p>configure openssl</p>
+<pre><code>$
+cd openssl-openssl-3.0.5
+
+$
+./config --prefix=/usr/local/openssl-3.0.5 --openssldir=/usr/local/openssl-3.0.5
+Perl v5.10.0 required--this is only v5.8.8, stopped at /openssl-openssl-3.0.5/Configure line 12.
+BEGIN failed--compilation aborted at /openssl-openssl-3.0.5/Configure line 12.
+</code></pre>
+<p>Solution  ↓</p>
+<p>Upgrade perl version, basically, i referred to <a href="https://blog.csdn.net/GUI1259802368/article/details/84935290">here</a>, but a bit different.</p>
+<p>I downloaded <code>perl-5.26.3.tar.gz</code>(http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.26.3.tar.gz)</p>
+<pre><code class="language-shell">cd perl-5.26.3
+
+./Configure -des -Dprefix=/usr/local/perl -Dusethreads -Uversiononly -Dcc=gcc
+</code></pre>
+<p>Above <code>Configure</code> cmd is sightly different from what article demos.</p>
+<pre><code class="language-shell">make
+make install
+</code></pre>
+<p>After installed, then</p>
+<pre><code class="language-shell">mv /usr/bin/perl /usr/bin/perl.bak
+ln -s /usr/local/perl/bin/perl /usr/bin/perl
+
+# perl -v
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = &quot;C.UTF-8&quot;
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale (&quot;C&quot;).
+
+This is perl 5, version 26, subversion 3 (v5.26.3) built for x86_64-linux-thread-multi
+
+Copyright 1987-2018, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using &quot;man perl&quot; or &quot;perldoc perl&quot;.  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.
+</code></pre>
+<h5 id="upgrade-wget">upgrade wget</h5>
+<p>I gave up it after a painful struggle.</p>
+<h5 id="upgrade-ld">Upgrade ld</h5>
+<p>If you encounter below error. Try to upgrade <code>ld</code></p>
+<pre><code class="language-shell">/usr/bin/ld: cannot find -l:libssl.a
+collect2: ld returned 1 exit status
+ln: accessing `libpython3.10.so.1.0': No such file or directory
+</code></pre>
+<h4 id="upgrade-gcc">upgrade gcc</h4>
+<p>gcc version on this machine is very low.</p>
+<pre><code class="language-shell">sh-3.2# gcc -v
+Using built-in specs.
+Target: x86_64-redhat-linux6E
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --disable-gnu-unique-object --with-as=/usr/libexec/binutils220/as --enable-languages=c,c++,fortran --disable-libgcj --with-mpfr=/builddir/build/BUILD/gcc-4.4.7-20120601/obj-x86_64-redhat-linux6E/mpfr-install/ --with-ppl=/builddir/build/BUILD/gcc-4.4.7-20120601/obj-x86_64-redhat-linux6E/ppl-install --with-cloog=/builddir/build/BUILD/gcc-4.4.7-20120601/obj-x86_64-redhat-linux6E/cloog-install --with-tune=generic --with-arch_32=i586 --build=x86_64-redhat-linux6E
+Thread model: posix
+gcc version 4.4.7 20120313 (Red Hat 4.4.7-1) (GCC) 
+
+
+Error:
+
+configure: error: in `/tmp/gcc-12.2.0/host-x86_64-pc-linux-gnu/gcc':
+configure: error: C++ preprocessor &quot;/lib/cpp&quot; fails sanity check
+See `config.log' for more details
+make[2]: *** [configure-stage1-gcc] Error 1
+make[2]: Leaving directory `/tmp/gcc-12.2.0'
+make[1]: *** [stage1-bubble] Error 2
+make[1]: Leaving directory `/tmp/gcc-12.2.0'
+make: *** [all] Error 2
+
+solution:↓
+download gcc-8.2.0, https://ftp.gnu.org/gnu/gcc/gcc-8.2.0/gcc-8.2.0.tar.gz
+then recompile
+be patient, it will take a long long time..
+
+reconfigure: got error
+
+/tmp/downs/gcc-8.2.0/host-x86_64-pc-linux-gnu/gcc/cc1: error while loading shared libraries: libmpc.so.3: cannot open shared object file: No such file or directory
+make[3]: *** [s-selftest-c] Error 1
+rm gcc.pod
+make[3]: Leaving directory `/tmp/downs/gcc-8.2.0/host-x86_64-pc-linux-gnu/gcc'
+make[2]: *** [all-stage1-gcc] Error 2
+make[2]: Leaving directory `/tmp/downs/gcc-8.2.0'
+make[1]: *** [stage1-bubble] Error 2
+make[1]: Leaving directory `/tmp/downs/gcc-8.2.0'
+make: *** [all] Error 2
+
+-- refer to: https://blog.csdn.net/CouragelDesire/article/details/116462607
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpc/lib:/usr/local/gmp/lib:/usr/local/mpfr/lib
+then reconfigure
+</code></pre>
+<p>As prerequisite, we must install below 3 libs before install gcc.</p>
+<ul>
+<li>Install <code>gmp</code></li>
+</ul>
+<p>I downloaded <code>gmp-6.1.2.tar.xz</code> (https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz)</p>
+<pre><code class="language-shell">yum install xz
+</code></pre>
+<pre><code class="language-shell">unxz gmp-6.1.2.tar.xz
+tar -xf gmp-6.1.2.tar
+
+cd gmp-6.1.2
+
+./configure --prefix=/usr/local/gmp
+make
+make install
+</code></pre>
+<ul>
+<li>Install <code>mpfr</code> (https://www.mpfr.org/mpfr-current/mpfr-4.1.1.tar.gz)</li>
+</ul>
+<pre><code class="language-shell">tar -xvzf mpfr-4.1.1.tar.gz
+cd mpfr-4.1.1
+
+./configure --prefix=/usr/local/mpfr --with-gmp-include=/usr/local/gmp/include/ --with-gmp-lib=/usr/local/gmp/lib/
+
+make
+make install
+</code></pre>
+<ul>
+<li>Install <code>mpc</code> (https://ftp.gnu.org/gnu/mpc/mpc-1.2.0.tar.gz, it's different from above article, i encounter a error in 1.0.3, as below shows)</li>
+</ul>
+<pre><code class="language-shell">cd mpc-1.0.3
+
+./configure --prefix=/usr/local/mpc --with-gmp=/usr/local/gmp --with-mpfr=/usr/local/mpfr
+
+make
+
+mul.c:175: error: conflicting types for 'mpfr_fmma'
+/usr/local/mpfr/include/mpfr.h:765: note: previous declaration of 'mpfr_fmma' was here
+make[2]: *** [mul.lo] Error 1
+make[2]: Leaving directory `/mpc-1.0.3/mpc-1.0.3/src'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/mpc-1.0.3/mpc-1.0.3'
+make: *** [all] Error
+
+----------------
+
+Then i change install version as `1.2.0` (https://ftp.gnu.org/gnu/mpc/mpc-1.2.0.tar.gz), works
+
+tar -xvzf mpc-1.2.0.tar.gz
+cd mpc-1.2.0
+
+./configure --prefix=/usr/local/mpc --with-gmp=/usr/local/gmp --with-mpfr=/usr/local/mpfr
+
+make
+make install
+</code></pre>
+<ul>
+<li>upgrade gcc</li>
+</ul>
+<p>I choose the latest version of gcc (https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.gz)
+but failed, so i change version as <code>gcc-8.2.0</code></p>
+<pre><code class="language-shell">./configure --prefix=/usr/local/gcc --enable-threads=posix --disable-checking --disable-multilib --enable-languages=c,c++ --with-gmp=/usr/local/gmp --with-mpfr=/usr/local/mpfr --with-mpc=/usr/local/mpc
+make
+make install
+</code></pre>
+<p>https://www.quora.com/How-can-I-upgrade-GCC-on-CentOS-7
++ https://blog.csdn.net/springlustre/article/details/101123238</p>
+<pre><code class="language-shell">checking for objdir... .libs
+checking for the correct version of gmp.h... no
+configure: error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.
+Try the --with-gmp, --with-mpfr and/or --with-mpc options to specify
+their locations.  Source code for these libraries can be found at
+their respective hosting sites as well as at
+ftp://gcc.gnu.org/pub/gcc/infrastructure/.  See also
+http://gcc.gnu.org/install/prerequisites.html for additional info.  If
+you obtained GMP, MPFR and/or MPC from a vendor distribution package,
+make sure that you have installed both the libraries and the header
+files.  They may be located in separate packages.
+</code></pre>
+<pre><code class="language-shell">
+  198  pwd
+  199  ls
+  200  cd ..
+  201  ls
+  202  cd gmp-6.1.0
+  203  ./configure
+  204  ./configure --prefix=/usr/local/gmp
+  205  make
+  206  make install
+  207  cd ../mpfr-3.1.4
+  208  ./configure --prefix=/usr/local/mpfr
+  209  make
+  210  make install
+  211  ls
+  212  pwd
+  213  cd ..
+  214  ls
+  215  cd mpc-1.0.3
+  216  pwd
+  217  pwd
+  218  ./configure --prefix=/usr/local/mpc --with-gmp=/usr/local/gmp --with-mpfr=/usr/local/mpfr
+  219  make
+  220  make install
+  221  history
+</code></pre>
+<p>make</p>
+<pre><code class="language-shell">-----log------
+
+store_16_.o cas_16_.o exch_16_.o fadd_16_.o fsub_16_.o fand_16_.o fior_16_.o fxor_16_.o fnand_16_.o tas_16_.o
+libtool: link: ranlib .libs/libatomic.a
+libtool: link: ( cd &quot;.libs&quot; &amp;&amp; rm -f &quot;libatomic.la&quot; &amp;&amp; ln -s &quot;../libatomic.la&quot; &quot;libatomic.la&quot; )
+true  DO=all multi-do # make
+make[4]: Leaving directory `/gcc-8.2.0/x86_64-pc-linux-gnu/libatomic'
+make[3]: Leaving directory `/gcc-8.2.0/x86_64-pc-linux-gnu/libatomic'
+make[2]: Leaving directory `/gcc-8.2.0/x86_64-pc-linux-gnu/libatomic'
+make[1]: Leaving directory `/gcc-8.2.0'
+</code></pre>
+<p>gcc, install</p>
+<pre><code class="language-shell">make install
+
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/gcc/lib/../lib64
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/gcc-8.2.0/x86_64-pc-linux-gnu/libatomic'
+make[3]: Leaving directory `/gcc-8.2.0/x86_64-pc-linux-gnu/libatomic'
+make[2]: Leaving directory `/gcc-8.2.0/x86_64-pc-linux-gnu/libatomic'
+make[1]: Leaving directory `/gcc-8.2.0'
+</code></pre>
+<pre><code class="language-shell"># /usr/local/gcc/bin/gcc -v
+
+Using built-in specs.
+COLLECT_GCC=/usr/local/gcc/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/local/gcc/libexec/gcc/x86_64-pc-linux-gnu/8.2.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: 
+./configure --prefix=/usr/local/gcc --enable-threads=posix --disable-checking --disable-multilib --enable-languages=c,c++ --with-gmp=/usr/local/gmp --with-mpfr=/usr/local/mpfr --with-mpc=/usr/local/mpc
+Thread model: posix
+gcc version 8.2.0 (GCC)
+</code></pre>
+<pre><code class="language-shell"># ln -s /usr/local/gcc/bin/gcc /usr/bin/gcc
+
+# ls -lha /usr/bin/gcc
+lrwxrwxrwx 1 root root 22 Oct 27 21:53 /usr/bin/gcc -&gt; /usr/local/gcc/bin/gcc
+
+# gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/local/gcc/libexec/gcc/x86_64-pc-linux-gnu/8.2.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: ./configure --prefix=/usr/local/gcc --enable-threads=posix --disable-checking --disable-multilib --enable-languages=c,c++ --with-gmp=/usr/local/gmp --with-mpfr=/usr/local/mpfr --with-mpc=/usr/local/mpc
+Thread model: posix
+gcc version 8.2.0 (GCC)
+</code></pre>
+<p>compile python</p>
+<pre><code class="language-shell"># ./configure --prefix=/usr/local/python-3.10.6-with-openssl-3.0.5 --with-openssl=/usr/local/openssl-3.0.5/ --enable-shared
+
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for python3.10... no
+checking for python3... no
+checking for python... python
+checking for --enable-universalsdk... no
+checking for --with-universal-archs... no
+checking MACHDEP... &quot;linux&quot;
+checking for gcc... gcc
+checking whether the C compiler works... no
+configure: error: in `/Python-3.10.6':
+configure: error: C compiler cannot create executables
+See `config.log' for more details
+
+
+
+solution: ↓
+
+</code></pre>
+<h5 id="upgrade-ld_1">Upgrade ld</h5>
+<pre><code class="language-shell">sh-3.2# export LD_LIBRARY_PATH=/usr/local/python-3.10.6-with-openssl-3.0.5/lib
+sh-3.2# /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3
+Python 3.10.6 (main, Oct 28 2022, 03:26:08) [GCC 8.2.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import _ctypes
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ModuleNotFoundError: No module named '_ctypes'
+</code></pre>
+<pre><code class="language-shell">compile libffi erro
+
+configure:3823: gcc -V &gt;&amp;5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:3834: $? = 1
+configure:3823: gcc -qversion &gt;&amp;5
+gcc: error: unrecognized command line option '-qversion'; did you mean '--version'?
+gcc: fatal error: no input files
+compilation terminated.
+configure:3834: $? = 1
+configure:3854: checking whether the C compiler works
+configure:3876: gcc    conftest.c  &gt;&amp;5
+/usr/local/gcc/libexec/gcc/x86_64-pc-linux-gnu/8.2.0/cc1: error while loading shared libraries: libmpc.so.3: cannot open shared object file: No such file or directory
+
+$
+export LD_LIBRARY_PATH=/usr/local/mpc/lib/:/usr/local/mpfr/lib/:/usr/local/gmp/lib/
+
+
+
+export LD_LIBRARY_PATH=/usr/local/mpc/lib/:/usr/local/mpfr/lib/:/usr/local/gmp/lib/:/usr/local/libffi/3_2_1/lib/
+then recompile python
+
+got error
+
+/Python-3.10.6/Modules/_ctypes/_ctypes.c:107:10: fatal error: ffi.h: No such file or directory
+ #include &lt;ffi.h&gt;
+          ^~~~~~~
+compilation terminated.
+
+The necessary bits to build these optional modules were not found:
+_bz2                  _curses               _curses_panel      
+_dbm                  _gdbm                 _lzma              
+_sqlite3              _tkinter              _uuid              
+readline                                                       
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket            
+_ssl                  pwd                   time               
+
+
+Failed to build these modules:
+_ctypes      
+
+shit, i need to compile all the lib not found. then id do below
+
+## sqlite same as in ubuntu
+## yum install -y xz-devel
+## yum -y install tcl-devel tk-devel
+
+
+The necessary bits to build these optional modules were not found:
+_bz2                  _curses               _curses_panel      
+_dbm                  _gdbm                 _tkinter           
+_uuid                 readline                                 
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket            
+_ssl                  pwd                   time               
+
+
+Failed to build these modules:
+_ctypes  
+
+
+
+## yum install gdbm-devel tk-devel readline-devel bzip2-devel ncurses-devel zlib-devel
+
+/Python-3.10.6/Modules/_ctypes/_ctypes.c:107:10: fatal error: ffi.h: No such file or directory
+ #include &lt;ffi.h&gt;
+          ^~~~~~~
+compilation terminated.
+*** WARNING: renaming &quot;_sqlite3&quot; since importing it failed: /Python-3.10.6/build/lib.linux-x86_64-3.10/_sqlite3.cpython-310-x86_64-linux-gnu.so: undefined symbol: sqlite3_backup_remaining
+
+The necessary bits to build these optional modules were not found:
+_uuid                                                          
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket            
+_ssl                  pwd                   time               
+
+
+Failed to build these modules:
+_ctypes                                                        
+
+
+Following modules built successfully but were removed because they could not be imported:
+_sqlite3                                                       
+
+</code></pre>
+<pre><code class="language-shell">CORE_MODULE
+/Python-3.10.6/Modules/_ctypes/_ctypes.c:107:10: fatal error: ffi.h: No such file or directory
+ #include &lt;ffi.h&gt;
+          ^~~~~~~
+compilation terminated.
+</code></pre>
+<pre><code class="language-shell">/python-3.10.6-with-openssl-3.0.5/lib -L/usr/local/lib -ldl -o build/lib.linux-x86_64-3.10/_ctypes.cpython-310-x86_64-linux-gnu.so
+*** WARNING: renaming &quot;_sqlite3&quot; since importing it failed: /Python-3.10.6/build/lib.linux-x86_64-3.10/_sqlite3.cpython-310-x86_64-linux-gnu.so: undefined symbol: sqlite3_backup_remaining
+*** WARNING: renaming &quot;_ctypes&quot; since importing it failed: /Python-3.10.6/build/lib.linux-x86_64-3.10/_ctypes.cpython-310-x86_64-linux-gnu.so: undefined symbol: ffi_prep_cif
+
+The necessary bits to build these optional modules were not found:
+_uuid                                                          
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  _hashlib              _socket            
+_ssl                  pwd                   time               
+
+
+Following modules built successfully but were removed because they could not be imported:
+_ctypes               _sqlite3  
+
+
+solution ↓
+
+</code></pre>
+<h5 id="install-libffi-devel">install libffi-devel</h5>
+<h5 id="install-pkg-config">install pkg-config</h5>
+<p>https://blog.csdn.net/u012897401/article/details/88994933</p>
+<p>but i use pkg-config-0.29.2
+wget https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz</p>
+<pre><code class="language-shell">sh-3.2# ./autogen.sh 
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = &quot;C.UTF-8&quot;
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale (&quot;C&quot;).
+Can't exec &quot;aclocal&quot;: No such file or directory at /usr/bin/autoreconf line 174.
+Use of uninitialized value in pattern match (m//) at /usr/bin/autoreconf line 174.
+autoreconf: Entering directory `.'
+autoreconf: configure.ac: not using Gettext
+autoreconf: running: aclocal -I m4 --output=aclocal.m4t
+Can't exec &quot;aclocal&quot;: No such file or directory at /usr/share/autoconf/Autom4te/FileUtils.pm line 288.
+autoreconf: failed to run aclocal: No such file or directory
+sh-3.2# 
+
+solution:
+sh-3.2# yum install automake libtool
+
+
+
+</code></pre>
+<p>_ctypes solution: https://bugs.python.org/issue14527</p>
+<pre><code class="language-shell">sh-3.2# /usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3
+/usr/local/python-3.10.6-with-openssl-3.0.5/bin/python3: error while loading shared libraries: libpython3.10.so.1.0: cannot open shared object file: No such file or directory
+</code></pre>
+<p>Questions:
+- $(PWD) is '/' when root runs</p>
+<p>references:
+https://www.cnblogs.com/god-of-death/p/12767113.html</p>
+<p>OPENSSL_ARTIFACTORY = http://10.79.128.59:8000/openssl-3.0.5.tar.gz
+PYTHON_ARTIFACTORY = http://10.79.128.59:8000/python-3.10.6-with-openssl-3.0.5.tar.gz</p>
+<h4 id="x">x</h4>
+<p>Create docker image from iso image
+https://wiki.metacentrum.cz/wiki/Creating_Docker_Image_from_.iso_File</p>
+<h3 id="install-macos-in-virtualbox">Install MacOS in virtualBox</h3>
+<p>https://appuals.com/this-copy-of-the-install-os-x-el-capitan-application-cant-be-verified/
+https://www.youtube.com/watch?v=-TGtkAGgzBg</p>
+<p>https://bugs.python.org/issue14527</p>
+<p>黑苹果 https://zhuanlan.zhihu.com/p/20248815</p>
+<h2 id="on-macos-capitan">On Macos Capitan</h2>
+<pre><code class="language-shell">cat /System/Library/CoreServices/SystemVersion.plist
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+    &lt;dict&gt;
+        &lt;key&gt;ProductBuildVersion&lt;/key&gt;
+        &lt;string&gt;15F34&lt;/string&gt;
+        &lt;key&gt;ProductCopyright&lt;/key&gt;
+        &lt;string&gt;1983-2016 Apple Inc.&lt;/string&gt;
+        &lt;key&gt;ProductName&lt;/key&gt;
+        &lt;string&gt;Mac OS X&lt;/string&gt;
+        &lt;key&gt;ProductUserVisibleVersion&lt;/key&gt;
+        &lt;string&gt;10.11.5&lt;/string&gt;
+        &lt;key&gt;ProductVersion&lt;/key&gt;
+        &lt;string&gt;10.11.5&lt;/string&gt;
+    &lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+<p>VMware Remote Console download:
+https://pagalba.balt.net/index.php/Download_Vmware_Remote_Console_(VMRC)_HTML5</p>
+<p>Install Capitan on Fusion:
+http://cn.tipsandtricks.tech/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8VMware-Fusion%E5%AE%89%E8%A3%85Mac-OS-X</p>
+<pre><code class="language-shell">crypto/bn/rsaz-avx512.s:859:2: error: instruction requires: AVX-512 ISA AVX-512 VL ISA
+ vmovdqu64 %ymm3,96(%rdi)
+ ^
+crypto/bn/rsaz-avx512.s:860:2: error: instruction requires: AVX-512 ISA AVX-512 VL ISA
+ vmovdqu64 %ymm4,128(%rdi)
+ ^
+make[1]: *** [crypto/bn/libcrypto-lib-rsaz-avx512.o] Error 1
+make: *** [build_sw] Error 2
+
+
+
+
+mentioned at page https://github.com/openssl/openssl/issues/15937
+
+
+solution ↓
+change version to 3.0.7
+
+make
+
+---------log----------
+rm -f &quot;util/shlib_wrap.sh&quot;
+perl &quot;-I.&quot; -Mconfigdata &quot;util/dofile.pl&quot; \
+        &quot;-oMakefile&quot; util/shlib_wrap.sh.in &gt; &quot;util/shlib_wrap.sh&quot;
+chmod a+x util/shlib_wrap.sh
+rm -f &quot;util/wrap.pl&quot;
+perl &quot;-I.&quot; -Mconfigdata &quot;util/dofile.pl&quot; \
+        &quot;-oMakefile&quot; util/wrap.pl.in &gt; &quot;util/wrap.pl&quot;
+chmod a+x util/wrap.pl
+
+
+
+
+make
+
+----------log---------------
+
+gcc     -Wl,-stack_size,1000000  -framework CoreFoundation -o python.exe Programs/python.o -L. -lpython3.10 -ldl   -framework CoreFoundation -L/tmp/openssl-3.0.7/lib -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a  -L/tmp/openssl-3.0.7/lib -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+ld: library not found for -l:libssl.a
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [python.exe] Error 1
+
+
+solution:
+
+./configure --prefix=/usr/local/python-3.10.6-with-openssl-3.0.5 --with-openssl=/usr/local/openssl-3.0.5/ --enable-shared CPPFLAGS=&quot;-I/usr/local/openssl-3.0.5/include&quot; LDFLAGS=&quot;-L/usr/local/openssl-3.0.5/lib&quot;
+</code></pre>
+<pre><code class="language-shell">The necessary bits to build these optional modules were not found:
+_tkinter
+To find the necessary bits, look in configure.ac and config.log.
+
+Checked 109 modules (30 built-in, 76 shared, 2 n/a on macosx-10.11-x86_64, 0 disabled, 1 missing, 0 failed on import)
+</code></pre>
+<pre><code class="language-shell">Error: python-tk@3.10: Failed to download resource &quot;gdbm&quot;
+
+solution：
+https://www.jianshu.com/p/f028e184a25f
+</code></pre>
+<pre><code class="language-shell">ReadTimeoutError: HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Read timed out.
+
+$ pip install --upgrade pip --user
+</code></pre>
+<pre><code class="language-shell">$ pip install PyInstaller==4.10
+WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support pip 21.0 will remove support for this functionality.
+Defaulting to user installation because normal site-packages is not writeable
+ERROR: Could not find a version that satisfies the requirement PyInstaller==4.10 (from versions: 2.0, 2.1, 3.0, 3.1, 3.1.1, 3.2, 3.2.1, 3.3, 3.3.1, 3.4, 3.5, 3.6, 4.0, 4.1)
+ERROR: No matching distribution found for PyInstaller==4.10
+</code></pre>
+<pre><code class="language-shell">$ ./configure --prefix=/tmp/compiled-Python-3.10.6/ --with-openssl=/tmp/openssl-3.0.7/ --enable-shared CPPFLAGS=&quot;-I/tmp/openssl-3.0.7/include&quot; LDFLAGS=&quot;-L/tmp/openssl-3.0.7/lib&quot;
+
+The necessary bits to build these optional modules were not found:
+ossaudiodev           spwd
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  pwd                   time
+
+running build_scripts
+
+
+
+
+
+</code></pre>
+<pre><code class="language-shell">  File &quot;/private/tmp/osspi-cli/virtualenv/lib/python3.10/site-packages/PyInstaller/utils/osx.py&quot;, line 337, in remove_signature_from_binary
+    raise SystemError(f&quot;codesign command ({cmd_args}) failed with error code {p.returncode}!\noutput: {p.stdout}&quot;)
+SystemError: codesign command (['codesign', '--remove', '--all-architectures', '/private/tmp/osspi-cli/build/osspi/osspi']) failed with error code 1!
+output: /private/tmp/osspi-cli/build/osspi/osspi: invalid or unsupported format for signature
+
+make: *** [all] Error 1
+
+
+为什么不能用户brew安装的python ?
+</code></pre>
+<pre><code class="language-shell">when copy compiled python from EI Capitan to my mac
+
+$ build/python/bin/python3
+dyld: Library not loaded: /tmp/compiled-Python-3.10.6/lib/libpython3.10.dylib
+  Referenced from: /Users/vzhong/ttt/build/python/bin/python3
+  Reason: image not found
+Abort trap: 6
+</code></pre>
+<h4 id="compile-on-ei-capitan">Compile on EI Capitan</h4>
+<pre><code>    1  ping 10.110.124.158
+    2  ping 10.110.124.158
+    3  ls
+    4  ls
+    5  cd compile-python-openssl/
+    6  l
+    7  ls
+    8  cd openssl-openssl-3.0.5/
+    9  ls
+   10  ./config --prefix=/usr/local/openssl-3.0.5 --openssldir=/usr/local/openssl-3.0.5
+   11  make
+   12  cd ..
+   13  ls
+   14  tar -xvzf openssl-3.0.7.tar.gz
+   15  cd openssl-openssl-3.0.7/
+   16  ls
+   17  ./config --prefix=/usr/local/openssl-3.0.7 --openssldir=/usr/local/openssl-3.0.7
+   18  make
+   19  pwd
+   20  ls
+   21  ls /usr/local/
+   22  make install
+   23  mkdir /usr/local/openssl-3.0.7
+   24  sudo mkdir /usr/local/openssl-3.0.7
+   25  chmod 777 /usr/local/openssl-3.0.7
+   26  sudo chmod 777 /usr/local/openssl-3.0.7
+   27  make install
+   28  pwd
+   29  cd ..
+   30  ls
+   31  cd Python-3.10.6
+   32  ls
+   33  ls
+   34  ls /usr/local/openssl-3.0.5
+   35  ls /usr/local/
+   36  ls /usr/local/openssl-3.0.7
+   37  pwd
+   38  ./configure --prefix=/usr/local/python-3.10.6-with-openssl-3.0.7 --with-openssl=/usr/local/openssl-3.0.7/ --enable-shared CPPFLAGS=&quot;-I/usr/local/openssl-3.0.7/include&quot; LDFLAGS=&quot;-L/usr/local/openssl-3.0.7/lib&quot;
+   39  make
+   40  history
+   41  make install
+   42  ls /usr/local/
+   43  mkdir /usr/local/python-3.10.6-with-openssl-3.0.7
+   44  sudo mkdir /usr/local/python-3.10.6-with-openssl-3.0.7
+   45  sudo chmod 777 /usr/local/python-3.10.6-with-openssl-3.0.7
+   46  make install
+   47  history
+</code></pre>
+<p><a href="./">back</a></p>
+<p>Extra story:</p>
+<pre><code class="language-shell">vzhong-a01:test-capitan vzhong$ pip install PyInstaller==4.10
+DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support pip 21.0 will remove support for this functionality.
+Defaulting to user installation because normal site-packages is not writeable
+ERROR: Could not find a version that satisfies the requirement PyInstaller==4.10 (from versions: 2.0, 2.1, 3.0, 3.1, 3.1.1, 3.2, 3.2.1, 3.3, 3.3.1, 3.4, 3.5, 3.6, 4.0, 4.1)
+ERROR: No matching distribution found for PyInstaller==4.10
+
+
+solution: ↓
+$ pip3 install PyInstaller==4.10
+</code></pre>
+<p>./configure LDFLAGS="-L/usr/local/mpc/lib" --prefix=/usr/local/gcc --enable-threads=posix --disable-checking --disable-multilib --enable-languages=c,c++ --with-gmp=/usr/local/gmp --with-mpfr=/usr/local/mpfr --with-mpc=/usr/local/mpc</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
