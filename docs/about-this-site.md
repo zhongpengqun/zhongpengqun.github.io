@@ -4,6 +4,18 @@ title: Hello
 description: Introduction about this site and me.
 ---
 
+### How to deploy a blog by github pages
+jeklly 
+
+
+```
+# bundle install
+Don't run Bundler as root. Bundler can ask for sudo if it is needed, and installing your bundle as root will break this application for all non-root users on this
+machine.
+Could not locate Gemfile
+```
+
+
 ## Owner
 <!-- <img src="https://raw.githubusercontent.com/zhongpengqun/material/master/zhong.jpeg" width="250" />
 -->
